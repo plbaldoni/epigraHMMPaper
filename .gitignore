@@ -1,8 +1,6 @@
 # My ignores
-/*.bam
-/*.bed
-/*.RData
-/*.gz
+**/Data/Encode*
+**/Data/hg19*
 
 # History files
 .Rhistory
