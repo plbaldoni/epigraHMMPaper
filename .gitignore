@@ -1,3 +1,9 @@
+# My ignores
+/*.bam
+/*.bed
+/*.RData
+/*.gz
+
 # History files
 .Rhistory
 .Rapp.history
