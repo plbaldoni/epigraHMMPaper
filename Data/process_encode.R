@@ -1,8 +1,8 @@
 library(csaw)
 library(bamsignals)
 
-load('./Data/hg19/human.hg19.ranges.mappable.RData')
-load('./Data/hg19/human.hg19.ranges.blacklist.RData')
+load('./hg19/human.hg19.ranges.mappable.RData')
+load('./hg19/human.hg19.ranges.blacklist.RData')
 size = c(100,250,500,750,1000)
 
 paths <- list.dirs('.',recursive = FALSE)
