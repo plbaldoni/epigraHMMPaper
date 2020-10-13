@@ -3,6 +3,8 @@
 **/Data/hg19*
 **/slurm*
 **/*.Rout
+**/*.RData
+**/*.pdf
 
 # History files
 .Rhistory
