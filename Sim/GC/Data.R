@@ -69,8 +69,8 @@ eq <- function(xy0,xy1,phi0 = 10,phi1 = 2.5,prob = c(0.025,0.975),alpha = 11,plo
 
 pareq <- function(depth,direction,...){
   
-  depth <- ifelse(depth=='low',0.9,
-                  ifelse(depth=='medium',1,ifelse(depth=='high',1.1,NA)))
+  depth <- ifelse(depth=='low',0.75,
+                  ifelse(depth=='medium',1,ifelse(depth=='high',1.25,NA)))
   
   x <- c(0.3,0.5,0.7)
   if(direction == 'up'){
@@ -201,9 +201,10 @@ for(i in 1:nrow(scenario)){
       pdf(file = file.path('Data',scenario.i$Label,paste0(scenario.i$Label,'_',sim,'.pdf')),width = 7,height = 7)
       pairs(cbind(log1p(df.chip),gc), lower.panel = NULL, upper.panel = my_line)
       pairs(cbind(log1p(df.chip),ref), lower.panel = NULL, upper.panel = my_line)
-      ggplot(data = dt.chip[Window %in% idx,],aes(x = Window,y = value))+
+      fig <- ggplot(data = dt.chip[Window %in% idx,],aes(x = Window,y = value))+
         facet_grid(rows = vars(variable))+
         geom_line()+theme_bw()+ylab('Simulated ChIP Counts')
+      print(fig)
       dev.off()
     }
   }
