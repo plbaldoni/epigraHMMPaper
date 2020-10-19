@@ -5,6 +5,9 @@
 **/*.Rout
 **/*.RData
 **/*.pdf
+**/*.png
+
+Sim/GC/Analysis/
 
 # History files
 .Rhistory
