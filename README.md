@@ -4,4 +4,4 @@
 * public - code for the analysis of the publicly available data
 * Sim - code for the simulation setup and analyses
 * main - code to produce figures and tables of the main article
-* supp - code to produce figures and tables of the supplementary materials
+* Supp - code to produce figures and tables of the supplementary materials
