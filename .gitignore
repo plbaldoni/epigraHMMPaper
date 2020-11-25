@@ -6,8 +6,15 @@
 **/*.RData
 **/*.pdf
 **/*.png
+*.fa
 
 Sim/GC/Analysis/
+
+Public/Salmon/H1hesc
+Public/Salmon/Helas3
+Public/Salmon/Hepg2
+Public/Salmon/Huvec
+Public/Salmon/Homo_sapiens.GRCh37.cdna.all.fa.salmon.index/
 
 # History files
 .Rhistory
