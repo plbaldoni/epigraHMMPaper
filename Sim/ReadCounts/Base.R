@@ -20,7 +20,9 @@ load(file.path(dirdata,paste0(label,sim,'.RData')))
 
 # Creating input elements
 countData <- as.matrix(data.frame(dat$ChIP))
-colnames(countData) <- paste0(names(lapply(dat$ChIP,function(x){names(x)})),'.',unlist(lapply(dat$ChIP,function(x){names(x)})))
+colnames(countData) <- unlist(lapply(seq_len(length(dat$ChIP)),function(x){
+    paste0(rep(names(dat$ChIP)[x],length(dat$ChIP[[1]])),".",names(dat$ChIP[[1]]))
+}))
 colData <- data.frame(condition = unlist(lapply(strsplit(x=colnames(countData),split='\\.'),function(x){x[1]})),
                       replicate = unlist(lapply(strsplit(x=colnames(countData),split='\\.'),function(x){x[2]})))
 rowRanges <- GenomicRanges::GRanges('chrA',IRanges::IRanges(start = seq(1,100*nrow(countData),by = 100),width = 100))
