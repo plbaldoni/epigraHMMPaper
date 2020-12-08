@@ -8,6 +8,8 @@
 **/*.png
 *.fa
 
+Sim/BIC/Analysis_*
+
 Sim/GC/Analysis/
 
 Public/Salmon/H1hesc
