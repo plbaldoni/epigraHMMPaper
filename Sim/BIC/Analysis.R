@@ -7,7 +7,7 @@ wd = getwd()
 # Nwindow: 1e5, 5e5, 1e6
 # Nsim: 100
 
-scenario = expand.grid(Marker=c('H3K36me3','H3K27me3'),Groups=c(2,3,4),Replicates=c(1,2,4),Nwindow=c(1e5),Nsim=100,Pct=round(100*c(0.7,0.8,0.9,1)))
+scenario = expand.grid(Marker=c('H3K36me3','H3K27me3'),Groups=c(3),Replicates=c(1,2,4),Nwindow=c(1e5),Nsim=100,Pct=round(100*c(0.7,0.8,0.9,1)))
 scenario$Label = with(scenario,paste(Marker,paste0(Groups,'G'),paste0(Replicates,'R'),paste0(Nwindow,'W'),paste0(Pct,'SNR'),sep="_"))
 scenario <- scenario[order(scenario$Groups,scenario$Replicates,scenario$Nwindow,-scenario$Pct),]
 print(scenario)
@@ -62,7 +62,7 @@ for(i in 1:nrow(scenario)){
             
             # Submitting jobs
             setwd(paste0(wd,'/',paste0('Analysis_',scenario.i$Pct,'SNR/'),scenario.i$Label,'/',scenario.i$Label,'_',sim,'/'))
-            cmd = paste0('sbatch -t 2:00:00 --mem=24g R CMD BATCH ./',scenario.i$Label,"_",sim,".R")
+            cmd = paste0('sbatch -t 6:00:00 --mem=24g R CMD BATCH ./',scenario.i$Label,"_",sim,".R")
             cat('Command: ',cmd)
             system(cmd)
             setwd(wd)   
