@@ -7,6 +7,7 @@
 **/*.pdf
 **/*.png
 *.fa
+*.Rproj
 
 Sim/BIC/Analysis_*
 
