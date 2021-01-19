@@ -9,6 +9,8 @@
 *.fa
 *.Rproj
 
+Sim/SequencingReads/autosim*/
+
 Sim/BIC/Analysis_*
 
 Sim/GC/Analysis/
