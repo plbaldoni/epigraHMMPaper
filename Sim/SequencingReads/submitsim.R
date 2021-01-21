@@ -1,7 +1,7 @@
 
 iters <- 1:100
 is.tf <- F
-wd <- '/stornext/SBPM/baldoni.p/epigraHMMPaper/Sim/SequencingReads'
+wd <- normalizePath('.')
 
 for (tf in is.tf) {
     for (it in iters) {

@@ -789,8 +789,7 @@ for (it in iters) {
                 peaks = gsub('.txt', '.bed', unlist(all.peakfiles))
             )
             
-            dsg = as.data.frame(lapply(conf[, c("condition", "factor")], as.numeric)) -
-                1
+            dsg = as.data.frame(lapply(conf[, c("condition", "factor")], function(x){as.numeric(as.factor(x))})) - 1
             dsg = as.data.frame(model.matrix( ~ condition, dsg))
             
             countSet = makeCountSet(
@@ -1107,7 +1106,7 @@ for (it in iters) {
                          param = xparam)
         
         bin.ab <-
-            scaledAverage(asDGEList(binned),
+            scaledAverage(binned,
                           scale = median(getWidths(binned)) / median(getWidths(data)))
         threshold <- median(bin.ab) + log2(2)
         keep <- aveLogCPM(asDGEList(data)) >  threshold
