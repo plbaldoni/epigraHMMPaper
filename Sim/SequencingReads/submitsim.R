@@ -37,7 +37,7 @@ for (tf in is.tf) {
 '#!/bin/bash
  
 #SBATCH -t 12:00:00
-#SBATCH --mem=8g
+#SBATCH --mem=12g
  
 source ~/anaconda3/etc/profile.d/conda.sh
 conda activate py36
