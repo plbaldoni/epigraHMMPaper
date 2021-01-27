@@ -9,6 +9,8 @@
 *.fa
 *.Rproj
 *.tsv
+*.bed
+*.h5
 
 Sim/SequencingReads/autosim*/
 
