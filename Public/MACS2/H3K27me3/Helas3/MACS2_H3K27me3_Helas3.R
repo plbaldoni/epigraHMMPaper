@@ -2,17 +2,17 @@ library(GenomicRanges)
 library(microbenchmark)
 
 method = 'MACS2'
-mark = 'CTCF'
-cell = 'H1hesc'
+mark = 'H3K27me3'
+cell = 'Helas3'
 
 chip = c(
-  'wgEncodeBroadHistoneH1hescCtcfStdAlnRep1.markdup.q10.sorted.bam',
-  'wgEncodeBroadHistoneH1hescCtcfStdAlnRep2.markdup.q10.sorted.bam'
+  'wgEncodeBroadHistoneHelas3H3k27me3StdAlnRep1.markdup.q10.sorted.bam',
+  'wgEncodeBroadHistoneHelas3H3k27me3StdAlnRep1.markdup.q10.sorted.bam'
 )
 
 control = c(
-  'wgEncodeBroadHistoneH1hescControlStdAlnRep1.markdup.q10.sorted.bam',
-  'wgEncodeBroadHistoneH1hescControlStdAlnRep2.markdup.q10.sorted.bam'
+  'wgEncodeBroadHistoneHelas3ControlStdAlnRep1.markdup.q10.sorted.bam',
+  'wgEncodeBroadHistoneHelas3ControlStdAlnRep2.markdup.q10.sorted.bam'
 )
 
 dirdata = file.path('../../../../Data', paste0('Encode_', tolower(cell)))

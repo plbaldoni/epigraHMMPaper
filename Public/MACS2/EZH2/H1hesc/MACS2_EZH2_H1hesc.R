@@ -2,12 +2,12 @@ library(GenomicRanges)
 library(microbenchmark)
 
 method = 'MACS2'
-mark = 'CTCF'
+mark = 'EZH2'
 cell = 'H1hesc'
 
 chip = c(
-  'wgEncodeBroadHistoneH1hescCtcfStdAlnRep1.markdup.q10.sorted.bam',
-  'wgEncodeBroadHistoneH1hescCtcfStdAlnRep2.markdup.q10.sorted.bam'
+  'wgEncodeBroadHistoneH1hescEzh239875AlnRep1.markdup.q10.sorted.bam',
+  'wgEncodeBroadHistoneH1hescEzh239875AlnRep2.markdup.q10.sorted.bam'
 )
 
 control = c(

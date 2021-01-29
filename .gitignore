@@ -12,6 +12,8 @@
 *.bed
 *.h5
 
+Public/MACS2/*/*/Output
+
 Sim/SequencingReads/autosim*/
 
 Sim/BIC/Analysis_*

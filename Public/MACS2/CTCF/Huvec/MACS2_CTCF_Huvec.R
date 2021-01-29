@@ -3,16 +3,16 @@ library(microbenchmark)
 
 method = 'MACS2'
 mark = 'CTCF'
-cell = 'H1hesc'
+cell = 'Huvec'
 
 chip = c(
-  'wgEncodeBroadHistoneH1hescCtcfStdAlnRep1.markdup.q10.sorted.bam',
-  'wgEncodeBroadHistoneH1hescCtcfStdAlnRep2.markdup.q10.sorted.bam'
+  'wgEncodeBroadHistoneHuvecCtcfStdAlnRep1.markdup.q10.sorted.bam',
+  'wgEncodeBroadHistoneHuvecCtcfStdAlnRep2.markdup.q10.sorted.bam'
 )
 
 control = c(
-  'wgEncodeBroadHistoneH1hescControlStdAlnRep1.markdup.q10.sorted.bam',
-  'wgEncodeBroadHistoneH1hescControlStdAlnRep2.markdup.q10.sorted.bam'
+  'wgEncodeBroadHistoneHuvecControlStdAlnRep1.markdup.q10.sorted.bam',
+  'wgEncodeBroadHistoneHuvecControlStdAlnRep2.markdup.q10.sorted.bam'
 )
 
 dirdata = file.path('../../../../Data', paste0('Encode_', tolower(cell)))
