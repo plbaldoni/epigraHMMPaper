@@ -1,4 +1,5 @@
 # My ignores
+*.txt
 **/Data/Encode*
 **/Data/hg19*
 **/slurm*
