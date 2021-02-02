@@ -1,4 +1,6 @@
 # My ignores
+*.wig
+*.info
 *.txt
 **/Data/Encode*
 **/Data/hg19*
@@ -12,6 +14,8 @@
 *.tsv
 *.bed
 *.h5
+*.bam
+*.bai
 
 Public/diffReps/*/*/Output*/
 
