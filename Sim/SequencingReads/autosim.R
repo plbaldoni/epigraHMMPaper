@@ -14,6 +14,8 @@
 
 # Loading libraries
 
+clock <- Sys.time()
+
 library(epigraHMM)
 library(SummarizedExperiment)
 library(DiffBind)
@@ -267,6 +269,8 @@ resultDump2 = function(regions,
 set.seed(2019 + iters)
 
 # Simulation begins now
+
+message('Time difference: ',formatC(difftime(Sys.time(),clock,units = 'mins'),digits = 2,format = 'f'),' minutes')
 
 for (it in iters) {
     # Generating simulated data for histone mark data.
@@ -586,6 +590,8 @@ for (it in iters) {
     ### Running HOMER, DiffBind, and ChIPComp
     #############################################################
     
+    message('Time difference: ',formatC(difftime(Sys.time(),clock,units = 'mins'),digits = 2,format = 'f'),' minutes')
+    
     for (peakcaller in c("HOMER")) {
         all.peakfiles <- list()
         if (peakcaller == "HOMER") {
@@ -697,6 +703,8 @@ for (it in iters) {
         # Running MACS with DiffBind
         #############################################################
         
+        message('Time difference: ',formatC(difftime(Sys.time(),clock,units = 'mins'),digits = 2,format = 'f'),' minutes')
+        
         timeDiffBind <- microbenchmark({
             current <- dba(
                 sampleSheet = data.frame(
@@ -768,6 +776,8 @@ for (it in iters) {
         ### Running ChIPComp
         ############################################################
         
+        message('Time difference: ',formatC(difftime(Sys.time(),clock,units = 'mins'),digits = 2,format = 'f'),' minutes')
+        
         timeChIPComp <- microbenchmark({
             for (peak in unlist(all.peakfiles)) {
                 write.table(
@@ -789,7 +799,9 @@ for (it in iters) {
                 peaks = gsub('.txt', '.bed', unlist(all.peakfiles))
             )
             
-            dsg = as.data.frame(lapply(conf[, c("condition", "factor")], function(x){as.numeric(as.factor(x))})) - 1
+            dsg = as.data.frame(lapply(conf[, c("condition", "factor")], function(x) {
+                as.numeric(as.factor(x))
+            })) - 1
             dsg = as.data.frame(model.matrix( ~ condition, dsg))
             
             countSet = makeCountSet(
@@ -841,6 +853,8 @@ for (it in iters) {
     #############################################################
     ### Running diffReps
     ############################################################
+    
+    message('Time difference: ',formatC(difftime(Sys.time(),clock,units = 'mins'),digits = 2,format = 'f'),' minutes')
     
     timediffReps <- microbenchmark({
         drdir <- file.path(peakdir, "diffreps")
@@ -938,6 +952,8 @@ for (it in iters) {
     #############################################################
     ### Running RSEG
     ############################################################
+    
+    message('Time difference: ',formatC(difftime(Sys.time(),clock,units = 'mins'),digits = 2,format = 'f'),' minutes')
     
     timeRSEG <- microbenchmark({
         drdir <- file.path(peakdir, "rseg")
@@ -1088,6 +1104,8 @@ for (it in iters) {
     ### csaw, with its combined window methodology.
     ############################################################
     
+    message('Time difference: ',formatC(difftime(Sys.time(),clock,units = 'mins'),digits = 2,format = 'f'),' minutes')
+    
     timecsaw <- microbenchmark({
         xparam <- readParam(dedup = FALSE)
         
@@ -1154,8 +1172,10 @@ for (it in iters) {
     }
     
     #############################################################
-    ### Running mixNBHMM
+    ### Running epigraHMM
     ############################################################
+    
+    message('Time difference: ',formatC(difftime(Sys.time(),clock,units = 'mins'),digits = 2,format = 'f'),' minutes')
     
     timeepigraHMM <- microbenchmark({
         out.epigraHMM <-
@@ -1242,6 +1262,8 @@ for (it in iters) {
     #############################################################
     ### Running THOR
     ############################################################
+    
+    message('Time difference: ',formatC(difftime(Sys.time(),clock,units = 'mins'),digits = 2,format = 'f'),' minutes')
     
     timeTHOR <- microbenchmark({
         drdir <- file.path(peakdir, "thor")
