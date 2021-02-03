@@ -8,6 +8,7 @@ library(microbenchmark)
 bpvec = 250 # Window size
 mark = 'H3K27ac'
 method = 'csaw'
+cell = 'Encode_twocells'
 
 chip1 = c(
   'wgEncodeBroadHistoneHelas3H3k27acStdAlnRep1.markdup.q10.sorted.bam',
@@ -194,6 +195,6 @@ for (bp in bpvec) {
   
   ### Saving computing time
   save(cptime, file = paste0(outdir, paste(
-    method, mark, cell, 'Time', paste0(bin, 'bp.RData'), sep = '_'
+    method, mark, cell, 'Time', paste0(bp, 'bp.RData'), sep = '_'
   )))
 }
