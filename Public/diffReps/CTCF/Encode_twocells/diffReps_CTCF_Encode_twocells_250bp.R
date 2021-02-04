@@ -67,8 +67,9 @@ for (j in bp) {
     })
   
   ### Saving computing time
-  save(cptime, file = paste0(paste(method, mark, cell, 'Time.RData', sep =
-                                     '_')))
+  save(cptime, file = paste0(outdir, paste(
+    method, mark, cell, 'Time', paste0(j, 'bp.RData'), sep = '_'
+  )))
 }
 
 cat('Done!\n')
