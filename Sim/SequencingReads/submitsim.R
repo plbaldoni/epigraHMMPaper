@@ -30,21 +30,8 @@ for (tf in is.tf) {
         system(cmd)
         
         # Submitting jobs, change it if not using SLURM
-        setwd(file.path(wd,paste0('autosim',it)))
-        
-        sink(file = paste0('autosim',it,'.sh'))
-        cat(
-'#!/bin/bash
- 
-#SBATCH -t 12:00:00
-#SBATCH --mem=12g
- 
-source ~/anaconda3/etc/profile.d/conda.sh
-conda activate py36
-R CMD BATCH ',paste0('autosim',it,'.R'))
-        sink()
-        
-        cmd = paste('sbatch',paste0('autosim',it,'.sh'))
+        setwd(paste0('./autosim',it,'/'))
+        cmd = paste0('sbatch -t 12:00:00 --mem=12g R CMD BATCH ./autosim',it,".R")
         cat('Command: ',cmd)
         system(cmd)
         setwd(wd)
