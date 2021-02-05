@@ -36,7 +36,7 @@ for (j in bp) {
   cptime = list()
   
   cptime[[paste(method, mark, cell, 'Output', paste0(j, 'bp'), sep = '_')]] =
-    system.time({
+    microbenchmark::microbenchmark({
       cmd = paste(
         'diffReps.pl --gname hg19 --report',
         paste0(
@@ -64,7 +64,7 @@ for (j in bp) {
       )
       cat('Command: ', cmd)
       system(cmd)
-    })
+    },times = 1)
   
   ### Saving computing time
   save(cptime, file = paste0(outdir, paste(
