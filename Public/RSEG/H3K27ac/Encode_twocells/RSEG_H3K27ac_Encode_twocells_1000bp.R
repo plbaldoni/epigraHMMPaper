@@ -76,7 +76,7 @@ for (bp in bpsize) {
   
   cptime[[paste(method, mark, cell, 'Output', 'Pooled', paste0(bp, 'bp'), sep =
                   '_')]] =
-    system.time({
+    microbenchmark::microbenchmark({
       cmd = paste(
         'rseg-diff -verbose -mode 3',
         '-out',
@@ -116,7 +116,7 @@ for (bp in bpsize) {
       )
       cat('Command: ', cmd)
       system(cmd)
-    })
+    },times = 1)
   
   ### Saving computing time
   save(cptime, file = paste0(outdir, paste(

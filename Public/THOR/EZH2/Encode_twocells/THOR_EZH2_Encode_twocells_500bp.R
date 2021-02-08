@@ -23,7 +23,8 @@ cmd = paste(
 )
 cat('Command: ', cmd)
 
-cptime <- microbenchmark({
+cptime <- list()
+cptime[[paste(method, mark, cell, 'Output', paste0(bp, 'bp'), sep = '_')]] <- microbenchmark::microbenchmark({
   system(cmd)
 }, times = 1)
 
