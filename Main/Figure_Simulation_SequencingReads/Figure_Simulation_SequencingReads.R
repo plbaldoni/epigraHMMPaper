@@ -414,11 +414,19 @@ ided.time$Method %<>% mapvalues(
   to = c('DiffBind +\nHOMER', 'ChIPComp +\nHOMER')
 )
 
-figC <- ggplot(data = ided.time, aes(x = Method, y = Time)) +
+newcolors <- colors
+names(newcolors) %<>% mapvalues(
+  from = c('DiffBind + HOMER', 'ChIPComp + HOMER'),
+  to = c('DiffBind +\nHOMER', 'ChIPComp +\nHOMER')
+)
+
+figC <- ggplot(data = ided.time, aes(x = Method, y = Time, fill = Method)) +
   theme_bw() +
   labs(y = 'Time (minutes)', x = 'Method') +
-  geom_boxplot() + geom_jitter(width = 0.2, alpha = 0.15) +
-  guides(x = guide_axis(angle = 30))
+  geom_jitter(width = 0.2, alpha = 0.25) +
+  geom_boxplot(outlier.shape = NA,alpha = 0.75) + 
+  guides(x = guide_axis(angle = 30)) +
+  scale_fill_manual(values = newcolors)
 
 # Creating figure
 
