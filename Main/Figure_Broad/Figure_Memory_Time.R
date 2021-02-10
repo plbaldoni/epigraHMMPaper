@@ -90,7 +90,7 @@ fig <-
   geom_col() +
   guides(x = guide_axis(angle = 45), fill = guide_legend(nrow = 1, order = 1)) +
   theme_bw() +
-  ylab('Memory (in Gb)') +
+  ylab('Memory (in GB)') +
   scale_fill_manual(values = colors) +
   theme(legend.direction = 'horizontal', legend.position = 'top')
 
@@ -99,6 +99,6 @@ ggsave(
   plot = fig,
   filename = 'Figure_Memory_Time.pdf',
   height = 7,
-  width = 8,
+  width = 8.5,
   dpi = 'retina'
 )
