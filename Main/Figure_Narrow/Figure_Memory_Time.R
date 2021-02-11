@@ -2,6 +2,8 @@
 
 library(data.table)
 library(Polychrome)
+library(magrittr)
+library(ggplot2)
 
 # Setup
 
@@ -24,7 +26,11 @@ methods <-
   )
 names(colors) <- methods
 
-files <-
+################################################################################
+### Memory
+################################################################################
+
+files.csv <-
   list.files('../../Public',
              'slurm*.*.csv$',
              recursive = TRUE,
@@ -32,24 +38,24 @@ files <-
 
 # Filtering
 
-files <- files[-grep('threecells', files)]
+files.csv <- files.csv[grep('Encode_twocells|MACS2', files.csv)]
 
 # Looping through files
 
-mem.dt <- rbindlist(lapply(strsplit(files, '/'), function(x) {
+mem.dt <- rbindlist(lapply(strsplit(files.csv, '/'), function(x) {
   # Does not run for MACS2
   if (length(grep('MACS2', x)) == 0) {
     subx <- strsplit(x[7], '_|bp')[[1]]
     
-    csvx <- fread(paste(x, collapse = '/'))[2,]$MaxRSS
+    csvx <- fread(paste(x, collapse = '/'))[2, ]$MaxRSS
     
     # Do not proceed if job is not completed
     if (!is.na(csvx)) {
       # If ChIPComp or DiffBind, need to check MACS2
       if (x[4] %in% c('ChIPComp', 'DiffBind')) {
         csvmacs2 <-
-          rbindlist(lapply(files[intersect(grep(paste0('MACS2/', x[5]), files), grep(paste0('Helas3|Hepg2'), files))], function(y) {
-            fread(y)[JobName == 'batch',]
+          rbindlist(lapply(files.csv[intersect(grep(paste0('MACS2/', x[5]), files.csv), grep(paste0('Helas3|Hepg2'), files.csv))], function(y) {
+            fread(y)[JobName == 'batch', ]
           }))$MaxRSS
         
         mem <-
@@ -71,34 +77,88 @@ mem.dt <- rbindlist(lapply(strsplit(files, '/'), function(x) {
   }
 }))
 
+################################################################################
+### Time
+################################################################################
+
+files.rda <-
+  list.files('../../Public',
+             '*Time*.*.RData',
+             recursive = TRUE,
+             full.names = TRUE)
+
+files.rda <- files.rda[grep('Encode_twocells|MACS2', files.rda)]
+
+# Looping
+
+time.dt <- rbindlist(lapply(strsplit(files.rda, '/'), function(x) {
+  # Does not run for MACS2
+  if (length(grep('MACS2', x)) == 0) {
+    subx <- strsplit(tail(x, 1), '_|bp')[[1]]
+    
+    load(paste(x, collapse = '/'))
+    time.method <-
+      summary(cptime[[1]], 's')$mean / 60 # Time in minutes
+    rm(cptime)
+    
+    # If ChIPComp or DiffBind, need to check MACS2
+    if (x[4] %in% c('ChIPComp', 'DiffBind')) {
+      time.macs <- c(0, 0)
+      files.macs <-
+        files.rda[intersect(grep(paste0('MACS2/', x[5]), files.rda), grep(paste0('Helas3|Hepg2'), files.rda))]
+      for (i in 1:2) {
+        load(files.macs[i])
+        time.macs[i] <-
+          summary(cptime[[1]], 's')$mean / 60 # Time in minutes
+        rm(cptime)
+      }
+      
+      time.total <- time.method + sum(time.macs)
+    } else{
+      time.total <- time.method
+    }
+    
+    return(data.table(
+      Method = x[4],
+      Mark = x[5],
+      Data = x[6],
+      BP = subx[6],
+      Time = time.total
+    ))
+  }
+}))
+
+################################################################################
+### Plotting
+################################################################################
+
+dt <-
+  merge(mem.dt,
+        time.dt,
+        by = c('Method', 'Mark', 'Data', 'BP'),
+        all.x = TRUE)
+
 # Organizing factors
 
-mem.dt$BP %<>% factor(levels = c(250, 500, 750, 1000)) %<>% plyr::mapvalues(from = c(250, 500, 750, 1000), to = paste0(c(250, 500, 750, 1000), ' bp'))
+dt$BP %<>% factor(levels = c(250, 500, 750, 1000)) %<>% plyr::mapvalues(from = c(250, 500, 750, 1000), to = paste0(c(250, 500, 750, 1000), ' bp'))
 
-mem.dt$Method %<>% plyr::mapvalues(
+dt$Method %<>% plyr::mapvalues(
   from = c('ChIPComp', 'DiffBind'),
   to = c('ChIPComp +\nMACS2', 'DiffBind +\nMACS2')
 )
 
 # Plot
 
-fig <-
-  ggplot(data = mem.dt[Mark %in% c('CTCF', 'H3K27ac', 'H3K4me3'), ], aes(x = Method,
-                                                                           y = Memory,
-                                                                           fill = Method)) +
-  facet_grid(BP ~ Mark) +
-  geom_col() +
-  guides(x = guide_axis(angle = 45), fill = guide_legend(nrow = 1, order = 1)) +
+fig_memory_time <-
+  ggplot(data = dt[Mark %in% c('CTCF', 'H3K27ac', 'H3K4me3') & BP == '250 bp',], aes(x = Time/60,
+                                                                                     y = Memory,
+                                                                                     color = Method)) +
+  facet_grid(rows = 'Mark') +
+  geom_point() +
+  guides(color = guide_legend(nrow = 1, order = 1)) +
   theme_bw() +
-  ylab('Memory (in GB)') +
-  scale_fill_manual(values = colors) +
+  ylab('Memory (in GB)') + xlab('Time (in hours)') +
+  scale_color_manual(values = colors) +
   theme(legend.direction = 'horizontal', legend.position = 'top')
 
-# Render
-ggsave(
-  plot = fig,
-  filename = 'Figure_Memory_Time.pdf',
-  height = 7,
-  width = 8.5,
-  dpi = 'retina'
-)
+save(fig_memory_time,file = './Figure_Memory_Time.RData')
