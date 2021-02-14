@@ -259,7 +259,7 @@ gr.chipcomp <- gr.chipcomp[seqnames(gr.chipcomp) %in% chromosome]
 # Calculating Metrics
 fdr = list()
 fdr[['epigraHMM']] = getcov(
-  gr.predicted = gr.mixhmm,
+  gr.predicted = gr.epigrahmm,
   gr.genome = gr.counts,
   dt = dt,
   threshold = c(0.01, 0.05, 0.10, 0.15, 0.20),
@@ -452,7 +452,7 @@ fig.TPR <-
   ) +
   annotate(
     'text',
-    x = 2.5,
+    x = 2,
     y = 0.7,
     label = 'Observed FDR shown\nnext to each data point',
     size = sizeanno

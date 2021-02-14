@@ -9,6 +9,7 @@ library(ggpubr)
 library(data.table)
 library(RColorBrewer)
 library(Polychrome)
+library(SummarizedExperiment)
 
 bp = 500
 chromosome = 'chr20'
@@ -102,7 +103,7 @@ ChIP.se <- SummarizedExperiment::SummarizedExperiment(
   ))
 )
 ChIP.se <-
-  epigraHMM::normalizeCounts(ChIP.se, epigraHMM::controlEM())
+  epigraHMM::normalizeCounts(ChIP.se, epigraHMM::controlEM(),span = 1)
 ChIP[, (paste0(c(
   'Helas3_1', 'Helas3_2', 'Hepg2_1', 'Hepg2_2'
 ), '.adj')) := .SD / exp(assay(ChIP.se, 'offsets')),
@@ -378,7 +379,8 @@ fig1.h3k27me3 = ggplot(data = ChIP[ChIP$Window %in% idx, ], aes(x = start, y =
     axis.title.x = element_blank(),
     axis.line.x = element_blank(),
     axis.ticks.x = element_blank(),
-    axis.text.x = element_blank()
+    axis.text.x = element_blank(),
+    panel.grid = element_blank()
   )
 
 ## Plotting Posterior Probabilities
@@ -410,7 +412,7 @@ fig2.h3k27me3 = ggplot(data = PostProb[PostProb$Window %in% idx, ], aes(x =
   scale_fill_manual(values = c('Differential' = as.character(colors['epigraHMM']))) +
   theme_bw() +
   theme(legend.position = "none",
-        strip.text.y = element_text(colour = alpha('grey', 0.0)))
+        strip.text.y = element_text(colour = alpha('grey', 0.0)),panel.grid = element_blank())
 
 fig.h3k27me3 = ggarrange(
   fig1.h3k27me3,

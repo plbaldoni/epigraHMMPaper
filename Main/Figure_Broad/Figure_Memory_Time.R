@@ -4,6 +4,7 @@ library(data.table)
 library(Polychrome)
 library(magrittr)
 library(ggplot2)
+library(microbenchmark)
 
 # Setup
 
