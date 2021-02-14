@@ -1,4 +1,6 @@
 # My ignores
+*.html
+*.svg
 *.RDataTmp
 *.bw
 *.narrowPeak
