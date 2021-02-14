@@ -100,10 +100,10 @@ dt.se <- SummarizedExperiment::SummarizedExperiment(
   ))
 )
 dt.se <-
-  epigraHMM::normalizeCounts(dt.se, epigraHMM::controlEM())
+  epigraHMM::normalizeCounts(dt.se, epigraHMM::controlEM(),span = 1)
 
 dt[,(paste0(c('Helas3_1','Helas3_2','Hepg2_1','Hepg2_2'),'.adj')) := .SD/exp(assay(dt.se, 'offsets')),
-   .SDcols=c('Helas3_1','Helas3_2','Hepg2_1','Hepg2_2'),by='chr']
+   .SDcols=c('Helas3_1','Helas3_2','Hepg2_1','Hepg2_2')]
 
 dt[,Helas3.adj := rowSums(.SD),.SDcols = paste0(c('Helas3_1','Helas3_2'),'.adj')]
 dt[,Hepg2.adj := rowSums(.SD),.SDcols = paste0(c('Hepg2_1','Hepg2_2'),'.adj')]

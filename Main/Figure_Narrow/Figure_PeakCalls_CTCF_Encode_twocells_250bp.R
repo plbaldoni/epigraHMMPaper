@@ -9,6 +9,7 @@ library(ggpubr)
 library(data.table)
 library(RColorBrewer)
 library(Polychrome)
+library(SummarizedExperiment)
 
 bp = 250
 chromosome = 'chr8'
@@ -79,7 +80,7 @@ load(
 hepg22 = subset(counts[[paste0(bp)]], chr %in% chromosome)
 
 countsraw <- as.data.table(counts[[paste0(bp)]])
-countsraw <- countsraw[chr %in% paste0('chr', 1:22), ]
+countsraw <- countsraw[chr %in% paste0('chr', 1:22),]
 gr.countsraw <- countsraw[, GRanges(chr, IRanges(start, stop))]
 
 idx.chr = (counts[[paste0(bp)]]$chr == chromosome)
@@ -102,7 +103,7 @@ ChIP.se <- SummarizedExperiment::SummarizedExperiment(
   ))
 )
 ChIP.se <-
-  epigraHMM::normalizeCounts(ChIP.se, epigraHMM::controlEM())
+  epigraHMM::normalizeCounts(ChIP.se, epigraHMM::controlEM(), span = 1)
 ChIP[, (paste0(c(
   'Helas3_1', 'Helas3_2', 'Hepg2_1', 'Hepg2_2'
 ), '.adj')) := .SD / exp(assay(ChIP.se, 'offsets')),
@@ -110,13 +111,14 @@ ChIP[, (paste0(c(
 ChIP[, Helas3 := rowSums(.SD), .SDcols = c('Helas3_1.adj', 'Helas3_2.adj')]
 ChIP[, Hepg2 := rowSums(.SD), .SDcols = c('Hepg2_1.adj', 'Hepg2_2.adj')]
 
-ChIP <- ChIP[, c('chr', 'start', 'stop', 'Window', 'Helas3', 'Hepg2')] %>%
+ChIP <-
+  ChIP[, c('chr', 'start', 'stop', 'Window', 'Helas3', 'Hepg2')] %>%
   as_tibble() %>%
   gather(Group, Counts, Helas3:Hepg2)
 ChIP$Mark = mark
 
 # Genomic Ranges to Plot
-idx.genome = c(59365205,59433015)
+idx.genome = c(59365205, 59433015)
 idx = which.min(abs(counts$start - idx.genome[1])):which.min(abs(counts$start -
                                                                    idx.genome[2]))
 
@@ -354,13 +356,20 @@ dt.segment$Method %<>% factor(
 
 ## Plotting Peak calls
 
-fig1.ctcf = ggplot(data = ChIP[ChIP$Window %in% idx, ], aes(x = start, y =
-                                                                  Counts)) +
+fig1.ctcf = ggplot(data = ChIP[ChIP$Window %in% idx,], aes(x = start, y =
+                                                             Counts)) +
   geom_line() +
   facet_grid(rows = vars(Group)) +
-  annotate('rect',alpha = 0.1,xmin = 59391017-5*bp,xmax = 59391515+5*bp,ymin = 0,ymax = 1.05*max(dt.segment$Counts,na.rm = T)) +
+  annotate(
+    'rect',
+    alpha = 0.1,
+    xmin = 59391017 - 5 * bp,
+    xmax = 59391515 + 5 * bp,
+    ymin = 0,
+    ymax = 1.05 * max(dt.segment$Counts, na.rm = T)
+  ) +
   geom_segment(
-    data = dt.segment[Window %in% idx, ],
+    data = dt.segment[Window %in% idx,],
     aes(
       x = start,
       xend = stop,
@@ -378,7 +387,8 @@ fig1.ctcf = ggplot(data = ChIP[ChIP$Window %in% idx, ], aes(x = start, y =
     axis.title.x = element_blank(),
     axis.line.x = element_blank(),
     axis.ticks.x = element_blank(),
-    axis.text.x = element_blank()
+    axis.text.x = element_blank(),
+    panel.grid = element_blank()
   )
 
 ## Plotting Posterior Probabilities
@@ -394,8 +404,8 @@ PostProb <- PostProb %>%
   gather(Component, PP, PostProb2)
 PostProb$Component %<>% mapvalues(from = c('PostProb2'), to = c('Differential'))
 
-fig2.ctcf = ggplot(data = PostProb[PostProb$Window %in% idx, ], aes(x =
-                                                                          start, y = PP, fill = Component)) + facet_grid(rows = vars(Label)) +
+fig2.ctcf = ggplot(data = PostProb[PostProb$Window %in% idx,], aes(x =
+                                                                     start, y = PP, fill = Component)) + facet_grid(rows = vars(Label)) +
   geom_area(position = 'identity', alpha = 1) +
   scale_y_continuous(
     limits = c(0, 1),
@@ -410,7 +420,7 @@ fig2.ctcf = ggplot(data = PostProb[PostProb$Window %in% idx, ], aes(x =
   scale_fill_manual(values = c('Differential' = as.character(colors['epigraHMM']))) +
   theme_bw() +
   theme(legend.position = "none",
-        strip.text.y = element_text(colour = alpha('grey', 0.0)))
+        strip.text.y = element_text(colour = alpha('grey', 0.0)),panel.grid = element_blank())
 
 fig.ctcf = ggarrange(
   fig1.ctcf,
