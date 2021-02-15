@@ -150,6 +150,15 @@ dt$Method %<>% plyr::mapvalues(
 
 # Plot
 
+dat_text <- data.frame(
+  Mark = dt[Mark %in% c('CTCF', 'H3K27ac', 'H3K4me3') & BP == '250 bp' & Method == 'RSEG',Mark],
+  label = paste0('RSEG (Not Shown):\n',
+                 paste0(dt[Mark %in% c('CTCF', 'H3K27ac', 'H3K4me3') & BP == '250 bp' & Method == 'RSEG',formatC(Memory,digits = 2,format = 'f')],' GB\n'),
+                 paste0(dt[Mark %in% c('CTCF', 'H3K27ac', 'H3K4me3') & BP == '250 bp' & Method == 'RSEG',formatC(Time/60,digits = 2,format = 'f')],' hours'),sep = ' '),
+  x     = rep(1.75,3),
+  y     = rep(10,3)
+)
+
 fig_memory_time <-
   ggplot(data = dt[Mark %in% c('CTCF', 'H3K27ac', 'H3K4me3') & BP == '250 bp',], aes(x = Time/60,
                                                                                      y = Memory,
@@ -160,6 +169,8 @@ fig_memory_time <-
   theme_bw() +
   ylab('Memory (in GB)') + xlab('Time (in hours)') +
   scale_color_manual(values = colors) +
-  theme(legend.direction = 'horizontal', legend.position = 'top')
+  coord_cartesian(xlim = c(0,2)) + 
+  theme(legend.direction = 'horizontal', legend.position = 'top') +
+  geom_text(dat_text,inherit.aes = FALSE,mapping = aes(x = x, y = y, label = label),size = 2.5)
 
 save(fig_memory_time,file = './Figure_Memory_Time.RData')
