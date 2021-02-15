@@ -56,8 +56,10 @@ for(i in files){
 }
 
 txi <- tximport(files, type = "salmon", tx2gene = tx2gene,countsFromAbundance='no')
+txi.scaled <- tximport(files, type = "salmon", tx2gene = tx2gene,countsFromAbundance='lengthScaledTPM')
 
 ### Creating DESeqDataSet
+#### Raw
 eset.DESeq <- DESeqDataSetFromTximport(txi,colData = data.frame(Cells=unlist(lapply(strsplit(colnames(txi$counts),"\\."), FUN = function(x){x[1]})),
                                                                 Replicates = unlist(lapply(strsplit(colnames(txi$counts),"\\."), FUN = function(x){substr(x[2],nchar(x[2]),nchar(x[2]))}))),design=~Cells)
 rowRanges(eset.DESeq) <- genes(edb)[rownames(eset.DESeq)]
@@ -66,6 +68,17 @@ ENCODE.rnaseq.raw = eset.DESeq
 seqlevelsStyle(ENCODE.rnaseq.raw) <- 'UCSC'
 
 save(ENCODE.rnaseq.raw,file='ENCODE.rnaseq.raw.RData',compress = 'xz')
+
+#### Scaled
+eset.DESeq.scaled <- DESeqDataSetFromTximport(txi.scaled,
+                                              colData = data.frame(Cells=unlist(lapply(strsplit(colnames(txi.scaled$counts),"\\."), FUN = function(x){x[1]})),
+                                                                   Replicates = unlist(lapply(strsplit(colnames(txi.scaled$counts),"\\."), FUN = function(x){substr(x[2],nchar(x[2]),nchar(x[2]))}))),design=~Cells)
+rowRanges(eset.DESeq.scaled) <- genes(edb)[rownames(eset.DESeq.scaled)]
+
+ENCODE.rnaseq.scaled = eset.DESeq.scaled
+seqlevelsStyle(ENCODE.rnaseq.scaled) <- 'UCSC'
+
+save(ENCODE.rnaseq.scaled,file='ENCODE.rnaseq.scaled.RData',compress = 'xz')
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # Now, I want to check whether gene bodies intersect with ChIP-seq peaks
