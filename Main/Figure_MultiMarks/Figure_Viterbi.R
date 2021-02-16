@@ -72,14 +72,17 @@ setnames(dt.all, old = 'overlapGenes', new = 'Region')
 fig_viterbi <-
   ggplot(dt.all, aes(x = Type, y = Windows, group = Region)) +
   geom_col(aes(fill = Region)) +
-  geom_text_repel(aes(label = paste0(round(100 * Pct), '%')),
+  geom_text_repel(data = dt.all[!Type == 'Enrichment',],aes(label = paste0(round(100 * Pct), '%')),
                   position = position_stack(vjust = 0.5),
+                  direction = "y") +
+  geom_text_repel(data = dt.all[Type == 'Enrichment',],aes(label = paste0(round(100 * Pct), '%')),
+                  position = position_stack(vjust = 25),
                   direction = "y") +
   ylab('Mega Base Pairs') + xlab(paste0('Genomic Window Classification (HMM Viterbi Path)')) +
   theme_bw() +
   scale_fill_grey(start = 0.7, end = 0.4) +
   theme(
-    legend.position = c(0.8, 0.8),
+    legend.position = c(0.8, 0.75),
     legend.background = element_rect(fill = alpha('white', 0)),
     panel.grid.major = element_blank(),
     panel.grid.minor = element_blank()

@@ -1,4 +1,4 @@
-# Figure A: genomic segmentation with Viterbi path
+# Figure B: genomic segmentation with Viterbi path
 
 # Loading libraries
 library(epigraHMM)
