@@ -1,0 +1,37 @@
+\begin{table}
+
+\caption{\label{tab:}Read count simulation. True values and average relative bias of parameter estimates (and $2.5^{th}$, $97.5^{th}$ percentiles) across a hundred simulated data sets are shown for H3K27me3 data with $10^6$ genomic windows and ENCODE-estimated SNR.\label{Table:table_simulation}}
+\centering
+\resizebox{\linewidth}{!}{
+\begin{tabular}[t]{llrrrrrrr}
+\toprule
+\multicolumn{3}{c}{ } & \multicolumn{2}{c}{One Replicate} & \multicolumn{2}{c}{Two Replicates} & \multicolumn{2}{c}{Four Replicates} \\
+\cmidrule(l{3pt}r{3pt}){4-5} \cmidrule(l{3pt}r{3pt}){6-7} \cmidrule(l{3pt}r{3pt}){8-9}
+Conditions & Parameter & True Value & Relative Bias & ($P_{2.5}$, $P_{97.5}$) & Relative Bias & ($P_{2.5}$, $P_{97.5}$) & Relative Bias & ($P_{2.5}$, $P_{97.5}$)\\
+\midrule
+ & $\beta_{1}$ & 1.116 & 0.000 & (-0.001, 0.001) & 0.000 & (-0.001, 0.001) & 0.000 & (-0.001, 0.001)\\
+
+ & $\beta_{3}$ & 1.165 & 0.000 & (-0.002, 0.001) & 0.000 & (-0.001, 0.001) & 0.000 & (-0.001, 0.001)\\
+
+ & $\lambda_{1}$ & 1.281 & 0.000 & (-0.004, 0.004) & 0.000 & (-0.003, 0.003) & 0.000 & (-0.002, 0.002)\\
+
+\multirow{-4}{*}{\raggedright\arraybackslash Two} & $\lambda_{3}$ & 0.124 & 0.004 & (-0.057, 0.066) & -0.004 & (-0.047, 0.038) & -0.003 & (-0.035, 0.034)\\
+\cmidrule{1-9}
+ & $\beta_{1}$ & 1.116 & -0.003 & (-0.005, -0.002) & 0.000 & (-0.001, 0.000) & 0.000 & (-0.001, 0.001)\\
+
+ & $\beta_{3}$ & 1.165 & -0.007 & (-0.010, -0.005) & 0.000 & (-0.001, 0.001) & 0.000 & (-0.001, 0.001)\\
+
+ & $\lambda_{1}$ & 1.281 & -0.001 & (-0.006, 0.003) & 0.001 & (-0.002, 0.004) & 0.000 & (-0.002, 0.002)\\
+
+\multirow{-4}{*}{\raggedright\arraybackslash Three} & $\lambda_{3}$ & 0.124 & -0.317 & (-0.404, -0.223) & -0.023 & (-0.057, 0.012) & -0.003 & (-0.025, 0.024)\\
+\cmidrule{1-9}
+ & $\beta_{1}$ & 1.116 & -0.014 & (-0.015, -0.012) & -0.007 & (-0.008, -0.006) & 0.000 & (-0.001, 0.000)\\
+
+ & $\beta_{3}$ & 1.165 & -0.111 & (-0.114, -0.109) & -0.003 & (-0.004, -0.002) & 0.000 & (-0.001, 0.001)\\
+
+ & $\lambda_{1}$ & 1.281 & -0.012 & (-0.016, -0.007) & 0.007 & (0.004, 0.010) & 0.000 & (-0.001, 0.002)\\
+
+\multirow{-4}{*}{\raggedright\arraybackslash Four} & $\lambda_{3}$ & 0.124 & -3.520 & (-3.589, -3.439) & -0.360 & (-0.446, -0.282) & -0.005 & (-0.025, 0.017)\\
+\bottomrule
+\end{tabular}}
+\end{table}
