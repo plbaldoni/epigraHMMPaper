@@ -1,0 +1,109 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=latex 2021.1.18)  17 FEB 2021 21:22
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**endfloat.ins
+(./endfloat.ins
+LaTeX2e <2020-10-01> patch level 4
+L3 programming layer <2021-01-09> xparse <2020-03-03>
+(/stornext/Home/data/allstaff/b/baldoni.p/.TinyTeX/texmf-dist/tex/latex/base/do
+cstrip.tex
+\blockLevel=\count177
+\emptyLines=\count178
+\processedLines=\count179
+\commentsRemoved=\count180
+\commentsPassed=\count181
+\codeLinesPassed=\count182
+\TotalprocessedLines=\count183
+\TotalcommentsRemoved=\count184
+\TotalcommentsPassed=\count185
+\TotalcodeLinesPassed=\count186
+\NumberOfFiles=\count187
+\inFile=\read2
+\inputcheck=\read3
+\off@0=\count188
+\off@1=\count189
+\off@2=\count190
+\off@3=\count191
+\off@4=\count192
+\off@5=\count193
+\off@6=\count194
+\off@7=\count195
+\off@8=\count196
+\off@9=\count197
+\off@10=\count198
+\off@11=\count199
+\off@12=\count266
+\off@13=\count267
+\off@14=\count268
+\off@15=\count269
+\@maxfiles=\count270
+\@maxoutfiles=\count271
+
+Utility: `docstrip' v2.6a <2020-07-07>
+English documentation    <2020-07-11>
+
+**********************************************************
+* This program converts documented macro-files into fast *
+* loadable files by stripping off (nearly) all comments! *
+**********************************************************
+
+********************************************************
+* No Configuration file found, using default settings. *
+********************************************************
+
+(./endfloat.ins
+
+Generating file(s) ./endfloat.sty 
+\openout0 = `./endfloat.sty'.
+
+
+Processing file endfloat.dtx (package) -> endfloat.sty
+File endfloat.dtx ended by \endinput.
+Lines  processed: 2830
+Comments removed: 2378
+Comments  passed: 23
+Codelines passed: 423
+
+
+Generating file(s) ./endfloat.drv 
+\openout0 = `./endfloat.drv'.
+
+
+Processing file endfloat.dtx (driver) -> endfloat.drv
+File endfloat.dtx ended by \endinput.
+Lines  processed: 2830
+Comments removed: 2378
+Comments  passed: 23
+Codelines passed: 423
+
+
+Generating file(s) ./efxmpl.cfg 
+\openout0 = `./efxmpl.cfg'.
+
+
+Processing file endfloat.dtx (config) -> efxmpl.cfg
+File endfloat.dtx ended by \endinput.
+Lines  processed: 2830
+Comments removed: 2378
+Comments  passed: 23
+Codelines passed: 423
+
+)
+Overall statistics:
+Files  processed: 3
+Lines  processed: 8490
+Comments removed: 7134
+Comments  passed: 69
+Codelines passed: 1269
+ ) ) 
+Here is how much of TeX's memory you used:
+ 351 strings out of 481253
+ 3820 string characters out of 5913210
+ 274243 words of memory out of 5000000
+ 17381 multiletter control sequences out of 15000+600000
+ 403430 words of font info for 27 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 15i,0n,15p,244b,123s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+No pages of output.
