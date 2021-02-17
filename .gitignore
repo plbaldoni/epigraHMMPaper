@@ -23,6 +23,8 @@
 *.bam
 *.bai
 
+Sim/Simulation/Code_*
+
 Public/diffReps/*/*/Output*/
 
 Public/MACS2/*/*/Output
