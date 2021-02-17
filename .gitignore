@@ -23,7 +23,9 @@
 *.bam
 *.bai
 
-Sim/Simulation/Code_*
+!Latex/paper/paper.pdf 
+
+Sim/ReadCounts/Code_*
 
 Public/diffReps/*/*/Output*/
 
