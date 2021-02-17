@@ -5,3 +5,4 @@
 * Sim - code for the simulation setup and analyses
 * Main - code to produce figures and tables of the main article
 * Supp - code to produce figures and tables of the supplementary materials
+* Latex -  latex scripts of the manuscript
