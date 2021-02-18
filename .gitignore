@@ -24,6 +24,7 @@
 *.bai
 
 !Latex/paper/paper.pdf 
+Latex/appendix/cache
 
 Sim/ReadCounts/Code_*
 
