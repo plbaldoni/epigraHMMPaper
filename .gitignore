@@ -23,6 +23,8 @@
 *.bam
 *.bai
 
+Sim/Control/Analysis/
+
 !Latex/paper/paper.pdf 
 Latex/appendix/cache
 
