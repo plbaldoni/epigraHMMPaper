@@ -178,9 +178,9 @@ tabneg <- combineTests(merged$id, tabres)
 @
 
 
-For ChIPComp and DiffBind, candidate peaks were called in advance using MACS with the following syntax:
+For ChIPComp and DiffBind, candidate peaks were called in advance using MACS2 with the following syntax:
 \begin{itemize}
-\item MACS: \textit{macs2 callpeak -f BAM -g 2.80e+09 -B 'options' -t 'sample' -c 'control' --outdir 'output' -n 'filename'}
+\item MACS2: \textit{macs2 callpeak -f BAM -g 2.80e+09 -B 'options' -t 'sample' -c 'control' --outdir 'output' -n 'filename'}
 \end{itemize}
 such that $options = \{\text{--broad --broad-cutoff 0.1}\}$ if H3K27me3, H3K36me3, or EZH2, or $options = \{\text{-q 0.01}\}$ otherwise.
 
@@ -192,6 +192,89 @@ epigraHMM is a package with a differential peak caller to detect differential en
 
 \section{Code}
 The necessary code to replicate the results presented in the main article and in the supplementary material can be downloaded from \if1\blind{https://github.com/plbaldoni/epigraHMMPaper}\fi \if0\blind{(BLINDED FOR REVIEW)}\fi.
+
+\chapter{}
+In this appendix, we present additional methodological results and an overview of the EM algorithm proposed in the main article.
+
+\section{Adjustments for nuisance effects}
+\label{s:offset}
+
+\subsection{Normalization for non-linear biases via model offsets}
+
+In our analyses, we observed that the magnitude of the local differences in read counts between conditions changed with the average of local read coverage. Here, we accounted for these trended differences to avoid calling spurious differential peaks due to the different magnitude of library sizes across groups. Specifically, we implemented an approach similar to the non-linear normalization method used by csaw as follows \cite{lun2015csaw}. First, we create a reference sample of read counts comprised by the geometric mean of read counts from all replicates and conditions. Then, we fitted a loess curve on the difference between the read counts of each sample and the reference, on the average of those two quantities. A similar approach was first implemented by \cite{lun2015csaw} and is available in their software. Here, we add a continuity correction of 1 to avoid discarding genomic windows with zero counts. Using the smoothed curve as the model offset, we observed better results than a simple correction via either the total sum of read counts or cell-specific median log ratio. The rationale behind this approach is to create a reference library in which each genomic window is the geometric mean of counts across all conditions and replicates, and then read counts are properly adjusted by accounting for the smoothed differences between each individual library and the reference library. A useful way to evaluate the performance of this normalization method is to compare samples with respect to their adjusted read counts. For example, plotting the ratios between counts and the calculated offsets $y_{hij}/\exp(u_{hij})$ for all samples in the study. In Figure \ref{maplot} we show an example of a genomic region from three analyzed cell lines and their respective MA plot, unadjusted ChIP counts, and offset-adjusted ChIP counts. After accounting for the offset, the read counts from Helas3 are adjusted to its larger library size with respect to the other under sequenced cell lines.
+
+\begin{figure}[h]
+\begin{center}
+\centerline{\includegraphics{../../Supp/Figure_Normalization/Figure_Normalization.pdf}}
+\end{center}
+\caption{MA plot of read counts from three distinct analyzed cell lines (top), unadjusted ChIP read counts (center), and offset-adjusted ChIP read counts (bottom) from a given genomic region on chromosome 19. The blue line in the MA plots shows the offset created via loess smoothing.
+\label{maplot}}
+\end{figure}
+
+\subsection{Input control adjustment in differential peak calling}
+
+Our implementation (Web Appendix A4) allows the optional inclusion of continuous covariates in the model with state-specific parametrization. The main purpose of the inclusion of such covariates in the model is the adjustment for input control (or any other continuous variable, such as autoregressive counts) that can be helpful in distinguishing background from enrichment signal. Several methods for differential peak calling allow the inclusion of input control in their computational framework \cite{stark2011diffbind,shen2013diffreps,chen2015novel,allhoff2016differential}. However, \cite{lun2015csaw} point out that "(...) controls are mostly irrelevant when testing for DB between ChIP samples.". To evaluate this claim, we ran an analysis of real data and simulated data while accounting for the input control effect.
+
+To asses whether accounting for input control effect leads to an improvement in performance, we utilized the smoothing technique proposed by \cite{chen2015novel} to account for input controls and autoregressive counts. Specifically, we fitted generalized additive models (GAM, instead of loess smoothing) in the data normalization step while accounting for input control (or autoregressive counts) as a covariate. The resulting fitted curve was then used in the analysis as model offsets.
+
+First, we analyzed real data by smoothing the input control effect and autoregressive counts with a two-step approach. Specifically, we first called peaks without the inclusion of extra covariates in the model, and then utilized the called differential peaks from the first step to smooth the covariates for each HMM predicted state. Predicted smoothing curves from the GAM approach were then passed as model offsets in a second step of analysis. As claimed by \cite{lun2015csaw}, we observed minor differences in the results that would justify their inclusion in the analysis. Results from the histone modification mark H3K36me3 are presented in Figure \ref{fig:control2}.
+
+\begin{figure}[h]
+\begin{center}
+\centerline{\includegraphics[scale = 0.75]{../../Supp/Figure_ENCODE_Control/Figure_PR_H3K36me3_Encode_twocells_500bp.pdf}}
+\end{center}
+\caption{ROC curves for H3K36me3 utilizing no input controls (epigraHMM), input control only (epigraHMM + Control), autoregressive counts only (epigraHMM + AR Counts), and smoothing of both input controls and autoregressive counts (epigraHMM + Control \& AR Counts)
+\label{fig:control2}}
+\end{figure}
+
+Next, we reasoned that our approach of modeling input control effect with state-specific parametrization could not be ideal, since independent controls were available for every sample and there could exist sample-specific effects not captured by our model. We then attempted to verify the utility of including input control into the differential binding analysis by simulating data where ChIP-counts were generated such that their log-mean had a linear relationship with input controls (Figure \ref{fig:control3}). We then fitted three different models that differed regarding the inclusion of input control: a model without control, a model with control, and a model with controls where the smoothing was calculated separately for each latent HMM state. Again, results did not show significant improvement by including the effect of control in the analysis.
+
+\begin{figure}[h]
+\begin{center}
+\centerline{\includegraphics[scale = 0.75]{../../Sim/Control/Summary/Summary.pdf}}
+\end{center}
+\caption{Results from simulated data (A) where the log-means of ChIP-seq counts were generated as a linear function of input controls (B). Sensitivity/specificity analyses did not show significant improvement by including the effect of control in the offset scheme.
+\label{fig:control3}}
+\end{figure}
+
+Overall, we did not observe a significant improvement in performance by including input control in differential peak calling. Although several methods do offer the option of including controls in their analysis pipeline, we did not find that their inclusion was justifiable under our modelling assumptions. Our findings are in agreement with \cite{lun2015csaw}.
+
+\subsection{GC-content bias in broad marks}
+
+\subsection{Bayesian Information Criterion (BIC) for Hidden Markov Models}
+
+The BIC for hidden Markov models has been discussed by \cite{zucchini2017hidden}. For the presented three-state HMM, one can calculate the BIC as
+\begin{align}\label{eq:bic}
+BIC &= -2\log\left(\sum_{r=1}^{3}f_{Mr}^{p}\right) + (11+L)\log\left(M\sum_{h=1}^{G}n_{h}\right),
+\end{align}
+where $f_{Mr}^{p}$ is the forward probability pertaining to the $r^{th}$ state calculated at the (last) $M^{th}$ genomic window (as detailed in the Appendix of the main text), $L$ is the number of mixture components, $G$ is the number of conditions, and $n_{h}$ is the number of replicates pertaining to condition $h$. The number of model parameters to be estimated is $(11+L)$: 6 transition probabilities, 2 initial probabilities, 4 model coefficients pertaining to the emission distributions, and $L-1$ prior probabilities from the mixture model.
+
+As shown in the main text, the proposed HMM is robust to situations where certain combinatorial patterns are rare. However, if pruning rare combinatorial patterns is still of interest, such a task can be performed by making use of the BIC. For the analysis of $G$ experimental conditions with a given BIC threshold $\epsilon$, say $\epsilon=0.01$, and $L=2^G-2$ mixture components, one can prune rare combinatorial patterns by the following algorithm.
+
+\begin{enumerate}
+\item Fit the three-state HMM with $L$ mixture components (model $L$) and compute the model BIC, BIC$_{L}$, as in Equation \ref{eq:bic}.
+\item Fit a reduced three-state HMM with $L-1$ mixture components (model $L-1$) by excluding the component associated with the rarest combinatorial pattern of enrichment. Compute its BIC, BIC$_{L-1}$.
+\item Calculate $\Delta\text{BIC}=(\text{BIC}_{L-1}-\text{BIC}_{L})/\text{BIC}_{L}$. If $|\Delta\text{BIC}|\leq\epsilon$, set $L \leftarrow L-1$ and return to step 1. If $|\Delta\text{BIC}|>\epsilon$, stop and set the model L as the final model.
+\end{enumerate}
+
+In scenarios where the number of mixture components is smaller than $2^G-2$, the implemented method initializes the EM algorithm by clustering genomic windows with respect to the posterior probabilities of enrichment obtained from a initial run of a two-state HMM to classify genomic windows into background and enrichment windows. Such an initialization improves the overall computation time by reducing the time to convergence of the presented EM algorithm.
+
+We also compare the results of our method with ChromHMM, an algorithm developed for chromatin segmentation. In Figure \ref{fig:chromHMM}, panels A-D, we present results of ChromHMM with 3 (ideal), 4, 5, and 6 states. By using the BIC for model selection, one could easily choose the number of biologically relevant mixture components to be included in the model, a task that may not be as straightforward in methods such as ChromHMM (see Supplementary Figure 4 in \cite{ernst2012chromhmm}). Our method offers the benefit of simultaneously detecting differential peaks and classifying the combinatorial pattern of enrichment through mixture model posterior probabilities even in the context of genomic segmentation. Despite the choice of the number of mixture components via BIC, epigraHMM appeared to be robust in scenarios with rare combinatorial patterns. This is so because we utilize a constrained parametrization in which only 4 GLM-specific parameters need to be estimated regardless of the number of mixture components, and in the genome-wide analysis of ChIP-seq data one often has enough data to estimate such quantities.
+
+\begin{figure}[h]
+\begin{center}
+\centerline{\includegraphics[scale = 0.75]{../../Supp/Figure_ChromHMM/Figure_ChromHMM.pdf}}
+\end{center}
+\caption{Comparative analysis of epigraHMM and ChromHMM with 3 (ideal), 4, 5, 6, 7, and 8 states (panels A-F).
+\label{fig:chromHMM}}
+\end{figure}
+
+\subsubsection{Simulation Study}
+
+\section{Study on FDR Control and the Viterbi Algorithm}
+\label{s:viterbi}
+
+In this section, we present results comparing the FDR controlling approach with the Viterbi algorithm. We evaluated the FDR approach using cutoffs 0.01, 0.05, 0.10, 0.15, and 0.20. We compared the results between the two approaches using window sizes of 250bp, 500bp, 750bp, and 1000bp. Overall, we observed that the Viterbi sequence of states led to similar results than the sequences based on FDR control cutoffs across all choices of window size. Specifically, we observed that the sensitivity and specificity of the sequence of Viterbi states were close to those from FDR control, in particular for FDR control 0.10. These results are shown in Figures \ref{fig:encode.viterbi.250}, \ref{fig:encode.viterbi.500}, \ref{fig:encode.viterbi.750}, and \ref{fig:encode.viterbi.1000}. These facts are also reflected by the length and number of called peaks. In Figures \ref{fig:encode.viterbi.h3k36me3} and \ref{fig:encode.viterbi.h3k27me3} we show examples of peak calls of H3K26me3 and H3K27me3, respectively, from all FDR control cutoffs and the Viterbi sequence of states. Overall, we observe minor differences regarding the size of peak calls of the Viterbi and FDR control sequences across different choices of window sizes. These differences were mainly present in the data for H3K27me3, which is known to be a histone mark that expands through broader domains than H3K36me3. Finally, it is worth noting that the Viterbi algorithm gives us a way to call peaks that does not depend on the choice of the FDR cutoff.
 
 
 \bibliographystyle{amsplain}

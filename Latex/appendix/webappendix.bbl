@@ -5,13 +5,33 @@
   \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
 }
 \providecommand{\href}[2]{#2}
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+
+\bibitem{allhoff2016differential}
+Manuel Allhoff, Kristin Ser{\'e}, Juliana F.~Pires, Martin Zenke, and Ivan
+  G.~Costa, \emph{Differential peak calling of chip-seq signals with replicates
+  with thor}, Nucleic acids research \textbf{44} (2016), no.~20, e153--e153.
+
+\bibitem{chen2015novel}
+Li~Chen, Chi Wang, Zhaohui~S Qin, and Hao Wu, \emph{{A novel statistical method
+  for quantitative comparison of multiple ChIP-seq datasets}}, Bioinformatics
+  \textbf{31} (2015), no.~12, 1889--1896.
+
+\bibitem{ernst2012chromhmm}
+Jason Ernst and Manolis Kellis, \emph{Chromhmm: automating chromatin-state
+  discovery and characterization}, Nature methods \textbf{9} (2012), no.~3,
+  215--216.
 
 \bibitem{li2009sequence}
 Heng Li, Bob Handsaker, Alec Wysoker, Tim Fennell, Jue Ruan, Nils Homer, Gabor
   Marth, Goncalo Abecasis, and Richard Durbin, \emph{{The sequence
   alignment/map format and SAMtools}}, Bioinformatics \textbf{25} (2009),
   no.~16, 2078--2079.
+
+\bibitem{lun2015csaw}
+Aaron~TL Lun and Gordon~K Smyth, \emph{csaw: a bioconductor package for
+  differential binding analysis of chip-seq data using sliding windows},
+  Nucleic acids research \textbf{44} (2015), no.~5, e45--e45.
 
 \bibitem{mammana2016package}
 Alessandro Mammana and Johannes Helmuth, \emph{bamsignals: Extract read count
@@ -21,5 +41,19 @@ Alessandro Mammana and Johannes Helmuth, \emph{bamsignals: Extract read count
 Aaron~R Quinlan and Ira~M Hall, \emph{{BEDTools: a flexible suite of utilities
   for comparing genomic features}}, Bioinformatics \textbf{26} (2010), no.~6,
   841--842.
+
+\bibitem{shen2013diffreps}
+Li~Shen, Ning-Yi Shao, Xiaochuan Liu, Ian Maze, Jian Feng, and Eric~J Nestler,
+  \emph{diffreps: detecting differential chromatin modification sites from
+  chip-seq data with biological replicates}, PloS one \textbf{8} (2013), no.~6,
+  e65598.
+
+\bibitem{stark2011diffbind}
+Rory Stark and Gordon Brown, \emph{Diffbind: differential binding analysis of
+  chip-seq peak data}, R package version \textbf{100} (2011), 4--3.
+
+\bibitem{zucchini2017hidden}
+Walter Zucchini, Iain~L MacDonald, and Roland Langrock, \emph{Hidden markov
+  models for time series: an introduction using r}, Chapman and Hall/CRC, 2017.
 
 \end{thebibliography}
