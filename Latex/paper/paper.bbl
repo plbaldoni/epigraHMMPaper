@@ -119,6 +119,15 @@ Margueron, R. and Reinberg, D. (2011).
 \newblock The polycomb complex prc2 and its mark in life.
 \newblock {\em Nature} {\bf 469,} 343.
 
+\bibitem[\protect\citeauthoryear{Morin, Bainbridge, Fejes, Hirst, Krzywinski,
+  Pugh, McDonald, Varhol, Jones, and Marra}{Morin
+  et~al.}{2008}]{morin2008profiling}
+Morin, R.~D., Bainbridge, M., Fejes, A., Hirst, M., Krzywinski, M., Pugh,
+  T.~J., McDonald, H., Varhol, R., Jones, S.~J., and Marra, M.~A. (2008).
+\newblock Profiling the hela s3 transcriptome using randomly primed cdna and
+  massively parallel short-read sequencing.
+\newblock {\em Biotechniques} {\bf 45,} 81--94.
+
 \bibitem[\protect\citeauthoryear{Portela and Esteller}{Portela and
   Esteller}{2010}]{portela2010epigenetic}
 Portela, A. and Esteller, M. (2010).

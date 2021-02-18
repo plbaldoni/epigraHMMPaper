@@ -1,0 +1,25 @@
+\providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
+\providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }
+% \MRhref is called by the amsart/book/proc definition of \MR.
+\providecommand{\MRhref}[2]{%
+  \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
+}
+\providecommand{\href}[2]{#2}
+\begin{thebibliography}{1}
+
+\bibitem{li2009sequence}
+Heng Li, Bob Handsaker, Alec Wysoker, Tim Fennell, Jue Ruan, Nils Homer, Gabor
+  Marth, Goncalo Abecasis, and Richard Durbin, \emph{{The sequence
+  alignment/map format and SAMtools}}, Bioinformatics \textbf{25} (2009),
+  no.~16, 2078--2079.
+
+\bibitem{mammana2016package}
+Alessandro Mammana and Johannes Helmuth, \emph{bamsignals: Extract read count
+  signals from bam files}, R package version \textbf{1} (2016), no.~3.
+
+\bibitem{quinlan2010bedtools}
+Aaron~R Quinlan and Ira~M Hall, \emph{{BEDTools: a flexible suite of utilities
+  for comparing genomic features}}, Bioinformatics \textbf{26} (2010), no.~6,
+  841--842.
+
+\end{thebibliography}

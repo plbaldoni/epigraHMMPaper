@@ -1,0 +1,200 @@
+\documentclass[12pt,oneside]{book}
+
+\usepackage{amsmath}
+\usepackage{graphicx,psfrag,epsf}
+\usepackage[section]{placeins}
+\usepackage{enumerate}
+\usepackage{verbatim}
+\usepackage{multirow}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage[flushleft]{threeparttable}
+\usepackage{tikz}
+\usepackage{booktabs}
+\usepackage{makecell}
+\usepackage{csquotes}
+\usepackage{float}
+\usepackage{caption}
+\usepackage[margin=1in]{geometry}
+\usepackage{titling}
+\newcommand{\subtitle}[1]{%
+\posttitle{%
+\par\end{center}
+\begin{center}\large#1\end{center}
+\vskip0.5em}%
+}
+\newcommand{\bs}[1]{\boldsymbol{#1}}
+\newcommand{\mb}[1]{\mathbf{#1}}
+\usepackage{url}
+\usepackage[american]{babel}
+\usepackage[colorlinks]{hyperref}
+\usepackage{appendix}
+\AtBeginDocument{%
+\hypersetup{
+citecolor=black,
+linkcolor=black,
+urlcolor=blue}
+}
+
+\newcommand{\argmax}[1]{\underset{#1}{\operatorname{arg}\,\operatorname{max}}\;}
+
+\captionsetup[table]{name=Web Table}
+\captionsetup[figure]{name=Web Figure}
+
+\usepackage{chngcntr}
+\counterwithout{figure}{chapter}
+\counterwithout{table}{chapter}
+
+\usepackage{setspace}
+\doublespacing
+\AtBeginDocument{\renewcommand\appendixname{Supporting Information}}
+
+% NOTE: To produce blinded version, replace "0" with "1" below.
+\newcommand{\blind}{1}
+
+\if1\blind{
+\date{%
+$^*$Department of Biostatistics, University of North Carolina at Chapel Hill, Chapel Hill, North Carolina, USA\\%
+\today
+}
+\title{{Supporting Information for 'Efficient Detection and Classification of Epigenomic Changes Under Multiple Conditions' by Pedro L. Baldoni$^*$, Naim U. Rashid$^*$, and Joseph G. Ibrahim$^*$}}
+} \fi
+
+\if0\blind{
+\date{%
+\today
+}
+\title{{Supporting Information for 'Efficient Detection and Classification of Epigenomic Changes Under Multiple Conditions'}}
+} \fi
+
+\begin{document}
+\maketitle
+
+\appendix
+\makeatletter
+\renewcommand\thechapter{\Alph{chapter}}
+\renewcommand\thesection{\thechapter\arabic{section}}
+\renewcommand\thesubsection{\thesection.\arabic{subsection}}
+\renewcommand\thesubsubsection{\thesubsection.\arabic{subsubsection}}
+\renewcommand{\thetable}{\arabic{table}}
+\renewcommand{\thefigure}{\arabic{figure}}
+\makeatother
+
+\chapter{}
+In this appendix, we present a summary of data accession codes, data pre-processing, and parameter specifications from benchmarked methods.
+
+\section{Data accession codes}
+
+\begin{table}[h!]
+\footnotesize
+\centering
+\caption{GEO sample accession codes of the analyzed data from the ENCODE Consortium}
+\begin{tabular}{lccccccc}
+\hline
+Cell Line & H3K27me3 & H3K36me3 & EZH2 & H3K4me3 & H3K27ac & CTCF & RNA-seq\\
+\hline
+H1hesc & GSM733748 & GSM733725 & GSM1003524 & GSM733657 & GSM733718 & GSM733672 & GSM758566\\
+HelaS3 & GSM733696 & GSM733711 & GSM1003520 & GSM733682 & GSM733684 & GSM733785 & GSM765402\\
+Hepg2 & GSM733754 & GSM733685 & GSM1003487 & GSM733737 & GSM733743 & GSM733645 & GSM758575\\
+Huvec & GSM733688 & GSM733757 & GSM1003518 & GSM733673 & GSM733691 & GSM733716 & GSM758563\\
+\hline
+\end{tabular}
+\end{table}
+
+\section{Data Processing}
+First, we removed PCR duplicates from the BAM files using SAMTools \cite{li2009sequence} and converted the resulting indexed and sorted files to BED format using BEDTools \cite{quinlan2010bedtools}, as RSEG only accepts such a format as input. Then, the fragment length of each ChIP-seq experiment was estimated using csaw and its functions \textit{correlateReads} and \textit{maximizeCcf}. Finally, using the estimated fragment length, read counts from all cell lines were tabulated for their ChIP replicates using fixed-step and non overlapping windows of size 250bp, 500bp, 750bp, and 1000bp through the R package \textit{bamsignals} \cite{mammana2016package}. For all methods using window-based approaches (csaw, ChIPComp, diffReps, RSEG, THOR, and epigraHMM), we assessed their performance with different window sizes. See Section \ref{s:window} for a discussion about results with different window sizes.
+
+All the methods considered in the data applications and simulation study outputted a set of differential genomic regions/windows that were used for benchmark purposes. THOR output a list of differential peaks in BED6+4 format (\textit{narrowPeak}) with adjusted p-values. RSEG output a WIG file with genomic windows and their posterior probabilities for differential enrichment. diffReps output an annotated TXT file with differential regions of enrichment and their adjusted p-values. DiffBind output a TXT file with differential regions of enrichment and their respective multiple testing corrected FDR. diffReps output a TXT file with differential regions of enrichment and their p-values. csaw output a TSV file with differential regions of enrichment and their FDR adjusted p-values. For a fair FDR thresholding comparison, we control the total FDR and output the differential regions of enrichment based on the set of posterior probabilities as described in the main text. For a comparison between the Viterbi and the FDR thresholding approach, see Section \ref{s:viterbi}.
+
+The following parametrization was used when calling peaks from the benchmarked methods:
+\begin{itemize}
+\item THOR: \textit{rgt-THOR 'config' --name 'name' -b 'bp' --pvalue 1.0 --output-dir 'output'},
+\item RSEG: \textit{rseg-diff -verbose -mode 3 -out 'output' -score 'score' -chrom 'chrom' -bin-size 'bp' -deadzones 'deadzonee' -duplicates 'sample1' 'sample2'},
+\item ChIPComp: \textit{ChIPComp(makeCountSet(conf,design,filetype="bam",species="hg19",binsize=bp))},
+\item diffReps: \textit{diffReps.pl --gname hg19 --report 'output' --treatment 'sample1' --control 'sample2' --btr 'control1' --bco 'control2' --window 'bp' --pval 1 --nsd 'marktype' --meth 'nb'},
+\item DiffBind: \textit{dba.report(dba.analyze(dba.contrast(dba.count(dba(sampleSheet = conf)), categories=DBA\_CONDITION,minMembers=2)),th=1)},
+\end{itemize}
+such that $\text{bp} = \{250,500,750,100\}$ and $marktype='broad'$ if H3K27me3, H3K36me3, or EZH2, or $marktype='sharp'$ otherwise.
+
+For DiffBind under 3 conditions (Figure 1, main text), the set of differential peaks included all peaks deemed to be differential by DiffBind under an FDR control of 0.05 simultaneously for all three pairwise contrast tests between the cell lines Helas3, Hepg2, and Huvec. In the particular genomic position shown in Figure 1, no differential peaks were reported by DiffBind.
+
+For csaw, we used the following setup:
+<<echo=TRUE,eval=FALSE,cache=TRUE>>=
+
+# List of bam files
+bam.files = list.files(path=paste0(tmpdir,'/chip'),pattern='*.bam$',
+                       full.names=T)
+bam.files
+
+# Design matrix
+design <- model.matrix(~factor(cell.type))
+colnames(design) <- c("intercept", "cell.type")
+design
+
+# Parameters (PCR duplicates already removed and quality score filtered)
+param <- readParam(dedup = F)
+param
+
+# Estimating the average fragment length (rescaling all to 200bp)
+x = lapply(bam.files,correlateReads,param=param,max.dist=250)
+multi.frag.lens = list(unlist(lapply(x,maximizeCcf)),200)
+multi.frag.lens
+
+# Counting reads (for a window size of 250bp, for instance)
+data <- windowCounts(bam.files,width = 250,ext = multi.frag.lens,
+                     param = param,filter = 20)
+data
+
+# Filtering data
+data.large <- windowCounts(bam.files,width=2500,bin=T,param=param)
+
+bin.ab <- scaledAverage(data.large, scale=median(getWidths(data.large))/
+                          median(getWidths(data)))
+
+threshold <- median(bin.ab) + log2(2)
+
+keep.global <- aveLogCPM(asDGEList(data)) >  threshold
+
+sum(keep.global)
+
+# Creating filtered data
+filtered.data <- data[keep.global,]
+
+# Testing for DB (assuming composition bias is negligble,
+# i.e. cell lines should exhibit a balanced number of DB regions) 
+
+y <- DGEList(assay(filtered.data), lib.size = filtered.data$totals)
+y$samples$norm.factors <- 1 
+y$offset <- NULL
+y <- estimateDisp(y, design)
+fit <- glmQLFit(y, design, robust = TRUE)
+out <- glmQLFTest(fit,contrast = contrast)
+tabres <- topTags(out, nrow(out))$table
+tabres <- tabres[order(as.integer(rownames(tabres))),]
+
+merged <- mergeWindows(rowRanges(filtered.data), tol=tol,
+                       max.width=max.width)
+tabneg <- combineTests(merged$id, tabres)
+@
+
+
+For ChIPComp and DiffBind, candidate peaks were called in advance using MACS with the following syntax:
+\begin{itemize}
+\item MACS: \textit{macs2 callpeak -f BAM -g 2.80e+09 -B 'options' -t 'sample' -c 'control' --outdir 'output' -n 'filename'}
+\end{itemize}
+such that $options = \{\text{--broad --broad-cutoff 0.1}\}$ if H3K27me3, H3K36me3, or EZH2, or $options = \{\text{-q 0.01}\}$ otherwise.
+
+
+\section{Software}
+epigraHMM was implemented in a R package that is available on the GitHub repository \if1\blind{https://github.com/plbaldoni/epigraHMM}\fi \if0\blind{(BLINDED FOR REVIEW)}\fi.
+
+epigraHMM is a package with a differential peak caller to detect differential enrichment regions from multiple ChIP-seq experiments with replicates. The main function of the package is \textit{epigraHMM}(). The package allows the user to specify a set of parameters that control the Expectation-Maximization (EM) algorithm. These parameters include, for instance, the convergence (and termination) criteria of the algorithm and the threshold value for the rejection controlled EM algorithm. These parameters can be defined by the function \textit{controlEM}(). Please refer to the package documentation (e.g. \textit{?epigraHMM::epigraHMM}) for additional details and the complete help manual.
+
+\section{Code}
+The necessary code to replicate the results presented in the main article and in the supplementary material can be downloaded from \if1\blind{https://github.com/plbaldoni/epigraHMMPaper}\fi \if0\blind{(BLINDED FOR REVIEW)}\fi.
+
+
+\bibliographystyle{amsplain}
+\bibliography{bibliography}
+
+\end{document}

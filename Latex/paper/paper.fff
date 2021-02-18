@@ -20,7 +20,7 @@
 \begin{center}
 \includegraphics[scale = 0.65]{../../Main/Figure_Broad/Figure_Broad.pdf}
 \end{center}
-\caption{Analysis of broad ENCODE data. (A): ROC curves of H3K36me3 differential peak calls. (C): sensitivity (y-axis) and average H3K36me3 differential peak size (kbp; x-axis) of various methods under different nominal FDR thresholds (observed FDR annotated next to data points). (B), (D), and (F): example of peak calls from H3K36me3, H3K27me3, and EZH2, respectively, under a nominal FDR control of 0.05. Posterior probabilities of the HMM differential state are shown at the bottom of each panel. (E): computing time of genome-wide analysis from various methods. This figure appears in color in the electronic version of this article.
+\caption{Analysis of broad ENCODE data. (A): ROC curves of H3K36me3 differential peak calls. (C): sensitivity (y-axis) and average H3K36me3 differential peak size (kbp; x-axis) of various methods under different nominal FDR thresholds (observed FDR annotated next to data points). (B), (D), and (F): example of peak calls from H3K36me3, H3K27me3, and EZH2, respectively, under a nominal FDR control of 0.05. Posterior probabilities of the HMM differential state are shown at the bottom of each panel. (E): computing time and peak memory usage of genome-wide analysis from various methods. This figure appears in color in the electronic version of this article.
 \label{fig:fig_broad}}
 \end{figure}
 \efloatseparator
@@ -29,7 +29,7 @@
 \begin{center}
 \includegraphics[scale = 0.65]{../../Main/Figure_Narrow/Figure_Narrow.pdf}
 \end{center}
-\caption{Analysis of short ENCODE data. (A) and (C): median LFC and correlation between cell lines of ChIP-seq counts from differential peaks for CTCF and H3K4me3, respectively. (B), (D), and (F): example of peak calls from CTCF, H3K4me3, and H3K27ac, respectively. Posterior probabilities of the HMM differential state are shown at the bottom of each panel. (E): computing time of genome-wide analysis from various methods. Results are shown under a nominal FDR control of 0.05. This figure appears in color in the electronic version of this article.
+\caption{Analysis of short ENCODE data. (A) and (C): median LFC and correlation between cell lines of ChIP-seq counts from differential peaks for CTCF and H3K4me3, respectively. (B), (D), and (F): example of peak calls from CTCF, H3K4me3, and H3K27ac, respectively. Posterior probabilities of the HMM differential state are shown at the bottom of each panel. (E): computing time and peak memory usage of genome-wide analysis from various methods. Results are shown under a nominal FDR control of 0.05. This figure appears in color in the electronic version of this article.
 \label{fig:fig_sharp}}
 \end{figure}
 \efloatseparator

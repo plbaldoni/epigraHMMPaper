@@ -1,0 +1,253 @@
+\documentclass[12pt,oneside]{book}\usepackage[]{graphicx}\usepackage[]{color}
+% maxwidth is the original width if it is less than linewidth
+% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+\let\hlipl\hlkwb
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
+
+\usepackage{amsmath}
+\usepackage{graphicx,psfrag,epsf}
+\usepackage[section]{placeins}
+\usepackage{enumerate}
+\usepackage{verbatim}
+\usepackage{multirow}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage[flushleft]{threeparttable}
+\usepackage{tikz}
+\usepackage{booktabs}
+\usepackage{makecell}
+\usepackage{csquotes}
+\usepackage{float}
+\usepackage{caption}
+\usepackage[margin=1in]{geometry}
+\usepackage{titling}
+\newcommand{\subtitle}[1]{%
+\posttitle{%
+\par\end{center}
+\begin{center}\large#1\end{center}
+\vskip0.5em}%
+}
+\newcommand{\bs}[1]{\boldsymbol{#1}}
+\newcommand{\mb}[1]{\mathbf{#1}}
+\usepackage{url}
+\usepackage[american]{babel}
+\usepackage[colorlinks]{hyperref}
+\usepackage{appendix}
+\AtBeginDocument{%
+\hypersetup{
+citecolor=black,
+linkcolor=black,
+urlcolor=blue}
+}
+
+\newcommand{\argmax}[1]{\underset{#1}{\operatorname{arg}\,\operatorname{max}}\;}
+
+\captionsetup[table]{name=Web Table}
+\captionsetup[figure]{name=Web Figure}
+
+\usepackage{chngcntr}
+\counterwithout{figure}{chapter}
+\counterwithout{table}{chapter}
+
+\usepackage{setspace}
+\doublespacing
+\AtBeginDocument{\renewcommand\appendixname{Supporting Information}}
+
+% NOTE: To produce blinded version, replace "0" with "1" below.
+\newcommand{\blind}{1}
+
+\if1\blind{
+\date{%
+$^*$Department of Biostatistics, University of North Carolina at Chapel Hill, Chapel Hill, North Carolina, USA\\%
+\today
+}
+\title{{Supporting Information for 'Efficient Detection and Classification of Epigenomic Changes Under Multiple Conditions' by Pedro L. Baldoni$^*$, Naim U. Rashid$^*$, and Joseph G. Ibrahim$^*$}}
+} \fi
+
+\if0\blind{
+\date{%
+\today
+}
+\title{{Supporting Information for 'Efficient Detection and Classification of Epigenomic Changes Under Multiple Conditions'}}
+} \fi
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\begin{document}
+\maketitle
+
+\appendix
+\makeatletter
+\renewcommand\thechapter{\Alph{chapter}}
+\renewcommand\thesection{\thechapter\arabic{section}}
+\renewcommand\thesubsection{\thesection.\arabic{subsection}}
+\renewcommand\thesubsubsection{\thesubsection.\arabic{subsubsection}}
+\renewcommand{\thetable}{\arabic{table}}
+\renewcommand{\thefigure}{\arabic{figure}}
+\makeatother
+
+\chapter{}
+In this appendix, we present a summary of data accession codes, data pre-processing, and parameter specifications from benchmarked methods.
+
+\section{Data accession codes}
+
+\begin{table}[h!]
+\footnotesize
+\centering
+\caption{GEO sample accession codes of the analyzed data from the ENCODE Consortium}
+\begin{tabular}{lccccccc}
+\hline
+Cell Line & H3K27me3 & H3K36me3 & EZH2 & H3K4me3 & H3K27ac & CTCF & RNA-seq\\
+\hline
+H1hesc & GSM733748 & GSM733725 & GSM1003524 & GSM733657 & GSM733718 & GSM733672 & GSM758566\\
+HelaS3 & GSM733696 & GSM733711 & GSM1003520 & GSM733682 & GSM733684 & GSM733785 & GSM765402\\
+Hepg2 & GSM733754 & GSM733685 & GSM1003487 & GSM733737 & GSM733743 & GSM733645 & GSM758575\\
+Huvec & GSM733688 & GSM733757 & GSM1003518 & GSM733673 & GSM733691 & GSM733716 & GSM758563\\
+\hline
+\end{tabular}
+\end{table}
+
+\section{Data Processing}
+First, we removed PCR duplicates from the BAM files using SAMTools \cite{li2009sequence} and converted the resulting indexed and sorted files to BED format using BEDTools \cite{quinlan2010bedtools}, as RSEG only accepts such a format as input. Then, the fragment length of each ChIP-seq experiment was estimated using csaw and its functions \textit{correlateReads} and \textit{maximizeCcf}. Finally, using the estimated fragment length, read counts from all cell lines were tabulated for their ChIP replicates using fixed-step and non overlapping windows of size 250bp, 500bp, 750bp, and 1000bp through the R package \textit{bamsignals} \cite{mammana2016package}. For all methods using window-based approaches (csaw, ChIPComp, diffReps, RSEG, THOR, and epigraHMM), we assessed their performance with different window sizes. See Section \ref{s:window} for a discussion about results with different window sizes.
+
+All the methods considered in the data applications and simulation study outputted a set of differential genomic regions/windows that were used for benchmark purposes. THOR output a list of differential peaks in BED6+4 format (\textit{narrowPeak}) with adjusted p-values. RSEG output a WIG file with genomic windows and their posterior probabilities for differential enrichment. diffReps output an annotated TXT file with differential regions of enrichment and their adjusted p-values. DiffBind output a TXT file with differential regions of enrichment and their respective multiple testing corrected FDR. diffReps output a TXT file with differential regions of enrichment and their p-values. csaw output a TSV file with differential regions of enrichment and their FDR adjusted p-values. For a fair FDR thresholding comparison, we control the total FDR and output the differential regions of enrichment based on the set of posterior probabilities as described in the main text. For a comparison between the Viterbi and the FDR thresholding approach, see Section \ref{s:viterbi}.
+
+The following parametrization was used when calling peaks from the benchmarked methods:
+\begin{itemize}
+\item THOR: \textit{rgt-THOR 'config' --name 'name' -b 'bp' --pvalue 1.0 --output-dir 'output'},
+\item RSEG: \textit{rseg-diff -verbose -mode 3 -out 'output' -score 'score' -chrom 'chrom' -bin-size 'bp' -deadzones 'deadzonee' -duplicates 'sample1' 'sample2'},
+\item ChIPComp: \textit{ChIPComp(makeCountSet(conf,design,filetype="bam",species="hg19",binsize=bp))},
+\item diffReps: \textit{diffReps.pl --gname hg19 --report 'output' --treatment 'sample1' --control 'sample2' --btr 'control1' --bco 'control2' --window 'bp' --pval 1 --nsd 'marktype' --meth 'nb'},
+\item DiffBind: \textit{dba.report(dba.analyze(dba.contrast(dba.count(dba(sampleSheet = conf)), categories=DBA\_CONDITION,minMembers=2)),th=1)},
+\end{itemize}
+such that $\text{bp} = \{250,500,750,100\}$ and $marktype='broad'$ if H3K27me3, H3K36me3, or EZH2, or $marktype='sharp'$ otherwise.
+
+For DiffBind under 3 conditions (Figure 1, main text), the set of differential peaks included all peaks deemed to be differential by DiffBind under an FDR control of 0.05 simultaneously for all three pairwise contrast tests between the cell lines Helas3, Hepg2, and Huvec. In the particular genomic position shown in Figure 1, no differential peaks were reported by DiffBind.
+
+For csaw, we used the following setup:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{# List of bam files}
+\hlstd{bam.files} \hlkwb{=} \hlkwd{list.files}\hlstd{(}\hlkwc{path}\hlstd{=}\hlkwd{paste0}\hlstd{(tmpdir,}\hlstr{'/chip'}\hlstd{),}\hlkwc{pattern}\hlstd{=}\hlstr{'*.bam$'}\hlstd{,}
+                       \hlkwc{full.names}\hlstd{=T)}
+\hlstd{bam.files}
+
+\hlcom{# Design matrix}
+\hlstd{design} \hlkwb{<-} \hlkwd{model.matrix}\hlstd{(}\hlopt{~}\hlkwd{factor}\hlstd{(cell.type))}
+\hlkwd{colnames}\hlstd{(design)} \hlkwb{<-} \hlkwd{c}\hlstd{(}\hlstr{"intercept"}\hlstd{,} \hlstr{"cell.type"}\hlstd{)}
+\hlstd{design}
+
+\hlcom{# Parameters (PCR duplicates already removed and quality score filtered)}
+\hlstd{param} \hlkwb{<-} \hlkwd{readParam}\hlstd{(}\hlkwc{dedup} \hlstd{= F)}
+\hlstd{param}
+
+\hlcom{# Estimating the average fragment length (rescaling all to 200bp)}
+\hlstd{x} \hlkwb{=} \hlkwd{lapply}\hlstd{(bam.files,correlateReads,}\hlkwc{param}\hlstd{=param,}\hlkwc{max.dist}\hlstd{=}\hlnum{250}\hlstd{)}
+\hlstd{multi.frag.lens} \hlkwb{=} \hlkwd{list}\hlstd{(}\hlkwd{unlist}\hlstd{(}\hlkwd{lapply}\hlstd{(x,maximizeCcf)),}\hlnum{200}\hlstd{)}
+\hlstd{multi.frag.lens}
+
+\hlcom{# Counting reads (for a window size of 250bp, for instance)}
+\hlstd{data} \hlkwb{<-} \hlkwd{windowCounts}\hlstd{(bam.files,}\hlkwc{width} \hlstd{=} \hlnum{250}\hlstd{,}\hlkwc{ext} \hlstd{= multi.frag.lens,}
+                     \hlkwc{param} \hlstd{= param,}\hlkwc{filter} \hlstd{=} \hlnum{20}\hlstd{)}
+\hlstd{data}
+
+\hlcom{# Filtering data}
+\hlstd{data.large} \hlkwb{<-} \hlkwd{windowCounts}\hlstd{(bam.files,}\hlkwc{width}\hlstd{=}\hlnum{2500}\hlstd{,}\hlkwc{bin}\hlstd{=T,}\hlkwc{param}\hlstd{=param)}
+
+\hlstd{bin.ab} \hlkwb{<-} \hlkwd{scaledAverage}\hlstd{(data.large,} \hlkwc{scale}\hlstd{=}\hlkwd{median}\hlstd{(}\hlkwd{getWidths}\hlstd{(data.large))}\hlopt{/}
+                          \hlkwd{median}\hlstd{(}\hlkwd{getWidths}\hlstd{(data)))}
+
+\hlstd{threshold} \hlkwb{<-} \hlkwd{median}\hlstd{(bin.ab)} \hlopt{+} \hlkwd{log2}\hlstd{(}\hlnum{2}\hlstd{)}
+
+\hlstd{keep.global} \hlkwb{<-} \hlkwd{aveLogCPM}\hlstd{(}\hlkwd{asDGEList}\hlstd{(data))} \hlopt{>}  \hlstd{threshold}
+
+\hlkwd{sum}\hlstd{(keep.global)}
+
+\hlcom{# Creating filtered data}
+\hlstd{filtered.data} \hlkwb{<-} \hlstd{data[keep.global,]}
+
+\hlcom{# Testing for DB (assuming composition bias is negligble,}
+\hlcom{# i.e. cell lines should exhibit a balanced number of DB regions) }
+
+\hlstd{y} \hlkwb{<-} \hlkwd{DGEList}\hlstd{(}\hlkwd{assay}\hlstd{(filtered.data),} \hlkwc{lib.size} \hlstd{= filtered.data}\hlopt{$}\hlstd{totals)}
+\hlstd{y}\hlopt{$}\hlstd{samples}\hlopt{$}\hlstd{norm.factors} \hlkwb{<-} \hlnum{1}
+\hlstd{y}\hlopt{$}\hlstd{offset} \hlkwb{<-} \hlkwa{NULL}
+\hlstd{y} \hlkwb{<-} \hlkwd{estimateDisp}\hlstd{(y, design)}
+\hlstd{fit} \hlkwb{<-} \hlkwd{glmQLFit}\hlstd{(y, design,} \hlkwc{robust} \hlstd{=} \hlnum{TRUE}\hlstd{)}
+\hlstd{out} \hlkwb{<-} \hlkwd{glmQLFTest}\hlstd{(fit,}\hlkwc{contrast} \hlstd{= contrast)}
+\hlstd{tabres} \hlkwb{<-} \hlkwd{topTags}\hlstd{(out,} \hlkwd{nrow}\hlstd{(out))}\hlopt{$}\hlstd{table}
+\hlstd{tabres} \hlkwb{<-} \hlstd{tabres[}\hlkwd{order}\hlstd{(}\hlkwd{as.integer}\hlstd{(}\hlkwd{rownames}\hlstd{(tabres))),]}
+
+\hlstd{merged} \hlkwb{<-} \hlkwd{mergeWindows}\hlstd{(}\hlkwd{rowRanges}\hlstd{(filtered.data),} \hlkwc{tol}\hlstd{=tol,}
+                       \hlkwc{max.width}\hlstd{=max.width)}
+\hlstd{tabneg} \hlkwb{<-} \hlkwd{combineTests}\hlstd{(merged}\hlopt{$}\hlstd{id, tabres)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+
+For ChIPComp and DiffBind, candidate peaks were called in advance using MACS with the following syntax:
+\begin{itemize}
+\item MACS: \textit{macs2 callpeak -f BAM -g 2.80e+09 -B 'options' -t 'sample' -c 'control' --outdir 'output' -n 'filename'}
+\end{itemize}
+such that $options = \{\text{--broad --broad-cutoff 0.1}\}$ if H3K27me3, H3K36me3, or EZH2, or $options = \{\text{-q 0.01}\}$ otherwise.
+
+
+\section{Software}
+epigraHMM was implemented in a R package that is available on the GitHub repository \if1\blind{https://github.com/plbaldoni/epigraHMM}\fi \if0\blind{(BLINDED FOR REVIEW)}\fi.
+
+epigraHMM is a package with a differential peak caller to detect differential enrichment regions from multiple ChIP-seq experiments with replicates. The main function of the package is \textit{epigraHMM}(). The package allows the user to specify a set of parameters that control the Expectation-Maximization (EM) algorithm. These parameters include, for instance, the convergence (and termination) criteria of the algorithm and the threshold value for the rejection controlled EM algorithm. These parameters can be defined by the function \textit{controlEM}(). Please refer to the package documentation (e.g. \textit{?epigraHMM::epigraHMM}) for additional details and the complete help manual.
+
+\section{Code}
+The necessary code to replicate the results presented in the main article and in the supplementary material can be downloaded from \if1\blind{https://github.com/plbaldoni/epigraHMMPaper}\fi \if0\blind{(BLINDED FOR REVIEW)}\fi.
+
+
+\bibliographystyle{amsplain}
+\bibliography{bibliography}
+
+\end{document}
