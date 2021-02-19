@@ -27,6 +27,8 @@
 Sim/Control/Analysis/
 
 !Latex/paper/paper.pdf 
+!Latex/letter/letter.pdf
+
 Latex/appendix/cache
 
 Sim/ReadCounts/Code_*
