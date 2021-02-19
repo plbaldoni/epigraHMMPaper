@@ -77,6 +77,11 @@ Sebastian Steinhauser, Nils Kurzawa, Roland Eils, and Carl Herrmann, \emph{A
   comprehensive comparison of tools for differential chip-seq analysis},
   Briefings in bioinformatics \textbf{17} (2016), no.~6, 953--966.
 
+\bibitem{teng2017accounting}
+Mingxiang Teng and Rafael~A Irizarry, \emph{{Accounting for GC-content bias
+  reduces systematic errors and batch effects in ChIP-seq data}}, Genome
+  research \textbf{27} (2017), no.~11, 1930--1938.
+
 \bibitem{zucchini2017hidden}
 Walter Zucchini, Iain~L MacDonald, and Roland Langrock, \emph{Hidden markov
   models for time series: an introduction using r}, Chapman and Hall/CRC, 2017.

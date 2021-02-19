@@ -101,6 +101,9 @@ Huvec & GSM733688 & GSM733757 & GSM1003518 & GSM733673 & GSM733691 & GSM733716 &
 \end{tabular}
 \end{table}
 
+\pagebreak
+\clearpage
+
 \section{Data Processing}
 First, we removed PCR duplicates from the BAM files using SAMTools \cite{li2009sequence} and converted the resulting indexed and sorted files to BED format using BEDTools \cite{quinlan2010bedtools}, as RSEG only accepts such a format as input. Then, the fragment length of each ChIP-seq experiment was estimated using csaw and its functions \textit{correlateReads} and \textit{maximizeCcf}. Finally, using the estimated fragment length, read counts from all cell lines were tabulated for their ChIP replicates using fixed-step and non overlapping windows of size 250bp, 500bp, 750bp, and 1000bp through the R package \textit{bamsignals} \cite{mammana2016package}. For all methods using window-based approaches (csaw, ChIPComp, diffReps, RSEG, THOR, and epigraHMM), we assessed their performance with different window sizes. See Section \ref{s:window} for a discussion about results with different window sizes.
 
@@ -184,7 +187,6 @@ For ChIPComp and DiffBind, candidate peaks were called in advance using MACS2 wi
 \end{itemize}
 such that $options = \{\text{--broad --broad-cutoff 0.1}\}$ if H3K27me3, H3K36me3, or EZH2, or $options = \{\text{-q 0.01}\}$ otherwise.
 
-
 \section{Software}
 epigraHMM was implemented in a R package that is available on the GitHub repository \if1\blind{https://github.com/plbaldoni/epigraHMM}\fi \if0\blind{(BLINDED FOR REVIEW)}\fi.
 
@@ -239,7 +241,39 @@ Next, we reasoned that our approach of modeling input control effect with state-
 
 Overall, we did not observe a significant improvement in performance by including input control in differential peak calling. Although several methods do offer the option of including controls in their analysis pipeline, we did not find that their inclusion was justifiable under our modelling assumptions. Our findings are in agreement with \cite{lun2015csaw}.
 
+\pagebreak
+\clearpage
+
 \subsection{GC-content bias in broad marks}
+
+\subsubsection{Simulation Study}
+
+\begin{figure}[h]
+\begin{center}
+\centerline{\includegraphics[scale = 0.75]{../../Supp/Figure_Simulation_GC/Summary_Scatter_G113G233.png}}
+\end{center}
+\caption{Simulation study for GC-content bias correction with epigraHMM. In (A), example of a genomic region from the simulated data. In (B), simulated GC content effect on ChIP-seq counts. Scenario: low depth in condition 1, high depth in condition 2; positive GC effect on ChIP-seq counts in both conditions.
+\label{fig:sim_gc_scatter}}
+\end{figure}
+
+\begin{figure}[h]
+\begin{center}
+\centerline{\includegraphics[scale = 0.75]{../../Supp/Figure_Simulation_GC/Summary_FDR_G113G233.png}}
+\end{center}
+\caption{Simulation study for GC-content bias correction with epigraHMM. Average observed true positive rate (y-axis) and observed false discovery rate (x-axis) in 100 simulated data sets for four different GC-content bias correction strategies: naive model without normalization for sequencing depth or GC-content bias, GC-content adjusted model, sequencing depth adjusted model, and GC-content and sequencing depth adjusted model. Optimal results are obtained only when the effect of GC-content is considered together with normalization for depth. The GC-content bias was accounted via model offsets in epigraHMM using the normalizing denominators from \cite{teng2017accounting}.
+\label{fig:sim_gc_fdr}}
+\end{figure}
+
+\begin{figure}[h]
+\begin{center}
+\centerline{\includegraphics[scale = 0.75]{../../Supp/Figure_Simulation_GC/Summary_ROC_G113G233.png}}
+\end{center}
+\caption{Simulation study for GC-content bias correction with epigraHMM. Observed sensitivity (y-axis) and observed 1-specificity (x-axis) for each of the 100 simulated data sets four different GC-content bias correction strategies: naive model without normalization for sequencing depth or GC-content bias, GC-content adjusted model, sequencing depth adjusted model, and GC-content and sequencing depth adjusted model. Optimal results are obtained only when the effect of GC-content is considered together with normalization for depth. The GC-content bias was accounted via model offsets in epigraHMM using the normalizing denominators from \cite{teng2017accounting}. Dashed lines connect the observed metrics for each simulated dataset.
+\label{fig:sim_gc_roc}}
+\end{figure}
+
+\pagebreak
+\clearpage
 
 \section{Bayesian Information Criterion (BIC) for Hidden Markov Models}
 
@@ -271,6 +305,33 @@ We also compare the results of our method with ChromHMM, an algorithm developed 
 
 \subsection{Simulation Study}
 
+\begin{figure}[h]
+\begin{center}
+\centerline{\includegraphics[scale = 0.75]{../../Supp/Figure_BIC/H3K36me3_3G_4R_1e+05W_100SNR_bic.png}}
+\end{center}
+\caption{Simulation study for model selection via BIC. Simulation scenario: H3K36me3 data, 3 conditions, 4 replicates per condition, $10^5$ genomic windows, observed (estimated from ENCODE) SNR.
+\label{fig:bic_4rep}}
+\end{figure}
+
+\begin{figure}[h]
+\begin{center}
+\centerline{\includegraphics[scale = 0.75]{../../Supp/Figure_BIC/H3K36me3_3G_2R_1e+05W_100SNR_bic.png}}
+\end{center}
+\caption{Simulation study for model selection via BIC. Simulation scenario: H3K36me3 data, 3 conditions, 2 replicates per condition, $10^5$ genomic windows, observed (estimated from ENCODE) SNR.
+\label{fig:bic_2rep}}
+\end{figure}
+
+\begin{figure}[h]
+\begin{center}
+\centerline{\includegraphics[scale = 0.75]{../../Supp/Figure_BIC/H3K36me3_3G_1R_1e+05W_100SNR_bic.png}}
+\end{center}
+\caption{Simulation study for model selection via BIC. Simulation scenario: H3K36me3 data, 3 conditions, 1 replicate per condition, $10^5$ genomic windows, observed (estimated from ENCODE) SNR.
+\label{fig:bic_1rep}}
+\end{figure}
+
+\pagebreak
+\clearpage
+
 \section{Study on FDR Control and the Viterbi Algorithm}
 \label{s:viterbi}
 
@@ -299,6 +360,9 @@ In this section, we present results comparing the FDR controlling approach with 
 \caption{FDR- and Viterbi-based peak calls from H3K27me3 with 250bp (A), 500bp, (B), 750bp (C), and 1000bp (D).}
 \label{fig:encode.viterbi.h3k27me3}
 \end{figure}
+
+\pagebreak
+\clearpage
 
 \section{HMM Emission Distributions}
 
@@ -418,6 +482,9 @@ Finally, we used the estimated mixture model posterior probabilities $Pr(W_{jl}=
 \caption{Read count simulation. (A): average observed TPR and FDR for different nominal FDR threshold levels for various scenarios in simulated data of H3K36me3 with $10^5$ genomic windows. (B): confusion matrices are shown for the 3 conditions scenario. On x- and y-axes the labels indicate the differential classified and simulated patterns, respectively. For instance, EBE denotes enrichment in conditions 1 and 3 only. Darker colors on the diagonal of the matrix indicate better agreement.}
 \label{fig:sim1.fig2}
 \end{figure}
+
+\pagebreak
+\clearpage
 
 \section{Sequencing Read Simulation}
 \label{s:sim2}
