@@ -202,6 +202,7 @@ In this appendix, we present additional methodological results and an overview o
 \label{s:offset}
 
 \subsection{Normalization for non-linear biases via model offsets}
+\label{s:loess}
 
 In our analyses, we observed that the magnitude of the local differences in read counts between conditions changed with the average of local read coverage. Here, we accounted for these trended differences to avoid calling spurious differential peaks due to the different magnitude of library sizes across groups. Specifically, we implemented an approach similar to the non-linear normalization method used by csaw as follows \cite{lun2015csaw}. First, we create a reference sample of read counts comprised by the geometric mean of read counts from all replicates and conditions. Then, we fitted a loess curve on the difference between the read counts of each sample and the reference, on the average of those two quantities. A similar approach was first implemented by \cite{lun2015csaw} and is available in their software. Here, we add a continuity correction of 1 to avoid discarding genomic windows with zero counts. Using the smoothed curve as the model offset, we observed better results than a simple correction via either the total sum of read counts or cell-specific median log ratio. The rationale behind this approach is to create a reference library in which each genomic window is the geometric mean of counts across all conditions and replicates, and then read counts are properly adjusted by accounting for the smoothed differences between each individual library and the reference library. A useful way to evaluate the performance of this normalization method is to compare samples with respect to their adjusted read counts. For example, plotting the ratios between counts and the calculated offsets $y_{hij}/\exp(u_{hij})$ for all samples in the study. In Figure \ref{maplot} we show an example of a genomic region from three analyzed cell lines and their respective MA plot, unadjusted ChIP counts, and offset-adjusted ChIP counts. After accounting for the offset, the read counts from Helas3 are adjusted to its larger library size with respect to the other under sequenced cell lines.
 
@@ -239,14 +240,16 @@ Next, we reasoned that our approach of modeling input control effect with state-
 \label{fig:control3}}
 \end{figure}
 
-Overall, we did not observe a significant improvement in performance by including input control in differential peak calling. Although several methods do offer the option of including controls in their analysis pipeline, we did not find that their inclusion was justifiable under our modelling assumptions. Our findings are in agreement with \cite{lun2015csaw}.
+Overall, we did not observe a significant improvement in performance by including input control in differential peak calling. Although several methods do offer the option of including controls in their analysis pipeline, we did not find that their inclusion was justifiable under our modeling assumptions. Our findings are in agreement with \cite{lun2015csaw}.
 
 \pagebreak
 \clearpage
 
 \subsection{GC-content bias in broad marks}
 
-\subsubsection{Simulation Study}
+We performed a simulation study to assess the benefits and ability of epigraHMM to adjust for GC-content bias. In this study, we borrowed the method from \cite{teng2017accounting} and used their normalizing denominators to adjust for GC-content bias in our simulations study. As \cite{teng2017accounting} suggest, we utilized their normalizing offsets into our own model to account for the bias results from the simulated GC content. Because the simulated data varied with respect to the sequencing depth, we further included in our model normalizing offsets to adjust for the excess of read enrichment using the loess normalization approach as described in Section \ref{s:loess}.
+
+Data was generated as described in Section 4.1 of our paper, with the addition that GC-content bias was introduced to the mean model. As suggested by \cite{teng2017accounting}, the simulated GC-content effect varied from condition to condition as well as the sequencing depth. In this simulation study, we assessed decreasing, neutral, and increasing effects of GC-content on the mean read count distribution. In Figure \ref{fig:sim_gc_scatter} we show an example of simulated data with increasing GC-content effect on ChIP-seq counts in both conditions. In this example, these conditions varied regarding the depth of sequencing reads.
 
 \begin{figure}[h]
 \begin{center}
@@ -256,6 +259,8 @@ Overall, we did not observe a significant improvement in performance by includin
 \label{fig:sim_gc_scatter}}
 \end{figure}
 
+We assessed the model performance while adjusting for sequencing depth only, GC-content effect only, and simultaneously adjusting for both GC-content and sequencing depth. We observed that the optimal results were achieve only after normalization for both GC and sequencing depth bias. Despite the improvement in performance after the non-linear normalization, we were able to achieve optimal results in terms of true positive rate and false discovery rate of peak calls only after accounting for GC-content bias. These results not only show that our model is able to account for such type of bias, here computed using the methodology from \cite{teng2017accounting}, but also highlight the importance of such an adjustment. These results are shown in Figure \ref{fig:sim_gc_fdr}.
+
 \begin{figure}[h]
 \begin{center}
 \centerline{\includegraphics[scale = 0.75]{../../Supp/Figure_Simulation_GC/Summary_FDR_G113G233.png}}
@@ -263,6 +268,8 @@ Overall, we did not observe a significant improvement in performance by includin
 \caption{Simulation study for GC-content bias correction with epigraHMM. Average observed true positive rate (y-axis) and observed false discovery rate (x-axis) in 100 simulated data sets for four different GC-content bias correction strategies: naive model without normalization for sequencing depth or GC-content bias, GC-content adjusted model, sequencing depth adjusted model, and GC-content and sequencing depth adjusted model. Optimal results are obtained only when the effect of GC-content is considered together with normalization for depth. The GC-content bias was accounted via model offsets in epigraHMM using the normalizing denominators from \cite{teng2017accounting}.
 \label{fig:sim_gc_fdr}}
 \end{figure}
+
+To better visualize the results on a per data set basis, Figure \ref{fig:sim_gc_roc} shows the sensitivity and 1-specificity results from all 100 simulated datasets for the aforementioned example. Here, we see that for all data sets only after account for GC-content bias we were able to achieve optimal results.
 
 \begin{figure}[h]
 \begin{center}
@@ -276,6 +283,7 @@ Overall, we did not observe a significant improvement in performance by includin
 \clearpage
 
 \section{Bayesian Information Criterion (BIC) for Hidden Markov Models}
+\label{s:bicsec}
 
 The BIC for hidden Markov models has been discussed by \cite{zucchini2017hidden}. For the presented three-state HMM, one can calculate the BIC as
 \begin{align}\label{eq:bic}
@@ -305,11 +313,19 @@ We also compare the results of our method with ChromHMM, an algorithm developed 
 
 \subsection{Simulation Study}
 
+We assessed the performance of our model selection scheme via BIC with a simulation study. To this end, we re-generated data in the same fashion as described in Section 4 of our paper while removing certain combinatorial patterns. Specifically, to mimic the ENCODE data analyzed in Section 5 of our paper, we generated data for which 3 conditions were available but only 2 out of 6 possible differential combinatorial patterns were available. 
+
+First, it is important to note that for an analysis of 3 conditions, there are $2^3-2 = 6$ possible combinatorial patterns of differential enrichment. In this context, for a mixture model with $L$ components, there are ${6\choose L}$ possible ways to model $L$ components. The choice of the number $L$ of components therefore needs to reflect the relevant biological patterns in the data. In this study, we assessed the algorithm presented in Section \ref{s:bicsec} by fitting all $\sum_{l=1}^{6}{6\choose l}$ possible model and computing their BIC for 100 simulated data sets. On average, the optimal chosen model should be the one with $L=2$ components \textit{and} with the components modeling those relevant ones. In this study, the two relevant patterns simulated were enrichment in condition 1 alone, and co-enrichment of conditions 2 and 3 (similar to Figure 6 of the main paper). As in Section 4 of our paper, we assessed the performance of our model under different SNR levels, different number of replicates per condition, and different genome sizes.
+
+We present our results in Figures \ref{fig:bic_4rep}, \ref{fig:bic_2rep}, and \ref{fig:bic_1rep}. We start our model selection by fitting the full model with 6 components (L=6, rightmost block of the triangle with the highlighted '1'). We then proceed with our algorithm as described in this section and remove 1 combinatorial pattern at a time until the difference in BIC is large enough. As we can see from Figures \ref{fig:bic_4rep}, \ref{fig:bic_2rep}, and \ref{fig:bic_1rep}, this is achieved when L=2 and the combinatorial patterns being modeled is 1 (enrichment condition 1) and 2/3 (co-enrichment of condition 2 and 3). As we can see, our model selection scheme correctly selected the optimal model with the proper number of combinatorial patterns $L$ and the proper patterns themselves.
+
+In accordance with the results presented in Section 4 of our paper, we note that the number of replicates played a major role in the success of our model selections scheme. For example, by comparing Figure \ref{fig:bic_4rep} and Figure \ref{fig:bic_1rep}, we see that more technical/biological replicates lead to models that can be better distinguished in terms of BIC when one is searching for the optimal patterns and number of combinatorial patterns. In summary, the presented model selection scheme allows users to prune combinatorial patterns of interest when one is not interested in modeling certain rare biological patterns from the data.
+
 \begin{figure}[h]
 \begin{center}
 \centerline{\includegraphics[scale = 0.75]{../../Supp/Figure_BIC/H3K36me3_3G_4R_1e+05W_100SNR_bic.png}}
 \end{center}
-\caption{Simulation study for model selection via BIC. Simulation scenario: H3K36me3 data, 3 conditions, 4 replicates per condition, $10^5$ genomic windows, observed (estimated from ENCODE) SNR.
+\caption{Simulation study for model selection via BIC. Simulation scenario: H3K36me3 data, 3 conditions, 4 replicates per condition, $10^5$ genomic windows, observed (estimated from ENCODE) SNR. Dashed lines indicate order of model selection scheme beginning with the full model ('1') and ending with the reduced model ('6'). The optimal model is the one with highlighted '2', since it had a significant lower BIC than any other model with a single differential component. Highlighted number in each block indicated the combinatorial pattern being modeled. For instance '1/2 2 3' indicates a model with three components and the following patterns: co-enrichment of condition 1 and 2, enrichment of condition 2 alone, and enrichment of condition 3 alone. 
 \label{fig:bic_4rep}}
 \end{figure}
 
@@ -317,7 +333,7 @@ We also compare the results of our method with ChromHMM, an algorithm developed 
 \begin{center}
 \centerline{\includegraphics[scale = 0.75]{../../Supp/Figure_BIC/H3K36me3_3G_2R_1e+05W_100SNR_bic.png}}
 \end{center}
-\caption{Simulation study for model selection via BIC. Simulation scenario: H3K36me3 data, 3 conditions, 2 replicates per condition, $10^5$ genomic windows, observed (estimated from ENCODE) SNR.
+\caption{Simulation study for model selection via BIC. Simulation scenario: H3K36me3 data, 3 conditions, 2 replicates per condition, $10^5$ genomic windows, observed (estimated from ENCODE) SNR. Dashed lines indicate order of model selection scheme beginning with the full model ('1') and ending with the reduced model ('6'). The optimal model is the one with highlighted '2', since it had a significant lower BIC than any other model with a single differential component. Highlighted number in each block indicated the combinatorial pattern being modeled. For instance '1/2 2 3' indicates a model with three components and the following patterns: co-enrichment of condition 1 and 2, enrichment of condition 2 alone, and enrichment of condition 3 alone. 
 \label{fig:bic_2rep}}
 \end{figure}
 
@@ -325,7 +341,7 @@ We also compare the results of our method with ChromHMM, an algorithm developed 
 \begin{center}
 \centerline{\includegraphics[scale = 0.75]{../../Supp/Figure_BIC/H3K36me3_3G_1R_1e+05W_100SNR_bic.png}}
 \end{center}
-\caption{Simulation study for model selection via BIC. Simulation scenario: H3K36me3 data, 3 conditions, 1 replicate per condition, $10^5$ genomic windows, observed (estimated from ENCODE) SNR.
+\caption{Simulation study for model selection via BIC. Simulation scenario: H3K36me3 data, 3 conditions, 1 replicate per condition, $10^5$ genomic windows, observed (estimated from ENCODE) SNR. Dashed lines indicate order of model selection scheme beginning with the full model ('1') and ending with the reduced model ('6'). The optimal model is the one with highlighted '2', since it had a significant lower BIC than any other model with a single differential component. Highlighted number in each block indicated the combinatorial pattern being modeled. For instance '1/2 2 3' indicates a model with three components and the following patterns: co-enrichment of condition 1 and 2, enrichment of condition 2 alone, and enrichment of condition 3 alone. 
 \label{fig:bic_1rep}}
 \end{figure}
 
