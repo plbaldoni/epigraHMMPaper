@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2020.9.14)  19 FEB 2021 01:59
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2020.9.14)  19 FEB 2021 21:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -742,7 +742,17 @@ Package csquotes Info: ... found 'babel' package.
 Package csquotes Info: Adjusting default style.
 Package csquotes Info: Redefining alias 'default' -> 'american'.
 
-(./webappendix.aux)
+(./webappendix.aux
+
+LaTeX Warning: Label `tab:' multiply defined.
+
+
+LaTeX Warning: Label `Table:table_simulation' multiply defined.
+
+
+LaTeX Warning: Label `fig:fig_tern' multiply defined.
+
+)
 \openout1 = `webappendix.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 120.
@@ -759,8 +769,7 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 120.
 LaTeX Font Info:    ... okay on input line 120.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 120.
 LaTeX Font Info:    ... okay on input line 120.
-
-(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+ (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count158
 \scratchdimen=\dimen215
@@ -869,9 +878,6 @@ Overfull \hbox (38.81546pt too wide) in paragraph at lines 142--152
  [][] 
  []
 
-
-LaTeX Warning: Reference `s:window' on page 1 undefined on input line 155.
-
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
@@ -880,12 +886,9 @@ l.156
        [1
 
 ]
-
-LaTeX Warning: Reference `s:viterbi' on page 2 undefined on input line 157.
-
 LaTeX Font Info:    Try loading font information for OMS+cmr on input line 161.
 
-(/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
+ (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
@@ -921,7 +924,7 @@ Supporting Information B.
 [7
 
 ]
-<../../Supp/Figure_Normalization/Figure_Normalization.pdf, id=102, 460.72125pt 
+<../../Supp/Figure_Normalization/Figure_Normalization.pdf, id=156, 460.72125pt 
 x 317.185pt>
 File: ../../Supp/Figure_Normalization/Figure_Normalization.pdf Graphic file (ty
 pe pdf)
@@ -932,7 +935,7 @@ df used on input line 261.
 
 [8 <../../Supp/Figure_Normalization/Figure_Normalization.pdf>]
 <../../Supp/Figure_ENCODE_Control/Figure_PR_H3K36me3_Encode_twocells_500bp.pdf,
- id=122, 650.43pt x 415.5525pt>
+ id=176, 650.43pt x 415.5525pt>
 File: ../../Supp/Figure_ENCODE_Control/Figure_PR_H3K36me3_Encode_twocells_500bp
 .pdf Graphic file (type pdf)
 
@@ -945,7 +948,7 @@ code_twocells_500bp.pdf used on input line 277.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[9] <../../Sim/Control/Summary/Summary.pdf, id=133, 505.89pt x 650.43pt>
+[9] <../../Sim/Control/Summary/Summary.pdf, id=188, 505.89pt x 650.43pt>
 File: ../../Sim/Control/Summary/Summary.pdf Graphic file (type pdf)
 
 <use ../../Sim/Control/Summary/Summary.pdf>
@@ -960,62 +963,395 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 pdf>] [11] [12 <../../Sim/Control/Summary/Summary.pdf>] [13
 
 ]
-<../../Supp/Figure_ChromHMM/Figure_ChromHMM.pdf, id=182, 650.43pt x 831.105pt>
+<../../Supp/Figure_ChromHMM/Figure_ChromHMM.pdf, id=236, 650.43pt x 831.105pt>
 File: ../../Supp/Figure_ChromHMM/Figure_ChromHMM.pdf Graphic file (type pdf)
 
 <use ../../Supp/Figure_ChromHMM/Figure_ChromHMM.pdf>
 Package pdftex.def Info: ../../Supp/Figure_ChromHMM/Figure_ChromHMM.pdf used on
- input line 317.
+ input line 319.
 (pdftex.def)             Requested size: 487.8213pt x 623.32722pt.
 
 
-LaTeX Warning: Float too large for page by 39.3972pt on input line 321.
+LaTeX Warning: Float too large for page by 39.3972pt on input line 323.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-(./webappendix.bbl [14] [15 <../../Supp/Figure_ChromHMM/Figure_ChromHMM.pdf>]
+[14] [15 <../../Supp/Figure_ChromHMM/Figure_ChromHMM.pdf>]
+<../../Supp/Figure_PR_Viterbi/Figure_PR_Viterbi.pdf, id=257, 650.43pt x 831.105
+pt>
+File: ../../Supp/Figure_PR_Viterbi/Figure_PR_Viterbi.pdf Graphic file (type pdf
+)
+ <use ../../Supp/Figure_PR_Viterbi/Figure_PR_Viterbi.pdf>
+Package pdftex.def Info: ../../Supp/Figure_PR_Viterbi/Figure_PR_Viterbi.pdf use
+d on input line 334.
+(pdftex.def)             Requested size: 487.8213pt x 623.32722pt.
+
+
+LaTeX Warning: Float too large for page by 39.3972pt on input line 338.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+<../../Supp/Figure_H3K36me3_Viterbi/Figure_H3K36me3_Viterbi.pdf, id=258, 650.43
+pt x 831.105pt>
+File: ../../Supp/Figure_H3K36me3_Viterbi/Figure_H3K36me3_Viterbi.pdf Graphic fi
+le (type pdf)
+
+<use ../../Supp/Figure_H3K36me3_Viterbi/Figure_H3K36me3_Viterbi.pdf>
+Package pdftex.def Info: ../../Supp/Figure_H3K36me3_Viterbi/Figure_H3K36me3_Vit
+erbi.pdf used on input line 342.
+(pdftex.def)             Requested size: 487.8213pt x 623.32722pt.
+
+
+LaTeX Warning: Float too large for page by 39.3972pt on input line 346.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+<../../Supp/Figure_H3K27me3_Viterbi/Figure_H3K27me3_Viterbi.pdf, id=259, 650.43
+pt x 831.105pt>
+File: ../../Supp/Figure_H3K27me3_Viterbi/Figure_H3K27me3_Viterbi.pdf Graphic fi
+le (type pdf)
+
+<use ../../Supp/Figure_H3K27me3_Viterbi/Figure_H3K27me3_Viterbi.pdf>
+Package pdftex.def Info: ../../Supp/Figure_H3K27me3_Viterbi/Figure_H3K27me3_Vit
+erbi.pdf used on input line 350.
+(pdftex.def)             Requested size: 487.8213pt x 623.32722pt.
+
+
+LaTeX Warning: Float too large for page by 39.3972pt on input line 354.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 [16
 
+] [17 <../../Supp/Figure_PR_Viterbi/Figure_PR_Viterbi.pdf>] [18 <../../Supp/Fig
+ure_H3K36me3_Viterbi/Figure_H3K36me3_Viterbi.pdf>] [19 <../../Supp/Figure_H3K27
+me3_Viterbi/Figure_H3K27me3_Viterbi.pdf>] [20
+
+] [21]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 409.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 409.
+
+
+Overfull \hbox (17.50685pt too wide) in paragraph at lines 411--412
+\OT1/cmr/m/n/12 The $\OML/cmm/m/it/12 Q$\OT1/cmr/m/n/12 -function of the EM al-
+go-rithm is de-fined as $\OML/cmm/m/it/12 Q [] \OT1/cmr/m/n/12 = \OML/cmm/m/it/
+12 Q[] [] \OT1/cmr/m/n/12 + \OML/cmm/m/it/12 Q[] [] \OT1/cmr/m/n/12 +
+ []
+
+[22]
+Overfull \hbox (92.54305pt too wide) in paragraph at lines 425--426
+\OML/cmm/m/it/12 f[] \OT1/cmr/m/n/12 = \OML/cmm/m/it/12 ^^Y[]f[]\OT1/cmr/m/n/12
+ (\OT1/cmr/bx/n/12 y[]\OMS/cmsy/m/n/12 j[][]\OT1/cmr/m/n/12 )$, and, for $\OML/
+cmm/m/it/12 j \OT1/cmr/m/n/12 = 1\OML/cmm/m/it/12 ; [] ; M$\OT1/cmr/m/n/12 , $\
+OML/cmm/m/it/12 f[] \OT1/cmr/m/n/12 = [][] \OML/cmm/m/it/12 ^^M[]f[]f[]\OT1/cmr
+/m/n/12 (\OT1/cmr/bx/n/12 y[]\OMS/cmsy/m/n/12 j[][]\OT1/cmr/m/n/12 )$, $\OML/cm
+m/m/it/12 f[] \OT1/cmr/m/n/12 = [][] \OML/cmm/m/it/12 ^^M[]f[]f[]\OT1/cmr/m/n/1
+2 (\OT1/cmr/bx/n/12 y[]\OMS/cmsy/m/n/12 j\OT1/cmr/bx/n/12 x\OT1/cmr/m/n/12 ; []
+\OML/cmm/m/it/12 ; [][]\OT1/cmr/m/n/12 )$,
+ []
+
+[23] [24]
+Supporting Information C.
+[25
+
+]
+(../../Supp/Table_Simulation_ReadCounts/Table_Simulation_ReadCounts_H3K27me3_1e
++06.tex)
+(../../Supp/Table_Simulation_ReadCounts/Table_Simulation_ReadCounts_H3K36me3_1e
++06.tex)
+
+LaTeX Warning: Reference `fig:sim1.fig3' on page 26 undefined on input line 455
+.
+
+
+LaTeX Warning: Reference `fig:sim1.fig3' on page 26 undefined on input line 457
+.
+
+[26] [27] [28]
+<../../Supp/Figure_ROC_ReadCounts/Figure_ROC_ReadCounts_H3K27me3_1e+06.pdf, id=
+365, 650.43pt x 831.105pt>
+File: ../../Supp/Figure_ROC_ReadCounts/Figure_ROC_ReadCounts_H3K27me3_1e+06.pdf
+ Graphic file (type pdf)
+
+<use ../../Supp/Figure_ROC_ReadCounts/Figure_ROC_ReadCounts_H3K27me3_1e+06.pdf>
+Package pdftex.def Info: ../../Supp/Figure_ROC_ReadCounts/Figure_ROC_ReadCounts
+_H3K27me3_1e+06.pdf used on input line 461.
+(pdftex.def)             Requested size: 455.2979pt x 581.76953pt.
+
+LaTeX Warning: Float too large for page by 55.83951pt on input line 465.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+<../../Supp/Figure_ROC_ReadCounts/Figure_ROC_ReadCounts_H3K36me3_1e+06.pdf, id=
+366, 650.43pt x 831.105pt>
+File: ../../Supp/Figure_ROC_ReadCounts/Figure_ROC_ReadCounts_H3K36me3_1e+06.pdf
+ Graphic file (type pdf)
+
+<use ../../Supp/Figure_ROC_ReadCounts/Figure_ROC_ReadCounts_H3K36me3_1e+06.pdf>
+Package pdftex.def Info: ../../Supp/Figure_ROC_ReadCounts/Figure_ROC_ReadCounts
+_H3K36me3_1e+06.pdf used on input line 469.
+(pdftex.def)             Requested size: 455.2979pt x 581.76953pt.
+
+LaTeX Warning: Float too large for page by 55.83951pt on input line 473.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[29] [30 <../../Supp/Figure_ROC_ReadCounts/Figure_ROC_ReadCounts_H3K27me3_1e+06
+.pdf>] [31 <../../Supp/Figure_ROC_ReadCounts/Figure_ROC_ReadCounts_H3K36me3_1e+
+06.pdf>] [32
+
+]
+<../../Supp/Figure_Overview_SequencingReads/Figure_Simulation_SequencingReads_1
+.pdf, id=405, 578.16pt x 578.16pt>
+File: ../../Supp/Figure_Overview_SequencingReads/Figure_Simulation_SequencingRe
+ads_1.pdf Graphic file (type pdf)
+
+<use ../../Supp/Figure_Overview_SequencingReads/Figure_Simulation_SequencingRea
+ds_1.pdf>
+Package pdftex.def Info: ../../Supp/Figure_Overview_SequencingReads/Figure_Simu
+lation_SequencingReads_1.pdf used on input line 485.
+(pdftex.def)             Requested size: 404.70924pt x 404.70924pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+<../../Supp/Figure_Overview_SequencingReads/Figure_Simulation_SequencingReads_1
+0.pdf, id=406, 578.16pt x 578.16pt>
+File: ../../Supp/Figure_Overview_SequencingReads/Figure_Simulation_SequencingRe
+ads_10.pdf Graphic file (type pdf)
+
+<use ../../Supp/Figure_Overview_SequencingReads/Figure_Simulation_SequencingRea
+ds_10.pdf>
+Package pdftex.def Info: ../../Supp/Figure_Overview_SequencingReads/Figure_Simu
+lation_SequencingReads_10.pdf used on input line 493.
+(pdftex.def)             Requested size: 404.70924pt x 404.70924pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+<../../Supp/Figure_Overview_SequencingReads/Figure_Simulation_SequencingReads_1
+5.pdf, id=407, 578.16pt x 578.16pt>
+File: ../../Supp/Figure_Overview_SequencingReads/Figure_Simulation_SequencingRe
+ads_15.pdf Graphic file (type pdf)
+
+<use ../../Supp/Figure_Overview_SequencingReads/Figure_Simulation_SequencingRea
+ds_15.pdf>
+Package pdftex.def Info: ../../Supp/Figure_Overview_SequencingReads/Figure_Simu
+lation_SequencingReads_15.pdf used on input line 501.
+(pdftex.def)             Requested size: 404.70924pt x 404.70924pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+<../../Supp/Figure_Overview_SequencingReads/Figure_Simulation_SequencingReads_2
+0.pdf, id=408, 578.16pt x 578.16pt>
+File: ../../Supp/Figure_Overview_SequencingReads/Figure_Simulation_SequencingRe
+ads_20.pdf Graphic file (type pdf)
+
+<use ../../Supp/Figure_Overview_SequencingReads/Figure_Simulation_SequencingRea
+ds_20.pdf>
+Package pdftex.def Info: ../../Supp/Figure_Overview_SequencingReads/Figure_Simu
+lation_SequencingReads_20.pdf used on input line 509.
+(pdftex.def)             Requested size: 404.70924pt x 404.70924pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+<../../Supp/Figure_Overview_SequencingReads/Figure_SequencingReads_Example.pdf,
+ id=409, 650.43pt x 831.105pt>
+File: ../../Supp/Figure_Overview_SequencingReads/Figure_SequencingReads_Example
+.pdf Graphic file (type pdf)
+
+<use ../../Supp/Figure_Overview_SequencingReads/Figure_SequencingReads_Example.
+pdf>
+Package pdftex.def Info: ../../Supp/Figure_Overview_SequencingReads/Figure_Sequ
+encingReads_Example.pdf used on input line 517.
+(pdftex.def)             Requested size: 487.8213pt x 623.32722pt.
+
+
+LaTeX Warning: Float too large for page by 39.3972pt on input line 521.
+
+[33] [34 <../../Supp/Figure_Overview_SequencingReads/Figure_Simulation_Sequenci
+ngReads_1.pdf>] [35 <../../Supp/Figure_Overview_SequencingReads/Figure_Simulati
+on_SequencingReads_10.pdf>] [36 <../../Supp/Figure_Overview_SequencingReads/Fig
+ure_Simulation_SequencingReads_15.pdf>] [37 <../../Supp/Figure_Overview_Sequenc
+ingReads/Figure_Simulation_SequencingReads_20.pdf>] [38 <../../Supp/Figure_Over
+view_SequencingReads/Figure_SequencingReads_Example.pdf>]
+Supporting Information D.
+[39
+
+]
+<../../Supp/Figure_PR_LFC/Figure_PR_LFC.pdf, id=505, 650.43pt x 831.105pt>
+File: ../../Supp/Figure_PR_LFC/Figure_PR_LFC.pdf Graphic file (type pdf)
+
+<use ../../Supp/Figure_PR_LFC/Figure_PR_LFC.pdf>
+Package pdftex.def Info: ../../Supp/Figure_PR_LFC/Figure_PR_LFC.pdf used on inp
+ut line 543.
+(pdftex.def)             Requested size: 487.8213pt x 623.32722pt.
+
+
+LaTeX Warning: Float too large for page by 53.8972pt on input line 547.
+
+[40] [41 <../../Supp/Figure_PR_LFC/Figure_PR_LFC.pdf>]
+<../../Supp/Figure_Broad_250bp/Figure_Broad.pdf, id=525, 650.43pt x 831.105pt>
+File: ../../Supp/Figure_Broad_250bp/Figure_Broad.pdf Graphic file (type pdf)
+
+<use ../../Supp/Figure_Broad_250bp/Figure_Broad.pdf>
+Package pdftex.def Info: ../../Supp/Figure_Broad_250bp/Figure_Broad.pdf used on
+ input line 557.
+(pdftex.def)             Requested size: 422.77449pt x 540.21185pt.
+
+
+LaTeX Warning: Float too large for page by 14.28183pt on input line 561.
+
+
+<../../Supp/Figure_Broad_750bp/Figure_Broad.pdf, id=526, 650.43pt x 831.105pt>
+File: ../../Supp/Figure_Broad_750bp/Figure_Broad.pdf Graphic file (type pdf)
+
+<use ../../Supp/Figure_Broad_750bp/Figure_Broad.pdf>
+Package pdftex.def Info: ../../Supp/Figure_Broad_750bp/Figure_Broad.pdf used on
+ input line 565.
+(pdftex.def)             Requested size: 422.77449pt x 540.21185pt.
+
+
+LaTeX Warning: Float too large for page by 14.28183pt on input line 569.
+
+
+<../../Supp/Figure_Broad_1000bp/Figure_Broad.pdf, id=527, 650.43pt x 831.105pt>
+File: ../../Supp/Figure_Broad_1000bp/Figure_Broad.pdf Graphic file (type pdf)
+<use ../../Supp/Figure_Broad_1000bp/Figure_Broad.pdf>
+Package pdftex.def Info: ../../Supp/Figure_Broad_1000bp/Figure_Broad.pdf used o
+n input line 573.
+(pdftex.def)             Requested size: 422.77449pt x 540.21185pt.
+
+
+LaTeX Warning: Float too large for page by 14.28183pt on input line 577.
+
+
+<../../Supp/Figure_Narrow_500bp/Figure_Narrow.pdf, id=528, 650.43pt x 831.105pt
+>
+File: ../../Supp/Figure_Narrow_500bp/Figure_Narrow.pdf Graphic file (type pdf)
+ <use ../../Supp/Figure_Narrow_500bp/Figure_Narrow.pdf>
+Package pdftex.def Info: ../../Supp/Figure_Narrow_500bp/Figure_Narrow.pdf used 
+on input line 580.
+(pdftex.def)             Requested size: 422.77449pt x 540.21185pt.
+
+<../../Supp/Figure_Narrow_750bp/Figure_Narrow.pdf, id=529, 650.43pt x 831.105pt
+>
+File: ../../Supp/Figure_Narrow_750bp/Figure_Narrow.pdf Graphic file (type pdf)
+ <use ../../Supp/Figure_Narrow_750bp/Figure_Narrow.pdf>
+Package pdftex.def Info: ../../Supp/Figure_Narrow_750bp/Figure_Narrow.pdf used 
+on input line 586.
+(pdftex.def)             Requested size: 422.77449pt x 540.21185pt.
+
+<../../Supp/Figure_Narrow_1000bp/Figure_Narrow.pdf, id=530, 650.43pt x 831.105p
+t>
+File: ../../Supp/Figure_Narrow_1000bp/Figure_Narrow.pdf Graphic file (type pdf)
+
+ <use ../../Supp/Figure_Narrow_1000bp/Figure_Narrow.pdf>
+Package pdftex.def Info: ../../Supp/Figure_Narrow_1000bp/Figure_Narrow.pdf used
+ on input line 592.
+(pdftex.def)             Requested size: 422.77449pt x 540.21185pt.
+ [42] [43 <../../Supp/Figure_Broad_250bp/Figure_Broad.pdf>] [44 <../../Supp/Fig
+ure_Broad_750bp/Figure_Broad.pdf>] [45 <../../Supp/Figure_Broad_1000bp/Figure_B
+road.pdf>] [46 <../../Supp/Figure_Narrow_500bp/Figure_Narrow.pdf>] [47 <../../S
+upp/Figure_Narrow_750bp/Figure_Narrow.pdf>] [48 <../../Supp/Figure_Narrow_1000b
+p/Figure_Narrow.pdf>]
+Overfull \hbox (3.19878pt too wide) in paragraph at lines 597--597
+[]\OT1/cmr/bx/n/17.28 Classification of Com-bi-na-to-rial Pat-terns of Protein-
+
+ []
+
+
+Overfull \hbox (7.29669pt too wide) in paragraph at lines 597--597
+\OT1/cmr/bx/n/17.28 DNA Bind-ing Ac-tiv-ity and Their As-so-ci-a-tions With
+ []
+
+[49]
+<../../Supp/Figure_Ternary/Figure_Ternary.pdf, id=634, 650.43pt x 831.105pt>
+File: ../../Supp/Figure_Ternary/Figure_Ternary.pdf Graphic file (type pdf)
+
+<use ../../Supp/Figure_Ternary/Figure_Ternary.pdf>
+Package pdftex.def Info: ../../Supp/Figure_Ternary/Figure_Ternary.pdf used on i
+nput line 605.
+(pdftex.def)             Requested size: 422.77449pt x 540.21185pt.
+ [50] [51 <../../Supp/Figure_Ternary/Figure_Ternary.pdf>]
+<../../Supp/Figure_MultiMarks/Figure_MultiMarks.pdf, id=690, 325.215pt x 415.55
+25pt>
+File: ../../Supp/Figure_MultiMarks/Figure_MultiMarks.pdf Graphic file (type pdf
+)
+ <use ../../Supp/Figure_MultiMarks/Figure_MultiMarks.pdf>
+Package pdftex.def Info: ../../Supp/Figure_MultiMarks/Figure_MultiMarks.pdf use
+d on input line 614.
+(pdftex.def)             Requested size: 325.2142pt x 415.55148pt.
+
+(./webappendix.bbl [52] [53 <../../Supp/Figure_MultiMarks/Figure_MultiMarks.pdf
+>] [54
+
 ])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 326.
- [17]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 326.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 622.
+ [55]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 622.
  (./webappendix.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 326.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 326.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 622.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 622.
 Package rerunfilecheck Info: File `webappendix.out' has not changed.
-(rerunfilecheck)             Checksum: F958CC420EDBFB40A80D1CC30610E312;709.
+(rerunfilecheck)             Checksum: 37AF3EE24351C41523F4A7EE65F6C87A;1746.
 
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: There were multiply-defined labels.
+
  ) 
 Here is how much of TeX's memory you used:
- 18079 strings out of 494820
- 313291 string characters out of 3178049
- 408136 words of memory out of 3000000
- 20840 multiletter control sequences out of 15000+200000
- 15937 words of font info for 62 fonts, out of 3000000 for 9000
+ 18350 strings out of 494820
+ 321624 string characters out of 3178049
+ 483762 words of memory out of 3000000
+ 20974 multiletter control sequences out of 15000+200000
+ 19017 words of font info for 72 fonts, out of 3000000 for 9000
  198 hyphenation exceptions out of 8191
- 56i,9n,55p,2041b,510s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 56i,14n,55p,2261b,506s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmitt10.pfb></usr/share/tex
 live/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/font
-s/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmsl12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
-msy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.p
-fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on webappendix.pdf (18 pages, 2123576 bytes).
+exmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/font
+s/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl12.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on webappendix.pdf (56 pages, 3999854 bytes).
 PDF statistics:
- 268 PDF objects out of 1000 (max. 8388607)
- 222 compressed objects within 3 object streams
- 48 named destinations out of 1000 (max. 500000)
- 113 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 806 PDF objects out of 1000 (max. 8388607)
+ 673 compressed objects within 7 object streams
+ 139 named destinations out of 1000 (max. 500000)
+ 312 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -12,7 +12,7 @@ library(Polychrome)
 library(ggrepel)
 
 # General parameters
-bp = 750
+bp = 250
 sizeanno <- 2.5
 chromosome = paste0('chr', 1:22)
 mark = 'H3K36me3'
@@ -43,59 +43,37 @@ getcov = function(gr.predicted,
                   dt,
                   threshold,
                   method,
-                  postprob = F,
-                  viterbi = F) {
-  if (viterbi) {
-    out = list()
-    dt[, pred :=  overlapsAny(gr.genome, gr.predicted)]
-    out[['Viterbi']] = data.table(
+                  postprob = F) {
+  out = list()
+  for (x in 1:length(threshold)) {
+    if (postprob) {
+      gr.predicted.subset <-
+        GenomicRanges::reduce(gr.predicted[epigraHMM:::fdrControl(gr.predicted$FDR, fdr = threshold[x])], ignore.strand =
+                                T) # Filtering significant windows
+    } else{
+      gr.predicted.subset = GenomicRanges::reduce(gr.predicted[gr.predicted$FDR <=
+                                                                 threshold[x]], ignore.strand = T)
+    }
+    
+    dt[, pred := overlapsAny(gr.genome, gr.predicted.subset)]
+    
+    out[[x]] = data.table(
       Method = method,
-      Threshold = 'Viterbi',
+      Threshold = threshold[x],
+      TP = sum(dt[, DE == T & pred == T]),
+      Median_Size = median(width(gr.predicted.subset)),
+      Mean_Size = mean(width(gr.predicted.subset)),
       TPR = sum(dt[, DE == T &
                      pred == T]) / sum(dt[, DE == T]),
       FPR = sum(dt[, DE == F &
                      pred == T]) / sum(dt[, DE == F]),
       PPV = sum(dt[, DE == T &
-                     pred == T]) / sum(dt[, pred == T]),
-      Width.Mean = mean(width(gr.predicted)),
-      Width.Median = median(width(gr.predicted)),
-      Width.SD = sd(width(gr.predicted))
+                     pred == T]) / sum(dt[, pred == T])
     )
-    dt[, pred := NULL]
-    out = rbindlist(out)
-    return(out)
-  } else{
-    out = list()
-    for (x in 1:length(threshold)) {
-      if (postprob) {
-        gr.predicted.subset <-
-          GenomicRanges::reduce(gr.predicted[epigraHMM:::fdrControl(gr.predicted$FDR, fdr = threshold[x])], ignore.strand =
-                                  T) # Filtering significant windows
-      } else{
-        gr.predicted.subset = GenomicRanges::reduce(gr.predicted[gr.predicted$FDR <=
-                                                                   threshold[x]], ignore.strand = T)
-      }
-      
-      dt[, pred := overlapsAny(gr.genome, gr.predicted.subset)]
-      
-      out[[x]] = data.table(
-        Method = method,
-        Threshold = threshold[x],
-        TPR = sum(dt[, DE == T &
-                       pred == T]) / sum(dt[, DE == T]),
-        FPR = sum(dt[, DE == F &
-                       pred == T]) / sum(dt[, DE == F]),
-        PPV = sum(dt[, DE == T &
-                       pred == T]) / sum(dt[, pred == T]),
-        Width.Mean = mean(width(gr.predicted.subset)),
-        Width.Median = median(width(gr.predicted)),
-        Width.SD = sd(width(gr.predicted.subset))
-      )
-    }
-    dt[, pred := NULL]
-    out = rbindlist(out)
-    return(out)
   }
+  dt[, pred := NULL]
+  out = rbindlist(out)
+  return(out)
 }
 
 # Loading data
@@ -192,7 +170,7 @@ rowRanges(ENCODE.chipseq)$DE <- dt.genes$DE
 dt[, DE := overlapsAny(gr.counts, rowRanges(ENCODE.chipseq)[rowRanges(ENCODE.chipseq)$DE], ignore.strand =
                          TRUE)][, nonDE :=  !DE]
 
-# Loading peaks: epigraHMM
+# Loading peaks: mixHMM
 load(list.files(
   file.path('../../Public/epigraHMM', mark, data, 'Output'),
   paste0('Output_', bp, 'bp.RData'),
@@ -207,16 +185,6 @@ gr.epigrahmm = rowRanges(get(paste(
   'epigraHMM', mark, data, 'Output', paste0(bp, 'bp'), sep = '_'
 )))
 gr.epigrahmm$FDR = pp.epigrahmm[, 2]
-
-# epigraHMM + Viterbi
-viterbi <-
-  rhdf5::h5read(metadata(get(
-    paste('epigraHMM', mark, data, 'Output', paste0(bp, 'bp'), sep = '_')
-  ))$output, "viterbi")[, 1]
-gr.viterbi <-
-  rowRanges(get(paste(
-    'epigraHMM', mark, data, 'Output', paste0(bp, 'bp'), sep = '_'
-  )))[viterbi == 1]
 
 # Loading peaks: csaw
 csaw <-
@@ -256,16 +224,16 @@ gr.rseg <-
 gr.rseg <-
   gr.rseg[seqnames(gr.rseg) %in% chromosome] # Selecting only chromosomes of interest
 
-# # Loading peaks: diffReps (it failed)
-# diffreps = fread(list.files(
-#   file.path('../../Public/diffReps', mark, data, paste0('Output', bp)),
-#   '.annotated',
-#   full.names = TRUE
-# ),
-# header = T)
-# gr.diffreps = with(diffreps, GenomicRanges::GRanges(Chrom, IRanges(Start, End)))
-# gr.diffreps$FDR = diffreps$padj #It already gives me adjusted p-values
-# gr.diffreps <- gr.diffreps[seqnames(gr.diffreps) %in% chromosome]
+# # Loading peaks: diffReps
+diffreps = fread(list.files(
+  file.path('../../Public/diffReps', mark, data, paste0('Output', bp)),
+  '.annotated',
+  full.names = TRUE
+),
+header = T)
+gr.diffreps = with(diffreps, GenomicRanges::GRanges(Chrom, IRanges(Start, End)))
+gr.diffreps$FDR = diffreps$padj #It already gives me adjusted p-values
+gr.diffreps <- gr.diffreps[seqnames(gr.diffreps) %in% chromosome]
 
 # Loading peaks: DiffBind
 diffbind = fread(list.files(
@@ -297,14 +265,6 @@ fdr[['epigraHMM']] = getcov(
   threshold = c(0.01, 0.05, 0.10, 0.15, 0.20),
   method = 'epigraHMM',
   postprob = T
-)
-fdr[['epigraHMM_viterbi']] = getcov(
-  gr.predicted = gr.viterbi,
-  gr.genome = gr.counts,
-  dt = dt,
-  threshold = c(0.01, 0.05, 0.10, 0.15, 0.20),
-  method = 'epigraHMM (Viterbi)',
-  viterbi = TRUE
 )
 fdr[['csaw']] = getcov(
   gr.predicted = gr.csaw,
@@ -353,28 +313,149 @@ fdr[['chipcomp']] = getcov(
 fdr.summary = rbindlist(fdr)
 fdr.summary$Threshold %<>% as.factor()
 
+fdr.summary <- rbindlist(list(
+  fdr.summary,
+  data.table(
+    Method = 'Genes',
+    Threshold = NA,
+    TP = NA,
+    Median_Size = NA,
+    Mean_Size = NA,
+    TPR = NA,
+    FPR = NA,
+    PPV = NA
+  )
+))
+
 fdr.summary$Method %<>% factor(
   levels = c(
     'epigraHMM',
-    'epigraHMM (Viterbi)',
     'ChIPComp + MACS2',
     'csaw',
     'DiffBind + MACS2',
     'diffReps',
     'RSEG',
-    'THOR')
+    'THOR',
+    'Genes'
+  )
 )
 
 # Plotting
-fig.ROC_750 = ggplot(data = fdr.summary,aes(x = FPR,y = TPR))+
-  geom_line(aes(color = Method),size=1.25)+
-  geom_point(aes(x = FPR,y = TPR,fill = Method,shape = Threshold),size = 2.25)+
-  scale_shape_manual(values = c('0.01'=8,'0.05'=21,'0.1'=22,'0.15'=23,'0.2'=24,'Viterbi'=25))+
-  scale_color_manual(values = c(colors,'epigraHMM (Viterbi)'='#000000'))+
-  scale_fill_manual(values = c(colors,'epigraHMM (Viterbi)'='#000000'))+
-  guides(fill = F)+
-  labs(y='Observed Sensitivity (TPR)',x = 'Observed 1 - Specificity (FPR)',shape = 'Nominal FDR')+
+fig.PR = ggplot(data = fdr.summary, aes(x = TPR, y = PPV)) +
+  geom_line(aes(color = Method), size = 1.25) +
+  geom_point(aes(
+    x = TPR,
+    y = PPV,
+    fill = Method,
+    shape = Threshold
+  ), size = 2.25) +
+  scale_shape_manual(
+    values = c(
+      '0.01' = 8,
+      '0.05' = 21,
+      '0.1' = 22,
+      '0.15' = 23,
+      '0.2' = 24
+    ),
+    na.translate = F
+  ) +
+  scale_color_manual(values = colors) +
+  scale_fill_manual(values = colors) +
+  coord_cartesian(xlim = c(0, 1), ylim = c(0, 1)) +
+  guides(fill = F) +
+  annotate(
+    geom = 'text',
+    x = 0.95,
+    y = 0.95,
+    label = 'Optimal',
+    size = sizeanno
+  ) +
+  annotate(geom = 'point',
+           x = 1,
+           y = 1,
+           size = 3) +
+  labs(y = 'Observed Precision (1-FDR)', x = 'Observed Recall (TPR)', shape = 'Nominal FDR') +
   theme_bw()
 
-save(fig.ROC_750, file = 'Figure_PR_H3K36me3_Encode_twocells_750bp.RData')
+fig.ROC = ggplot(data = fdr.summary, aes(x = FPR, y = TPR)) +
+  geom_line(aes(color = Method), size = 1.25) +
+  geom_point(aes(
+    x = FPR,
+    y = TPR,
+    fill = Method,
+    shape = Threshold
+  ), size = 2.25) +
+  scale_shape_manual(
+    values = c(
+      '0.01' = 8,
+      '0.05' = 21,
+      '0.1' = 22,
+      '0.15' = 23,
+      '0.2' = 24
+    ),
+    na.translate = F
+  ) +
+  scale_color_manual(values = colors) +
+  scale_fill_manual(values = colors) +
+  coord_cartesian(xlim = c(0, 1), ylim = c(0, 1)) +
+  guides(fill = F) +
+  annotate(
+    geom = 'text',
+    x = 0.05,
+    y = 0.95,
+    label = 'Optimal',
+    size = sizeanno
+  ) +
+  annotate(geom = 'point',
+           x = 0,
+           y = 1,
+           size = 3) +
+  labs(y = 'Observed Sensitivity (TPR)', x = 'Observed 1 - Specificity (FPR)', shape = 'Nominal FDR') +
+  theme_bw()
 
+fig.TPR <-
+  ggplot(data = fdr.summary, aes(
+    x = Mean_Size / 1000,
+    y = TPR,
+    label = paste0(format(round(FPR, digits = 2), nsmall = 2))
+  )) +
+  geom_path(aes(color = Method, group = Method), size = 1.25) +
+  geom_point(aes(
+    x = Mean_Size / 1000,
+    y = TPR,
+    fill = Method,
+    shape = Threshold
+  ),
+  size = 2.25) +
+  scale_shape_manual(
+    values = c(
+      '0.01' = 8,
+      '0.05' = 21,
+      '0.1' = 22,
+      '0.15' = 23,
+      '0.2' = 24
+    ),
+    na.translate = F
+  ) +
+  scale_color_manual(values = colors) +
+  scale_fill_manual(values = colors) +
+  guides(fill = F) +
+  labs(y = 'Observed Sensitivity (TPR)', x = 'Average Peak Size (kbp)', shape = 'Nominal FDR') +
+  theme_bw() +
+  coord_cartesian(xlim = c(-1, 17.5), ylim = c(0, 0.7)) +
+  geom_text_repel(
+    hjust = 0,
+    segment.size = 0.2,
+    min.segment.length = 0,
+    size = 2,
+    force = 15
+  ) +
+  annotate(
+    'text',
+    x = 2,
+    y = 0.7,
+    label = 'Observed FDR shown\nnext to each data point',
+    size = sizeanno
+  )
+
+save(fig.PR, fig.ROC, fig.TPR, file = 'Figure_PR_H3K36me3_Encode_twocells_250bp.RData')

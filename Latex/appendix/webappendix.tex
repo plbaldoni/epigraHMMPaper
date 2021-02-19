@@ -292,6 +292,8 @@ Next, we reasoned that our approach of modeling input control effect with state-
 
 Overall, we did not observe a significant improvement in performance by including input control in differential peak calling. Although several methods do offer the option of including controls in their analysis pipeline, we did not find that their inclusion was justifiable under our modelling assumptions. Our findings are in agreement with \cite{lun2015csaw}.
 
+\subsection{GC-content bias in broad marks}
+
 \section{Bayesian Information Criterion (BIC) for Hidden Markov Models}
 
 The BIC for hidden Markov models has been discussed by \cite{zucchini2017hidden}. For the presented three-state HMM, one can calculate the BIC as
@@ -318,6 +320,300 @@ We also compare the results of our method with ChromHMM, an algorithm developed 
 \end{center}
 \caption{Comparative analysis of epigraHMM and ChromHMM with 3 (ideal), 4, 5, 6, 7, and 8 states (panels A-F).
 \label{fig:chromHMM}}
+\end{figure}
+
+\subsection{Simulation Study}
+
+\section{Study on FDR Control and the Viterbi Algorithm}
+\label{s:viterbi}
+
+In this section, we present results comparing the FDR controlling approach with the Viterbi algorithm. We evaluated the FDR approach using cutoffs 0.01, 0.05, 0.10, 0.15, and 0.20. We compared the results between the two approaches using window sizes of 250bp, 500bp, 750bp, and 1000bp. Overall, we observed that the Viterbi sequence of states led to similar results than the sequences based on FDR control cutoffs across all choices of window size. Specifically, we observed that the sensitivity and specificity of the sequence of Viterbi states were close to those from FDR control, in particular for FDR control 0.10. These results are shown in Figure \ref{fig:encode.viterbi}. These facts are also reflected by the length and number of called peaks. In Figures \ref{fig:encode.viterbi.h3k36me3} and \ref{fig:encode.viterbi.h3k27me3} we show examples of peak calls of H3K26me3 and H3K27me3, respectively, from all FDR control cutoffs and the Viterbi sequence of states. Overall, we observe minor differences regarding the size of peak calls of the Viterbi and FDR control sequences across different choices of window sizes. These differences were mainly present in the data for H3K27me3, which is known to be a histone mark that expands through broader domains than H3K36me3. Finally, it is worth noting that the Viterbi algorithm gives us a way to call peaks that does not depend on the choice of the FDR cutoff.
+
+\begin{figure}[h]
+\begin{center}
+\centerline{\includegraphics[scale = 0.75]{../../Supp/Figure_PR_Viterbi/Figure_PR_Viterbi.pdf}}
+\end{center}
+\caption{FDR-based results from broad marks and Viterbi-based result from epigraHMM with 250bp (A), 500bp (B), 750bp (C), and 1000bp (D).}
+\label{fig:encode.viterbi}
+\end{figure}
+
+\begin{figure}[h]
+\begin{center}
+\centerline{\includegraphics[scale = 0.75]{../../Supp/Figure_H3K36me3_Viterbi/Figure_H3K36me3_Viterbi.pdf}}
+\end{center}
+\caption{FDR- and Viterbi-based peak calls from H3K36me3 with 250bp (A), 500bp, (B), 750bp (C), and 1000bp (D).}
+\label{fig:encode.viterbi.h3k36me3}
+\end{figure}
+
+\begin{figure}[h]
+\begin{center}
+\centerline{\includegraphics[scale = 0.75]{../../Supp/Figure_H3K27me3_Viterbi/Figure_H3K27me3_Viterbi.pdf}}
+\end{center}
+\caption{FDR- and Viterbi-based peak calls from H3K27me3 with 250bp (A), 500bp, (B), 750bp (C), and 1000bp (D).}
+\label{fig:encode.viterbi.h3k27me3}
+\end{figure}
+
+\section{HMM Emission Distributions}
+
+For the consensus background ($r=1$) and consensus enrichment ($r=3$) states, the emission distribution function is
+\begin{align}\label{eq:nondiffdensity}
+f_{r}(\mb{y}_{..j}|\bs{\psi}_{r}) &= \prod^{G}_{h=1}\prod^{n_{h}}_{i=1}f_{r}(y_{hij}|\bs{\psi}_{r}),\quad r\in\{1,3\}\quad\text{and}\quad y_{hij}\in\{0,1,2,\ldots\},\nonumber\\
+&=\prod^{G}_{h=1}\prod^{n_{h}}_{i=1}\text{Pr}(Y_{hij}=y_{hij}|Z_{j}=r;\bs{\psi}_{r}),\nonumber\\
+&=\prod^{G}_{h=1}\prod^{n_{h}}_{i=1}\frac{\Gamma(y_{hij}+\phi_{r})}{y_{hij}!\Gamma(\phi_{r})}\left(\frac{\phi_{r}}{\mu_{(r,hij)}+\phi_{r}}\right)^{\phi_{r}}\left(\frac{\mu_{(r,hij)}}{\mu_{(r,hij)}+\phi_{r}}\right)^{y_{hij}}.
+\end{align}
+
+For the differential state ($r=2$), the emission distribution is
+\begin{align}\label{eq:diffdensity}
+f_{2}(\mb{y}_{..j}|\mb{x};\bs{\delta},\bs{\psi}_{2}) &= \sum_{l=1}^{L}\delta_{l}f_{(2,l)}\left(\mb{y}_{..j}|\mb{x}_{l};\bs{\psi}_{(2,l)}\right),\quad y_{hij}\in\{0,1,2,\ldots\},\\
+&= \sum_{l=1}^{L}\delta_{l}\prod_{h=1}^{G}\prod_{i=1}^{n_{h}}Pr\left(Y_{hij}=y_{hij}|Z_{j}=2,\mb{x}_{l};\bs{\psi}_{(2,l)}\right),\nonumber\\
+&= \sum_{l=1}^{L}\delta_{l}\prod_{h=1}^{G}\prod_{i=1}^{n_{h}}\frac{\Gamma\left(y_{hij}+\phi_{(2,l,h)}\right)}{y_{hij}!\Gamma\left(\phi_{(2,l,h)}\right)}\left(\frac{\phi_{(2,l,h)}}{\mu_{(2,l,hij)}+\phi_{(2,l,h)}}\right)^{\phi_{(2,l,h)}}\times\nonumber\\
+&\times\left(\frac{\mu_{(2,l,hij)}}{\mu_{(2,l,hij)}+\phi_{(2,l,h)}}\right)^{y_{hij}}.\nonumber
+\end{align}
+
+Apart from the offset $u_{hij}$, we will assume that replicates from the same (different) condition share common (distinct) mean and dispersion parameters under every mixing probability distribution $f_{(2,l)}$. To define all possible combinations of background and enrichment across $G$ conditions, we consider the following sets of singletons $A_{1}$, pairs $A_{2}$, $\ldots$, and $(G-1)$-tuples $A_{G-1}$ such that
+\begin{align*}
+A_{1} &= \left\{a^{(1)}\left. \right\vert a^{(1)}\in\mathbb{G}_{+}\text{ and }a^{(1)}\leq G\right\},\\
+A_{2} &= \left\{(a^{(2)}_{1},a^{(2)}_{2})\left. \right\vert (a^{(2)}_{1},a^{(2)}_{2})\in\mathbb{G}^{2}_{+}\text{ and }a^{(2)}_{1}<a^{(2)}_{2}\leq G\right\},\\
+&\vdots\\
+A_{G-1} &= \left\{(a^{(G-1)}_{g})^{G-1}_{g=1}\left. \right\vert (a^{(G-1)}_{g})^{G-1}_{g=1}\in\mathbb{G}^{G-1}_{+}\text{ and }a^{(G-1)}_{1}<\ldots<a^{(G-1)}_{G-1}\leq G\right\}.
+\end{align*}
+The union of all sets $A = \cup^{G-1}_{k=1}A_{k}$ contains an exhaustive list of $L = 2^{G}-2$ elements that determines the differential pattern across $G$ conditions such that each element of $A$ indicates which of the $G$ conditions are enriched. For instance, if $G=3$, $A_{1} = \{1,2,3\}$ and $A_{2} = \{(1,2),(1,3),(2,3)\}$ define the six possible combinations of enrichment and background across three conditions. Then, we define a bijective mapping $A \rightarrow S_{1},\ldots,S_{L}$ and let $x_{hl} = I(h\in S_{l})$ indicate whether the read count of genomic window $j$ from replicate $i$ of condition $h$ is enriched in the mixture component $l$. We model the log-mean $\mu_{(2,l,hij)}$ and log-dispersion $\phi_{(2,l,h)}$ of mixture $l$ from the emission distribution (\ref{eq:diffdensity}) as
+\begin{align*}
+\log(\mu_{(2,l,hij)}) &= \beta_{1} + \beta_{3}x_{hl} + u_{hij},\quad \text{and}\\
+\log(\phi_{(2,l,h)}) &= \lambda_{1} + \lambda_{3}x_{hl}.
+\end{align*}
+According to this parametrization, $\beta_{1}$ and $\lambda_{1}$ are the baseline log-mean and log-dispersion parameters of the read count distribution from replicates of conditions that are not enriched under the mixing distribution $l$. Conversely, $\beta_{1}+\beta_{3}$ and $\lambda_{1}+\lambda_{3}$ are the baseline log-mean and log-dispersion parameters of the read count distribution from replicates of conditions enriched under the mixing distribution $l$. This choice of parametrization ensures that windows exhibiting differential enrichment across conditions share means and dispersions that are common between the remaining non differential HMM states.
+
+A pseudo code of the presented EM algorithm is below.
+\begin{enumerate}
+\item{Initialize $\bs{\pi}^{(0)}, \bs{\gamma}^{(0)}, \bs{\delta}^{(0)}, \beta_{1}^{(0)}, \beta_{3}^{(0)}, \lambda_{1}^{(0)}, \lambda_{3}^{(0)}$, such that $\sum_{r=1}^3\pi_{r}^{(0)}=1$ and $\sum_{s=1}^{3}\gamma_{rs}=1$.}
+\item{E step ($t\geq1$),}
+\begin{enumerate}
+\item{Calculate $Pr\left(Z_{j}=r|\mb{y},\mb{x};\bs{\Psi}^{(t-1)}\right)$ and $Pr\left(Z_{j-1}=r,Z_{j}=s|\mb{y},\mb{x};\bs{\Psi}^{(t-1)}\right)$ for all $r$ and $s$ in $\left\{1,2,3\right\}$ and $j=1,\ldots,M$ via Forward-Backward algorithm as detailed in Appendix B of the main article}
+\item{Calculate $Pr(W_{jl}=1|Z_{j}=2,\mb{y}_{..j},\mb{x};\bs{\Psi}^{(t-1)})$ for all $l$ $\left\{1,\ldots,L\right\}$ and $j=1,\ldots,M$ as $f_{(2,l)}(\mb{y}_{..j}|\mb{x}_{l};\bs{\psi}_{(2,l)}^{(t-1)})\delta_{l}^{(t-1)}/\sum_{k=1}^{L}f_{(2,k)}(\mb{y}_{..j}|\mb{x}_{k};\bs{\psi}_{(2,k)}^{(t-1)})\delta_{k}^{(t-1)}$}
+\end{enumerate}
+\item{M step ($t\geq1$),}
+\begin{enumerate}
+\item Maximize Equation (5) (main text) with respect to the initial and transition probabilities to obtain for all $r$ and $s$ in $\left\{1,2,3\right\}$
+\begin{align*}
+\pi_{r}^{(t)} &= Pr\left(Z_{1}=r|\mb{y},\mb{x};\bs{\Psi}^{(t-1)}\right)\\
+\gamma_{rs}^{(t)} &= \sum_{j=2}^{M}Pr(Z_{j-1}=r,Z_{j}=s|\mb{y},\mb{x};\bs{\Psi}^{(t-1)})/\sum_{j=2}^{M}Pr(Z_{j-1}=r|\mb{y},\mb{x};\bs{\Psi}^{(t-1)})
+\end{align*}
+\item Maximize Equation (5) with respect to $\bs{\delta}$ to obtain $\bs{\delta}^{(t)}$ such that $\sum_{l=1}^L\delta_{l}^{(t)}=1$.
+\item Conditionally upon $\bs{\delta}^{(t)}$, maximize Equation (5) with respect to $\beta_{1}, \beta_{3}, \lambda_{1}, \lambda_{3}$ to obtain $\beta_{1}^{(t)}, \beta_{3}^{(t)}, \lambda_{1}^{(t)}, \lambda_{3}^{(t)}$,
+\item Iterate between (b) and (c) until convergence.
+\end{enumerate}
+\item{Iterate between 2. and 3. until convergence.}
+\end{enumerate}
+
+\subsection{$Q$-function of the EM algorithm}
+% \label{appendix:appendix_Q}
+The $Q$-function of the EM algorithm is defined as $Q\left(\bs{\Psi}|\bs{\Psi}^{(t)}\right) = Q_{0}\left(\bs{\pi},\bs{\gamma}|\bs{\Psi}^{(t)}\right)+Q_{1}\left(\bs{\psi}_{1}|\bs{\Psi}^{(t)}\right)+Q_{2}\left(\bs{\delta},\bs{\psi}_{2}|\bs{\Psi}^{(t)}\right)+Q_{3}\left(\bs{\psi}_{3}|\bs{\Psi}^{(t)}\right)$, such that
+
+\begin{align}
+\label{eq:appendix_Q}
+Q_{0}\left(\bs{\pi},\bs{\gamma}|\bs{\Psi}^{(t)}\right) &= \sum_{r=1}^{3}\left\{Pr\left(Z_{1}=r|\mb{y},\mb{x};\bs{\Psi}^{(t)}\right)\log(\pi_{r})\right\}+\nonumber\\
+&+\sum_{j=2}^{M}\sum_{r=1}^{3}\sum_{s=1}^{3}\left\{Pr\left(Z_{j-1}=r,Z_{j}=s|\mb{y},\mb{x};\bs{\Psi}^{(t)}\right)\log(\gamma_{rs})\right\},\nonumber\\
+Q_{1}\left(\bs{\psi}_{1}|\bs{\Psi}^{(t)}\right) &= \sum_{j=1}^{M}Pr\left(Z_{j}=1|\mb{y},\mb{x};\bs{\Psi}^{(t)}\right)\log f_{1}\left(\mb{y}_{..j}|\bs{\psi}_{1}\right),\nonumber\\
+Q_{2}\left(\bs{\delta},\bs{\psi}_{2}|\bs{\Psi}^{(t)}\right) &= \sum_{j=1}^{M}Pr\left(Z_{j}=2|\mb{y},\mb{x};\bs{\Psi}^{(t)}\right)\sum_{l=1}^{L}Pr(W_{jl}=1|Z_{j}=2,\mb{y}_{..j},\mb{x};\bs{\Psi}^{(t)})\times\nonumber\\
+&\times \log\delta_{l}f_{(2,l)}\left(\mb{y}_{..j}|\mb{x}_l;\bs{\psi}_{(2,l)}\right),\quad\text{and}\nonumber\\
+Q_{3}\left(\bs{\psi}_{3}|\bs{\Psi}^{(t)}\right) &= \sum_{j=1}^{M}Pr\left(Z_{j}=3|\mb{y},\mb{x};\bs{\Psi}^{(t)}\right)\log f_{3}\left(\mb{y}_{..j}|\bs{\psi}_{3}\right).
+\end{align}
+
+During the $t^{th}$ iteration of the EM-algorithm, one solves $\argmax{\beta_{1}^{(t)}, \beta_{3}^{(t)}, \lambda_{1}^{(t)}, \lambda_{3}^{(t)}} Q_{1}\left(\bs{\psi}_{1}|\bs{\Psi}^{(t)}\right) + Q_{2}\left(\bs{\delta},\bs{\psi}_{2}|\bs{\Psi}^{(t)}\right) + Q_{3}\left(\bs{\psi}_{3}|\bs{\Psi}^{(t)}\right)$ during the maximization step. This problem is analogous to estimating parameters in a weighted NB regression model, since $Q_{1}$, $Q_{2}$, and $Q_{3}$ can be seen as weighted log-likelihood functions from a NB generalized linear model with means and dispersions parametrized as described in the Section 3.1 of the main article.
+
+The forward probabilities are defined as $f_{11}^{p} = \pi_{1}f_{1}(\mb{y}_{..1}|\bs{\psi}_{1})$, $f_{12}^{p} = \pi_{2}f_{2}(\mb{y}_{..1}|\mb{x};\bs{\delta},\bs{\psi}_{2})$, $f_{13}^{p} = \pi_{3}f_{3}(\mb{y}_{..1}|\bs{\psi}_{3})$, and, for $j=1,\ldots,M$, $f_{j1}^{p} = \sum_{l=1}^{3}\gamma_{l1}f_{(j-1)l}^{p}f_{1}(\mb{y}_{..j}|\bs{\psi}_{1})$, $f_{j2}^{p} = \sum_{l=1}^{3}\gamma_{l2}f_{(j-1)l}^{p}f_{2}(\mb{y}_{..j}|\mb{x};\bs{\delta},\bs{\psi}_{2})$, and $f_{j3}^{p} = \sum_{l=1}^{3}\gamma_{l3}f_{(j-1)l}^{p}f_{3}(\mb{y}_{..j}|\bs{\psi}_{3})$. Conversely, the backward probabilities are defined as $b_{Mk}^{p}=1$, $\forall k=1,2,3$, and, for $j=1,\ldots,M$, $b_{j1}^{p} = \sum_{l=1}^{3}\gamma_{1l}b_{(j+1)l}^{p}f_{1}(\mb{y}_{..(j+1)}|\bs{\psi}_{1})$, $b_{j2}^{p} = \sum_{l=1}^{3}\gamma_{2l}b_{(j+1)l}^{p}f_{2}(\mb{y}_{..(j+1)}|\mb{x};\bs{\delta},\bs{\psi}_{2})$, and $b_{j3}^{p} = \sum_{l=1}^{3}\gamma_{3l}b_{(j+1)l}^{p}f_{3}(\mb{y}_{..(j+1)}|\bs{\psi}_{3})$. Then, we have
+
+\begin{align}
+\label{eq:appendix_FBalgorithm}
+P\left(Z_{j}=k|\mathbf{y},\mathbf{x};\bs{\Psi}\right) &= \frac{f_{jk}^{p}b_{jk}^{p}}{\sum_{l=1}^{3}f_{Ml}^{p}},\qquad \forall j=1,\ldots,M\quad\text{and}\quad k=1,2,3,\nonumber\\
+P\left(Z_{j-1}=l,Z_{j}=1|\mathbf{y},\mathbf{x};\bs{\Psi}\right) &= \frac{f_{(j-1)l}^{p}\gamma_{l1}f_{1}(\mb{y}_{..j}|\bs{\psi}_{1})b_{j1}^{p}}{\sum_{l=1}^{3}f_{Ml}^{p}},\nonumber\\
+P\left(Z_{j-1}=l,Z_{j}=2|\mathbf{y},\mathbf{x};\bs{\Psi}\right) &= \frac{f_{(j-1)l}^{p}\gamma_{l2}f_{2}(\mb{y}_{..j}|\mb{x};\bs{\delta},\bs{\psi}_{2})b_{j2}^{p}}{\sum_{l=1}^{3}f_{Ml}^{p}},\nonumber\\
+P\left(Z_{j-1}=l,Z_{j}=3|\mathbf{y},\mathbf{x};\bs{\Psi}\right) &= \frac{f_{(j-1)l}^{p}\gamma_{l3}f_{3}(\mb{y}_{..j}|\bs{\psi}_{3})b_{j3}^{p}}{\sum_{l=1}^{3}f_{Ml}^{p}},\forall j=2,\ldots,M\text{ and }l=1,2,3.
+\end{align}
+
+\chapter{}
+In this appendix, we present an overview of the simulation scenarios and additional results.
+
+\section{Read Count Simulation}
+\label{s:sim1}
+
+In this section, we present additional results from the read count based simulation. 
+
+For each scenario, we simulated a hundred data sets as follows. First, we generated a sequence of hidden states with length $M$ from a first-order Markov chain with $2^G$ states representing every combination of background and enrichment across $G$ conditions. Here, we let states 1 and $2^G$ represent consensus background and consensus enrichment, respectively. Transition probabilities were chosen such that long sequences of enrichment regions (average length of 50 genomic windows) and equal proportions of differential states were generated, while the majority of the simulated states pertained to consensus background. Secondly, read counts were simulated for $n$ replicates from $G$ conditions following NB distributions with mean and dispersion parameters that led to a given SNR and respected the differential pattern of enrichment determined by the hidden state. For each scenario, this setup led to a simulated matrix of counts of dimension $M\times(n\times G)$. The aim of this study was to assess whether the presented model was able to aggregate all $2^G-2$ simulated differential hidden states into its differential HMM state while maintaining a precise parameter estimation scheme. The model parameters used in this simulated study were estimated from ENCODE data pertaining to H3K36me3 and H3K27me3 histone modification marks and a shown in the tables presented in this section.
+
+Overall, while results were similar regarding different number of genome sizes and histone modification marks, the number of replicates played a major role in the performance of the model. In scenarios with either low SNR or high number of conditions, more replicates were needed to achieve better model performance. However, under the observed SNR, two replicates were sufficient to achieve a small relative bias regarding the estimation of most of the model parameters throughout all the evaluated scenarios. This is in agreement with the ENCODE Consortium guidelines, which recommends two technical or biological replicates to achieve best performance in ChIP-seq experiments.
+
+\begin{center}
+\input{../../Supp/Table_Simulation_ReadCounts/Table_Simulation_ReadCounts_H3K27me3_1e+06.tex}
+\end{center}
+
+\begin{center}
+\input{../../Supp/Table_Simulation_ReadCounts/Table_Simulation_ReadCounts_H3K36me3_1e+06.tex}
+\end{center}
+
+Next, we assessed the sensitivity of our method to detect simulated differential regions of enrichment. First, differential regions were defined from the  HMM posterior probabilities pertaining to the differential state by controlling the total FDR as defined in Section 3.2 (main text). For different nominal FDR threshold levels, the model sensitivity was estimated as the proportion of windows correctly assigned as differential out of the total number of simulated differential windows. Additionally, the observed FDR was calculated as the proportion of genomic windows incorrectly called as differential out of the total number of called differential windows. In Figures~\ref{fig:sim1.fig1}-\ref{fig:sim1.fig3}, panel A shows the average observed true positive rate (y-axis) and the observed FDR (x-axis) for different nominal FDR levels across a hundred simulated data. Results are shown for different levels of SNR, number of conditions, and number of replicates per condition. Overall, we observed that the number of replicates per condition played a major role on the sensitivity levels of the model, in which scenarios with two and four replicates had the best results regardless of the number of conditions and SNR levels. For scenarios with either high number of conditions or low SNR levels, more replicates were needed to achieve higher sensitivity.
+
+Finally, we used the estimated mixture model posterior probabilities $Pr(W_{jl}=1|Z_{j}=2,\mb{y}_{..j},\mb{x};\hat{\bs{\Psi}})$, $j=1,\ldots,M$, to classify the differential combinatorial patterns of enrichment of detected differential windows. To this end, we first calculated the maximum estimated mixture model posterior probability across all $L$ components to determine the most likely differential combinatorial pattern from genomic windows assigned to be part of the differential state. Then, we compared the window-based classification with the true window-based simulated states from the Markov Chain (states $2,\ldots,G-1$). In Figures~\ref{fig:sim1.fig1}-\ref{fig:sim1.fig3}, panel B shows the confusion matrices of classified (x-axis) and simulated (y-axis) differential windows for a scenario with three conditions. Differential combinatorial patterns of enrichment are represented by the sequences of letters 'E' (enrichment) and 'B' (background), such that each letter corresponds to the status of a given condition. The number of windows (averaged over a all simulated data sets) is shown as entries of the matrices and represented by the color scale. Darker colors on the diagonal entries indicate better agreement between simulated and classified patterns. By utilizing the posterior probabilities from the mixture model, we observed a good performance when classifying the differential combinatorial pattern of enrichment from differential windows. Results were best under scenarios with higher number of replicates or SNR.
+
+\begin{figure}[h]
+\begin{center}
+\centerline{\includegraphics[scale = 0.7]{../../Supp/Figure_ROC_ReadCounts/Figure_ROC_ReadCounts_H3K27me3_1e+06.pdf}}
+\end{center}
+\caption{Read count simulation. (A): average observed TPR and FDR for different nominal FDR threshold levels for various scenarios in simulated data of H3K27me3 with $10^6$ genomic windows. (B): confusion matrices are shown for the 3 conditions scenario. On x- and y-axes the labels indicate the differential classified and simulated patterns, respectively. For instance, EBE denotes enrichment in conditions 1 and 3 only. Darker colors on the diagonal of the matrix indicate better agreement.}
+\label{fig:sim1.fig1}
+\end{figure}
+
+\begin{figure}[h]
+\begin{center}
+\centerline{\includegraphics[scale = 0.7]{../../Supp/Figure_ROC_ReadCounts/Figure_ROC_ReadCounts_H3K36me3_1e+06.pdf}}
+\end{center}
+\caption{Read count simulation. (A): average observed TPR and FDR for different nominal FDR threshold levels for various scenarios in simulated data of H3K36me3 with $10^5$ genomic windows. (B): confusion matrices are shown for the 3 conditions scenario. On x- and y-axes the labels indicate the differential classified and simulated patterns, respectively. For instance, EBE denotes enrichment in conditions 1 and 3 only. Darker colors on the diagonal of the matrix indicate better agreement.}
+\label{fig:sim1.fig2}
+\end{figure}
+
+\section{Sequencing Read Simulation}
+\label{s:sim2}
+In this section, we present additional results from the sequencing read simulation using different FDR control threshold for differential peak call.
+
+We performed a second simulation study aiming to compare the proposed model with the current DPCs ChIPComp, csaw, DiffBind, diffReps, RSEG, and THOR, since none of them was designed to accept matrices of window-based read counts as input. To this purpose, we revisited the simulation study presented by \cite{lun2015csaw} where data were generated in a more general scheme without a particular read count model assumption. Here, sequencing reads from ChIP-seq experiments were generated for two conditions and two replicates per condition. For the differential peaks callers ChIPComp and DiffBind that require sets of candidate regions, we followed the analyses presented by \cite{lun2015csaw} and called peaks in advance using HOMER. Those were then used as input in the respective software for differential call. For ChIPComp and DiffBind, we attempted to call peaks in advance using MACS2. However, MACS2. exhibited issues to work on simulated data as it was not able to detect peaks. Here, we adapted their simulation pipeline aiming to generate broad and diffuse differential regions of enrichment. Specifically, a total of 4000 binding sites spaced 60-65 kbp apart were simulated such that each site was formed by three neighboring peaks 10kb wide. For each peak, the number of sequencing reads were simulated from a NB distribution with mean 300 and dispersions sampled from an inverse chi-squared distribution with 20 degrees of freedom. Reads were positioned on peak sites to form smooth binding profiles. To introduce differential enrichment, one or two peaks from 1000 binding sites were randomly chosen and reads pertaining to them were removed from the sequencing library in one of the two conditions. This process was repeated for the second condition, which led to a total of 2000 differential peaks. Background reads were added to the library to maintain the realistic aspects of the experiment. A hundred simulated data sets were generated and peaks were called by all the methods under multiple nominal FDR thresholds. For our method and RSEG, window-based posterior probabilities were used to control the total FDR. For illustration purposes, we refer to the method presented in this article as epigraHMM.
+
+Specifically, panel D from Figures \ref{fig:sim2.fig1}, \ref{fig:sim2.fig2}, \ref{fig:sim2.fig3}, and \ref{fig:sim2.fig4} show example of peak calls using FDR control cutoffs 0.01, 0.10, 0.15, and 0.20, respectively. Overall, results were consistent across different choices of FDR control. This fact is also shown by the observed sensitivity and false discovery rate from all methods (panels A). We observed a clear distinction of methods regarding the observed sensitivity and specificity such that RSEG, diffReps, and THOR exhibited the highest observed FDR and ChIPComp and DiffBind exhibited the lowest sensitivity.
+
+\begin{figure}[h]
+\begin{center}
+\centerline{\includegraphics[scale = 0.7]{../../Supp/Figure_Overview_SequencingReads/Figure_Simulation_SequencingReads_1.pdf}}
+\end{center}
+\caption{Sequencing read simulation. (A): average observed sensitivity and FDR for various methods under different nominal FDR levels. (B): scatter plot of average ratio of called and simulated peaks (y-axis) and average number of called peaks intersecting true differential regions (x-axis) for different nominal FDR levels. (C): box plot of computing time (in minutes) for various algorithms. (D): an example of differential peak calls under a nominal FDR threshold 0.01. Shaded areas indicate true differential peaks.}
+\label{fig:sim2.fig1}
+\end{figure}
+
+\begin{figure}[h]
+\begin{center}
+\centerline{\includegraphics[scale = 0.7]{../../Supp/Figure_Overview_SequencingReads/Figure_Simulation_SequencingReads_10.pdf}}
+\end{center}
+\caption{Sequencing read simulation. (A): average observed sensitivity and FDR for various methods under different nominal FDR levels. (B): scatter plot of average ratio of called and simulated peaks (y-axis) and average number of called peaks intersecting true differential regions (x-axis) for different nominal FDR levels. (C): box plot of computing time (in minutes) for various algorithms. (D): an example of differential peak calls under a nominal FDR threshold 0.10. Shaded areas indicate true differential peaks.}
+\label{fig:sim2.fig2}
+\end{figure}
+
+\begin{figure}[h]
+\begin{center}
+\centerline{\includegraphics[scale = 0.7]{../../Supp/Figure_Overview_SequencingReads/Figure_Simulation_SequencingReads_15.pdf}}
+\end{center}
+\caption{Sequencing read simulation. (A): average observed sensitivity and FDR for various methods under different nominal FDR levels. (B): scatter plot of average ratio of called and simulated peaks (y-axis) and average number of called peaks intersecting true differential regions (x-axis) for different nominal FDR levels. (C): box plot of computing time (in minutes) for various algorithms. (D): an example of differential peak calls under a nominal FDR threshold 0.15. Shaded areas indicate true differential peaks.}
+\label{fig:sim2.fig3}
+\end{figure}
+
+\begin{figure}[h]
+\begin{center}
+\centerline{\includegraphics[scale = 0.7]{../../Supp/Figure_Overview_SequencingReads/Figure_Simulation_SequencingReads_20.pdf}}
+\end{center}
+\caption{Sequencing read simulation. (A): average observed sensitivity and FDR for various methods under different nominal FDR levels. (B): scatter plot of average ratio of called and simulated peaks (y-axis) and average number of called peaks intersecting true differential regions (x-axis) for different nominal FDR levels. (C): box plot of computing time (in minutes) for various algorithms. (D): an example of differential peak calls under a nominal FDR threshold 0.20. Shaded areas indicate true differential peaks.}
+\label{fig:sim2.fig4}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\centerline{\includegraphics[scale = 0.75]{../../Supp/Figure_Overview_SequencingReads/Figure_SequencingReads_Example.pdf}}
+\end{center}
+\caption{Sequencing read simulation. Examples of differential called peaks from the various methods under an FDR control of 0.05.}
+\label{fig:sim2.fig5}
+\end{figure}
+
+\chapter{}
+In this appendix, we present an overview of the application on data from the ENCODE Consortium.
+
+\section{RNA-seq data and gene transcription}
+\label{s:rnaseq}
+Under the three cell lines scenario (presented in the main text), we used RNA-seq experimental data from the ENCODE Consortium on Helas3, Hepg2, and Huvec human cells to quantify the expression levels of genes as follows. First, we used Salmon \cite{patro2017salmon} to quantify transcript expression from cell-specific RNA-seq experiments. We then calculated, using the R package $tximport$ \cite{soneson2015differential}, estimated counts using abundance estimates (transcripts per million, TPM) scaled up to the average transcript length over samples and library size. This step ensures that counts computed from Salmon are not correlated with the average transcript length. Secondly, we calculated the number of ChIP-seq reads from H3K4me3 and H3K27ac overlapping gene promoters. Promoter regions extend around the transcription start site 2000 base pairs upstream and 200 base pair downstream. Finally, read counts from RNA-seq and ChIP-seq were normalized for sequencing depth using DESeq2.
+
+For the two cell line scenario, differentially transcribed genes were defined through log2 fold changes of H3K36me3 ChIP-seq read counts. We observed several cases in which differentially expressed genes (defined by RNA-seq data) did not exhibit differential enrichment for H3K36me3. However, due to the activating roles of H3K36me3 on gene transcription, we follow the ideas presented by \cite{steinhauser2016comprehensive} and \cite{ji2013differential} and defined differentially transcribed genes based on log2 fold changes of H3K36me3 ChIP-seq read counts.
+
+Sensitivity and specificity metrics were calculated on the window-level as follows. For non-overlapping genomic windows $b_{1},\ldots,b_{M}$, let $g_{j}=I(b_{j}\in\text{ differentially transcribed gene})$ and $d_{j}=I(b_{j}\in\text{ differential peak})$ denote the indicators of genomic windows being associated with either differential gene bodies or differential peaks, respectively, for $j=1,\ldots,M$, for a given method and nominal FDR level. Then, the observed sensitivity (TPR), specificity (1-FPR), and FDR were calculated as follows:
+\begin{align}
+\text{Sensitivity} &= \frac{\sum_{j=1}^{M}{g_{j}d_{j}}}{\sum_{j=1}^{M}{g_{j}}}\nonumber\\
+\text{Specificity} &= \frac{\sum_{j=1}^{M}{(1-g_{j})(1-d_{j})}}{\sum_{j=1}^{M}{(1-g_{j})}}\nonumber\\
+\text{FDR} &= \frac{\sum_{j=1}^{M}{(1-g_{j})d_{j}}}{\sum_{j=1}^{M}{d_{j}}}\nonumber
+\end{align}
+
+We present additional results using log2 FC 1, 1.5, 2.5, and 3 in Figure~\ref{fig:LFC}. Overall the presented model outperformed all current methods regardless of the choice of FC cutoff, as we maintained the highest sensitivity for a limited observed false discovery rate. RSEG showed significant higher observed false discovery rate in all the scenarios.
+
+\begin{figure}
+\begin{center}
+\centerline{\includegraphics[scale = 0.75]{../../Supp/Figure_PR_LFC/Figure_PR_LFC.pdf}}
+\end{center}
+\caption{ROC curves for H3K36me3 differential peaks covering differentially transcribed gene bodies defined if having absolute $LFC>1$ (A), $LFC>1.5$ (B), $LFC>2.5$ (C), or $LFC>3$ (D).}
+\label{fig:LFC}
+\end{figure}
+
+\section{Study on Window Sizes}
+\label{s:window}
+
+We compared methods regarding the metrics used in this paper to analyze broad marks using window sizes of 250bp, 500bp , 750bp, and 1000bp. Overall, results were consistent across different window sizes. The HMM-based methods RSEG and THOR appeared to be highly sensitive to the window size and showed better results for 1000bp. However, the presented model appeared to be robust to all scenarios as it consistently called a small number of broad peaks overall (Figures \ref{fig:encode.broad.250}, \ref{fig:encode.broad.750}, and \ref{fig:encode.broad.1000}, panels C). The methods csaw, ChIPComp, diffReps, and DiffBind exhibited fragmented and narrow differential peaks regardless of the window size. The performance of all methods appeared to be consistent to the choice of window size under sharp data set. The presented model was robust in all the scenarios as it was able to detect large differences between read counts of the analyzed cell lines.
+
+
+\begin{figure}
+\begin{center}
+\centerline{\includegraphics[scale = 0.65]{../../Supp/Figure_Broad_250bp/Figure_Broad.pdf}}
+\end{center}
+\caption{Results from broad marks (250bp). (A): ROC curves of differentially transcribed gene coverage based on H3K36me3 differential peak calls. (C): average number (y-axis) and size (x-axis) of H3K27me3 called peaks for various methods and different nominal FDR thresholds. (B), (D), and (F): example of peak calls from H3K36me3, H3K27me3, and EZH2, respectively. (E): computing time of genome-wide analysis of broad marks from various methods.}
+\label{fig:encode.broad.250}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\centerline{\includegraphics[scale = 0.65]{../../Supp/Figure_Broad_750bp/Figure_Broad.pdf}}
+\end{center}
+\caption{Results from broad marks (750bp). (A): ROC curves of differentially transcribed gene coverage based on H3K36me3 differential peak calls. (C): average number (y-axis) and size (x-axis) of H3K27me3 called peaks for various methods and different nominal FDR thresholds. (B), (D), and (F): example of peak calls from H3K36me3, H3K27me3, and EZH2, respectively. (E): computing time of genome-wide analysis of broad marks from various methods.}
+\label{fig:encode.broad.750}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\centerline{\includegraphics[scale = 0.65]{../../Supp/Figure_Broad_1000bp/Figure_Broad.pdf}}
+\end{center}
+\caption{Results from broad marks (1000bp). (A): ROC curves of differentially transcribed gene coverage based on H3K36me3 differential peak calls. (C): average number (y-axis) and size (x-axis) of H3K27me3 called peaks for various methods and different nominal FDR thresholds. (B), (D), and (F): example of peak calls from H3K36me3, H3K27me3, and EZH2, respectively. (E): computing time of genome-wide analysis of broad marks from various methods.}
+\label{fig:encode.broad.1000}
+\end{figure}
+
+\begin{figure}
+\centerline{\includegraphics[scale = 0.65]{../../Supp/Figure_Narrow_500bp/Figure_Narrow.pdf}}
+\caption{Results from sharp marks (500bp). (A) and (C): median $\log_{2}FC$ and correlation between cell lines of ChIP-seq counts from differential called peaks (FDR 0.05, sorted by the absolute LFC) for CTCF and H3K4me3, respectively. (B), (D), and (F): example of broad peak calls from CTCF, H3K4me3, and H3K27ac, respectively. (E): computing time of genome-wide analysis of sharp marks from various methods.}
+\label{fig:encode.sharp.500}
+\end{figure}
+
+\begin{figure}
+\centerline{\includegraphics[scale = 0.65]{../../Supp/Figure_Narrow_750bp/Figure_Narrow.pdf}}
+\caption{Results from sharp marks (750bp). (A) and (C): median $\log_{2}FC$ and correlation between cell lines of ChIP-seq counts from differential called peaks (FDR 0.05, sorted by the absolute LFC) for CTCF and H3K4me3, respectively. (B), (D), and (F): example of broad peak calls from CTCF, H3K4me3, and H3K27ac, respectively. (E): computing time of genome-wide analysis of sharp marks from various methods.}
+\label{fig:encode.sharp.750}
+\end{figure}
+
+\begin{figure}
+\centerline{\includegraphics[scale = 0.65]{../../Supp/Figure_Narrow_1000bp/Figure_Narrow.pdf}}
+\caption{Results from sharp marks (1000bp). (A) and (C): median $\log_{2}FC$ and correlation between cell lines of ChIP-seq counts from differential called peaks (FDR 0.05, sorted by the absolute LFC) for CTCF and H3K4me3, respectively. (B), (D), and (F): example of broad peak calls from CTCF, H3K4me3, and H3K27ac, respectively. (E): computing time of genome-wide analysis of sharp marks from various methods.}
+\label{fig:encode.sharp.1000}
+\end{figure}
+
+\section{Classification of Combinatorial Patterns of Protein-DNA Binding Activity and Their Associations With Gene Expression}
+\label{s:patterns}
+
+Lastly, we jointly analyzed data from cell lines Helas3, Hepg2, and Huvec to assess the performance and biological relevance of the classification of differential combinatorial patterns of enrichment from H3K4me3 and H3K27ac. These epigenomic marks have been associated with gene transcription and are often deposited on promoter regions of actively transcribed gene bodies. First, we evaluated the classification performance of differential combinatorial patterns of enrichment across cell lines by making use of the estimated mixture model posterior probabilities. Given the differential HMM state, these posterior probabilities allow us assess whether read counts from genomic windows are likely to be generated from a particular combinatorial pattern of enrichment. Secondly, we compared the biological role of the classified patterns with gene expression data. To this end, RNA-seq and ChIP-seq read counts were mapped onto gene bodies and gene promoters, respectively. For the former, we used counts from abundance estimates scaled using the average transcript length over samples \cite{soneson2015differential}. Using DESeq2 \cite{love2014moderated}, normalization between samples was performed to avoid spurious differences due to sequencing depth in both RNA-seq and ChIP-seq data. Then, pairwise LFC of read counts between cell lines were calculated. Genes with zero counts or with low total read count across cell lines were excluded from the analysis (25\% of the protein-coding genes). Finally, we used the maximum window-based posterior probability of the presented mixture model to classify the combinatorial patterns of enrichment from the resulting genes whose promoters overlapped differential peaks.
+
+Figure~\ref{fig:fig_tern} shows the main results from our analyses under a nominal FDR control of 0.05. At the top, we present ternary density plots of differential \textit{peaks} and their associated ChIP-seq read counts. The colors indicate the classified differential pattern of enrichment of peaks based on window-based posterior probabilities of the mixture model. We observed that the classification pattern agreed with the observed direction of enrichment from ChIP-seq data (vertices and opposite sides of the triangle vertices). At the bottom, we show the scatter plots of LFCs between cell lines of \textit{gene} bodies (RNA-seq counts) and \textit{gene} promoters (ChIP-seq counts), along with their Pearson correlation, for some of the classified combinatorial patterns of enrichment. As expected from the activating roles of H3K27ac and H3K4me3, we observed a high agreement between ChIP-seq and RNA-seq LFCs. Here, the colors indicate the classified differential pattern of activation of genes overlapping differential called peaks. These results show that the classified pattern of epigenomic change across the three cell lines agreed with the observed direction of gene expression and highlight the novelties of the presented model. We were able to accurately classify the differential pattern of enrichment of both called peaks (ternary plots) and genes overlapping called peaks (scatter plots) under more than two conditions. The embedded mixture model and its posterior probabilities generalizes the problem of differential peak calling for multiple conditions and provide a tool that is not yet available in any other method presented in the literature.
+
+\begin{figure}
+\centerline{\includegraphics[scale = 0.65]{../../Supp/Figure_Ternary/Figure_Ternary.pdf}}
+\caption{Ternary plots (top) of ChIP-seq counts mapped on differential peaks and scatter plots (bottom) of $\log_{2}FC$s (LFC) between cell lines of ChIP-seq (x-axis) and RNA-seq counts (y-axis) mapped on genes intersecting differential peaks. Colors indicate the classified combinatorial pattern of peak enrichment (ternary plots) and gene activation (scatter plots). Correlations indicate high agreement between ChIP-seq and RNA-seq $\log_{2}FC$s for these activating marks.
+\label{fig:fig_tern}}
+\end{figure}
+
+
+\section{Genomic Segmentation Analysis of H3K36me3 and CTCF}
+\label{s:segment}
+\begin{figure}
+\centerline{\includegraphics{../../Supp/Figure_MultiMarks/Figure_MultiMarks.pdf}}
+\caption{Genomic segmentation analysis of H3K36me3 and CTCF in Helas3 cell line. The chosen model parametrization and the normalization for non-linear biases via model offsets allow the segmentation of highly diverse epigenomic marks. The implemented hidden Markov model is able to properly account for the differences in length of enrichment regions between CTCF (short) and H3K36me3 (broad).
+\label{fig:fig_tern}}
 \end{figure}
 
 \bibliographystyle{amsplain}

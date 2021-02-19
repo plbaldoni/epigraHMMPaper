@@ -22,11 +22,21 @@ Jason Ernst and Manolis Kellis, \emph{Chromhmm: automating chromatin-state
   discovery and characterization}, Nature methods \textbf{9} (2012), no.~3,
   215--216.
 
+\bibitem{ji2013differential}
+Hongkai Ji, Xia Li, Qian-fei Wang, and Yang Ning, \emph{Differential principal
+  component analysis of chip-seq}, Proceedings of the National Academy of
+  Sciences \textbf{110} (2013), no.~17, 6789--6794.
+
 \bibitem{li2009sequence}
 Heng Li, Bob Handsaker, Alec Wysoker, Tim Fennell, Jue Ruan, Nils Homer, Gabor
   Marth, Goncalo Abecasis, and Richard Durbin, \emph{{The sequence
   alignment/map format and SAMtools}}, Bioinformatics \textbf{25} (2009),
   no.~16, 2078--2079.
+
+\bibitem{love2014moderated}
+Michael~I Love, Wolfgang Huber, and Simon Anders, \emph{Moderated estimation of
+  fold change and dispersion for rna-seq data with deseq2}, Genome biology
+  \textbf{15} (2014), no.~12, 550.
 
 \bibitem{lun2015csaw}
 Aaron~TL Lun and Gordon~K Smyth, \emph{csaw: a bioconductor package for
@@ -36,6 +46,11 @@ Aaron~TL Lun and Gordon~K Smyth, \emph{csaw: a bioconductor package for
 \bibitem{mammana2016package}
 Alessandro Mammana and Johannes Helmuth, \emph{bamsignals: Extract read count
   signals from bam files}, R package version \textbf{1} (2016), no.~3.
+
+\bibitem{patro2017salmon}
+Rob Patro, Geet Duggal, Michael~I Love, Rafael~A Irizarry, and Carl Kingsford,
+  \emph{{Salmon provides fast and bias-aware quantification of transcript
+  expression}}, Nature methods \textbf{14} (2017), no.~4, 417.
 
 \bibitem{quinlan2010bedtools}
 Aaron~R Quinlan and Ira~M Hall, \emph{{BEDTools: a flexible suite of utilities
@@ -48,9 +63,19 @@ Li~Shen, Ning-Yi Shao, Xiaochuan Liu, Ian Maze, Jian Feng, and Eric~J Nestler,
   chip-seq data with biological replicates}, PloS one \textbf{8} (2013), no.~6,
   e65598.
 
+\bibitem{soneson2015differential}
+Charlotte Soneson, Michael~I Love, and Mark~D Robinson, \emph{Differential
+  analyses for rna-seq: transcript-level estimates improve gene-level
+  inferences}, F1000Research \textbf{4} (2015).
+
 \bibitem{stark2011diffbind}
 Rory Stark and Gordon Brown, \emph{Diffbind: differential binding analysis of
   chip-seq peak data}, R package version \textbf{100} (2011), 4--3.
+
+\bibitem{steinhauser2016comprehensive}
+Sebastian Steinhauser, Nils Kurzawa, Roland Eils, and Carl Herrmann, \emph{A
+  comprehensive comparison of tools for differential chip-seq analysis},
+  Briefings in bioinformatics \textbf{17} (2016), no.~6, 953--966.
 
 \bibitem{zucchini2017hidden}
 Walter Zucchini, Iain~L MacDonald, and Roland Langrock, \emph{Hidden markov

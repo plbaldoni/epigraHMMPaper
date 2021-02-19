@@ -12,12 +12,12 @@ library(Polychrome)
 library(ggrepel)
 
 # General parameters
-bp = 750
+bp = 500
 sizeanno <- 2.5
 chromosome = paste0('chr', 1:22)
 mark = 'H3K36me3'
 data = 'Encode_twocells'
-cutoff = 2
+cutoff = 2.5
 methods <-
   c(
     "ChIPComp + MACS2",
@@ -208,16 +208,6 @@ gr.epigrahmm = rowRanges(get(paste(
 )))
 gr.epigrahmm$FDR = pp.epigrahmm[, 2]
 
-# epigraHMM + Viterbi
-viterbi <-
-  rhdf5::h5read(metadata(get(
-    paste('epigraHMM', mark, data, 'Output', paste0(bp, 'bp'), sep = '_')
-  ))$output, "viterbi")[, 1]
-gr.viterbi <-
-  rowRanges(get(paste(
-    'epigraHMM', mark, data, 'Output', paste0(bp, 'bp'), sep = '_'
-  )))[viterbi == 1]
-
 # Loading peaks: csaw
 csaw <-
   fread(list.files(
@@ -256,16 +246,16 @@ gr.rseg <-
 gr.rseg <-
   gr.rseg[seqnames(gr.rseg) %in% chromosome] # Selecting only chromosomes of interest
 
-# # Loading peaks: diffReps (it failed)
-# diffreps = fread(list.files(
-#   file.path('../../Public/diffReps', mark, data, paste0('Output', bp)),
-#   '.annotated',
-#   full.names = TRUE
-# ),
-# header = T)
-# gr.diffreps = with(diffreps, GenomicRanges::GRanges(Chrom, IRanges(Start, End)))
-# gr.diffreps$FDR = diffreps$padj #It already gives me adjusted p-values
-# gr.diffreps <- gr.diffreps[seqnames(gr.diffreps) %in% chromosome]
+# # Loading peaks: diffReps
+diffreps = fread(list.files(
+  file.path('../../Public/diffReps', mark, data, paste0('Output', bp)),
+  '.annotated',
+  full.names = TRUE
+),
+header = T)
+gr.diffreps = with(diffreps, GenomicRanges::GRanges(Chrom, IRanges(Start, End)))
+gr.diffreps$FDR = diffreps$padj #It already gives me adjusted p-values
+gr.diffreps <- gr.diffreps[seqnames(gr.diffreps) %in% chromosome]
 
 # Loading peaks: DiffBind
 diffbind = fread(list.files(
@@ -297,14 +287,6 @@ fdr[['epigraHMM']] = getcov(
   threshold = c(0.01, 0.05, 0.10, 0.15, 0.20),
   method = 'epigraHMM',
   postprob = T
-)
-fdr[['epigraHMM_viterbi']] = getcov(
-  gr.predicted = gr.viterbi,
-  gr.genome = gr.counts,
-  dt = dt,
-  threshold = c(0.01, 0.05, 0.10, 0.15, 0.20),
-  method = 'epigraHMM (Viterbi)',
-  viterbi = TRUE
 )
 fdr[['csaw']] = getcov(
   gr.predicted = gr.csaw,
@@ -356,7 +338,6 @@ fdr.summary$Threshold %<>% as.factor()
 fdr.summary$Method %<>% factor(
   levels = c(
     'epigraHMM',
-    'epigraHMM (Viterbi)',
     'ChIPComp + MACS2',
     'csaw',
     'DiffBind + MACS2',
@@ -366,15 +347,15 @@ fdr.summary$Method %<>% factor(
 )
 
 # Plotting
-fig.ROC_750 = ggplot(data = fdr.summary,aes(x = FPR,y = TPR))+
+fig_lfc25 = ggplot(data = fdr.summary,aes(x = FPR,y = TPR))+
   geom_line(aes(color = Method),size=1.25)+
   geom_point(aes(x = FPR,y = TPR,fill = Method,shape = Threshold),size = 2.25)+
   scale_shape_manual(values = c('0.01'=8,'0.05'=21,'0.1'=22,'0.15'=23,'0.2'=24,'Viterbi'=25))+
-  scale_color_manual(values = c(colors,'epigraHMM (Viterbi)'='#000000'))+
-  scale_fill_manual(values = c(colors,'epigraHMM (Viterbi)'='#000000'))+
+  scale_color_manual(values = c(colors))+
+  scale_fill_manual(values = c(colors))+
   guides(fill = F)+
   labs(y='Observed Sensitivity (TPR)',x = 'Observed 1 - Specificity (FPR)',shape = 'Nominal FDR')+
   theme_bw()
 
-save(fig.ROC_750, file = 'Figure_PR_H3K36me3_Encode_twocells_750bp.RData')
+save(fig_lfc25, file = paste0('Figure_PR_H3K36me3_Encode_twocells_500bp_25LFC.RData'))
 

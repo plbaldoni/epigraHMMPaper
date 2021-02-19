@@ -1,4 +1,5 @@
 # My ignores
+*.jpg
 *.html
 *.svg
 *.RDataTmp
