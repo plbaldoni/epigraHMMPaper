@@ -52,53 +52,30 @@ ENCODE.rnaseq.scaled <-
   ENCODE.rnaseq.scaled[overlapsAny(rowRanges(ENCODE.rnaseq.scaled),
                                    rowRanges(epigraHMM_object))]
 
-# Subsetting marker genes of Helas3 cell line (DOI: 10.2144/000112900)
-## GNAS (ENSG00000087460) does not match range from UCSC list
-## CDK4 (ENSG00000135446) does not match range from UCSC list
+# Subsetting marker genes of Helas3 cell line (https://doi.org/10.1091/mbc.02-02-0030)
+## CCNG2 does not match range from UCSC list
 
-helas3_genes <-
-  c(
-    'ANAPC7',
-    'ASPM',
-    'CDC2L2',
-    'CENPF',
-    'BRD3',
-    'CDK5RAP1',
-    'EIF2AK1',
-    'GPI',
-    'GSPT2',
-    'INPPL1',
-    'MARK3',
-    'NUP210',
-    'PER1',
-    'PKN3',
-    'RB1',
-    'SMC3',
-    'SMC4',
-    'STAG2',
-    'ULK1',
-    'YWHAE',
-    'CDC25C',
-    'CDKN3',
-    'CHEK2',
-    'EIF4A2',
-    'FANCD2',
-    'PCSK7',
-    'SDHC',
-    'SUFU',
-    'TAF15',
-    'YWHAZ',
-    #'CDK4',#'GNAS',
-    'PLK1',
-    'PSMD4',
-    'RAF1',
-    'RAP1D',
-    'BTRC',
-    'MLLT3'
-  )
+if (!file.exists('helas3_genes.txt')) {
+  helas3_genes <-
+    fread(
+      'http://genome-www.stanford.edu/Human-CellCycle/HeLa/data/table2_knowngenes.txt',
+      skip = 2,
+      header = FALSE
+    )
+  setnames(helas3_genes,
+           c('gene', 'accession', 'published', 'reference', 'phase'))
+  fwrite(helas3_genes, file = 'helas3_genes.txt')
+} else{
+  helas3_genes <- fread('helas3_genes.txt')
+}
+
+helas3_genes[gene == 'CDKN1A, p21', gene := 'CDKN1A']
+helas3_genes[gene == 'CDKN2D, p19', gene := 'CDKN2D']
+helas3_genes <- helas3_genes[-grep('Histone', gene), ]
+helas3_genes <- helas3_genes[-which(gene == 'CCNG2'), ]
 
 ENCODE.rnaseq.scaled <-
-  ENCODE.rnaseq.scaled[rowData(ENCODE.rnaseq.scaled)$symbol %in% helas3_genes, ]
+  ENCODE.rnaseq.scaled[rowData(ENCODE.rnaseq.scaled)$symbol %in% helas3_genes$gene,]
 
 # For each marker gene, I want to check the posterior probability of enrichment for H3K36me3 alone, given differential region
 
@@ -115,7 +92,7 @@ dt_overlap <-
 # Plotting
 
 fig_genesymbols <-
-  dt_overlap[, .(Mean = mean(Prob)), by = 'Gene'][order(Mean), ] %>%
+  dt_overlap[, .(Mean = mean(Prob)), by = 'Gene'][order(Mean),] %>%
   ggplot(aes(x = reorder(Gene, Mean), y = Mean)) +
   geom_segment(aes(xend = Gene, y = 0, yend = Mean), color = "black") +
   geom_point(color = "#56B4E9",
@@ -124,6 +101,6 @@ fig_genesymbols <-
   theme_light() +
   coord_flip() +
   theme(panel.grid.major.y = element_blank()) +
-  labs(x = 'Marker Genes (UCSC Gene Symbols)', y = 'Differential H3K36me3 Enrichment (Mixture Prop.)')
+  labs(x = 'Known Cycle-Regulated Helas3 Genes', y = 'Differential H3K36me3 Enrichment (Mixture Prop.)')
 
 save(fig_genesymbols, file = './Figure_GeneSymbols.RData')
