@@ -119,15 +119,6 @@ Margueron, R. and Reinberg, D. (2011).
 \newblock The polycomb complex prc2 and its mark in life.
 \newblock {\em Nature} {\bf 469,} 343.
 
-\bibitem[\protect\citeauthoryear{Morin, Bainbridge, Fejes, Hirst, Krzywinski,
-  Pugh, McDonald, Varhol, Jones, and Marra}{Morin
-  et~al.}{2008}]{morin2008profiling}
-Morin, R.~D., Bainbridge, M., Fejes, A., Hirst, M., Krzywinski, M., Pugh,
-  T.~J., McDonald, H., Varhol, R., Jones, S.~J., and Marra, M.~A. (2008).
-\newblock Profiling the hela s3 transcriptome using randomly primed cdna and
-  massively parallel short-read sequencing.
-\newblock {\em Biotechniques} {\bf 45,} 81--94.
-
 \bibitem[\protect\citeauthoryear{Portela and Esteller}{Portela and
   Esteller}{2010}]{portela2010epigenetic}
 Portela, A. and Esteller, M. (2010).
@@ -207,6 +198,16 @@ Wei, Y., Xia, W., Zhang, Z., Liu, J., Wang, H., Adsay, N.~V., Albarracin, C.,
   poor outcome in breast, ovarian, and pancreatic cancers.
 \newblock {\em Molecular Carcinogenesis: Published in cooperation with the
   University of Texas MD Anderson Cancer Center} {\bf 47,} 701--706.
+
+\bibitem[\protect\citeauthoryear{Whitfield, Sherlock, Saldanha, Murray, Ball,
+  Alexander, Matese, Perou, Hurt, Brown, et~al\mbox{.}}{Whitfield
+  et~al.}{2002}]{whitfield2002identification}
+Whitfield, M.~L., Sherlock, G., Saldanha, A.~J., Murray, J.~I., Ball, C.~A.,
+  Alexander, K.~E., Matese, J.~C., Perou, C.~M., Hurt, M.~M., Brown, P.~O.,
+  et~al. (2002).
+\newblock Identification of genes periodically expressed in the human cell
+  cycle and their expression in tumors.
+\newblock {\em Molecular Biology of the Cell} {\bf 13,} 1977--2000.
 
 \bibitem[\protect\citeauthoryear{Xing, Mo, Liao, and Zhang}{Xing
   et~al.}{2012}]{xing2012genome}
