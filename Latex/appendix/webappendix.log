@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2020.9.14)  20 FEB 2021 03:30
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2020.9.14)  4 MAR 2021 09:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1005,22 +1005,33 @@ ng used on input line 329.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
+
+<../../Supp/Figure_GC_Counts/Figure_GC_Counts.pdf, id=246, 433.62pt x 433.62pt>
+File: ../../Supp/Figure_GC_Counts/Figure_GC_Counts.pdf Graphic file (type pdf)
+<use ../../Supp/Figure_GC_Counts/Figure_GC_Counts.pdf>
+Package pdftex.def Info: ../../Supp/Figure_GC_Counts/Figure_GC_Counts.pdf used 
+on input line 339.
+(pdftex.def)             Requested size: 325.2142pt x 325.2142pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 [14] [15 <../../Supp/Figure_Simulation_GC/Summary_Scatter_G113G233.png (PNG cop
 y)>] [16 <../../Supp/Figure_Simulation_GC/Summary_FDR_G113G233.png (PNG copy)>]
 [17 <../../Supp/Figure_Simulation_GC/Summary_ROC_G113G233.png (PNG copy)>]
-[18
+[18 <../../Supp/Figure_GC_Counts/Figure_GC_Counts.pdf>] [19
 
 ]
-<../../Supp/Figure_ChromHMM/Figure_ChromHMM.pdf, id=276, 650.43pt x 831.105pt>
+<../../Supp/Figure_ChromHMM/Figure_ChromHMM.pdf, id=290, 650.43pt x 831.105pt>
 File: ../../Supp/Figure_ChromHMM/Figure_ChromHMM.pdf Graphic file (type pdf)
 
 <use ../../Supp/Figure_ChromHMM/Figure_ChromHMM.pdf>
 Package pdftex.def Info: ../../Supp/Figure_ChromHMM/Figure_ChromHMM.pdf used on
- input line 361.
+ input line 371.
 (pdftex.def)             Requested size: 487.8213pt x 623.32722pt.
 
 
-LaTeX Warning: Float too large for page by 39.3972pt on input line 365.
+LaTeX Warning: Float too large for page by 39.3972pt on input line 375.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -1028,124 +1039,124 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 Package amsmath Warning: Foreign command \atopwithdelims;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 371.
+(amsmath)                 on input line 381.
 
-[19]
-<../../Supp/Figure_BIC/H3K36me3_3G_4R_1e+05W_100SNR_bic.png, id=292, 650.43pt x
+[20]
+<../../Supp/Figure_BIC/H3K36me3_3G_4R_1e+05W_100SNR_bic.png, id=306, 650.43pt x
  361.35pt>
 File: ../../Supp/Figure_BIC/H3K36me3_3G_4R_1e+05W_100SNR_bic.png Graphic file (
 type png)
  <use ../../Supp/Figure_BIC/H3K36me3_3G_4R_1e+05W_100SNR_bic.png>
 Package pdftex.def Info: ../../Supp/Figure_BIC/H3K36me3_3G_4R_1e+05W_100SNR_bic
-.png used on input line 379.
+.png used on input line 389.
 (pdftex.def)             Requested size: 487.8213pt x 271.01184pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-<../../Supp/Figure_BIC/H3K36me3_3G_2R_1e+05W_100SNR_bic.png, id=293, 650.43pt x
+<../../Supp/Figure_BIC/H3K36me3_3G_2R_1e+05W_100SNR_bic.png, id=307, 650.43pt x
  361.35pt>
 File: ../../Supp/Figure_BIC/H3K36me3_3G_2R_1e+05W_100SNR_bic.png Graphic file (
 type png)
  <use ../../Supp/Figure_BIC/H3K36me3_3G_2R_1e+05W_100SNR_bic.png>
 Package pdftex.def Info: ../../Supp/Figure_BIC/H3K36me3_3G_2R_1e+05W_100SNR_bic
-.png used on input line 387.
+.png used on input line 397.
 (pdftex.def)             Requested size: 487.8213pt x 271.01184pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-<../../Supp/Figure_BIC/H3K36me3_3G_1R_1e+05W_100SNR_bic.png, id=294, 650.43pt x
+<../../Supp/Figure_BIC/H3K36me3_3G_1R_1e+05W_100SNR_bic.png, id=308, 650.43pt x
  361.35pt>
 File: ../../Supp/Figure_BIC/H3K36me3_3G_1R_1e+05W_100SNR_bic.png Graphic file (
 type png)
  <use ../../Supp/Figure_BIC/H3K36me3_3G_1R_1e+05W_100SNR_bic.png>
 Package pdftex.def Info: ../../Supp/Figure_BIC/H3K36me3_3G_1R_1e+05W_100SNR_bic
-.png used on input line 395.
+.png used on input line 405.
 (pdftex.def)             Requested size: 487.8213pt x 271.01184pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[20] [21 <../../Supp/Figure_ChromHMM/Figure_ChromHMM.pdf>] [22 <../../Supp/Figu
-re_BIC/H3K36me3_3G_4R_1e+05W_100SNR_bic.png (PNG copy)>] [23 <../../Supp/Figure
-_BIC/H3K36me3_3G_2R_1e+05W_100SNR_bic.png (PNG copy)>] [24 <../../Supp/Figure_B
+[21] [22 <../../Supp/Figure_ChromHMM/Figure_ChromHMM.pdf>] [23 <../../Supp/Figu
+re_BIC/H3K36me3_3G_4R_1e+05W_100SNR_bic.png (PNG copy)>] [24 <../../Supp/Figure
+_BIC/H3K36me3_3G_2R_1e+05W_100SNR_bic.png (PNG copy)>] [25 <../../Supp/Figure_B
 IC/H3K36me3_3G_1R_1e+05W_100SNR_bic.png (PNG copy)>]
-<../../Supp/Figure_PR_Viterbi/Figure_PR_Viterbi.pdf, id=330, 650.43pt x 831.105
+<../../Supp/Figure_PR_Viterbi/Figure_PR_Viterbi.pdf, id=344, 650.43pt x 831.105
 pt>
 File: ../../Supp/Figure_PR_Viterbi/Figure_PR_Viterbi.pdf Graphic file (type pdf
 )
  <use ../../Supp/Figure_PR_Viterbi/Figure_PR_Viterbi.pdf>
 Package pdftex.def Info: ../../Supp/Figure_PR_Viterbi/Figure_PR_Viterbi.pdf use
-d on input line 411.
+d on input line 421.
 (pdftex.def)             Requested size: 487.8213pt x 623.32722pt.
 
 
-LaTeX Warning: Float too large for page by 39.3972pt on input line 415.
+LaTeX Warning: Float too large for page by 39.3972pt on input line 425.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-<../../Supp/Figure_H3K36me3_Viterbi/Figure_H3K36me3_Viterbi.pdf, id=331, 650.43
+<../../Supp/Figure_H3K36me3_Viterbi/Figure_H3K36me3_Viterbi.pdf, id=345, 650.43
 pt x 831.105pt>
 File: ../../Supp/Figure_H3K36me3_Viterbi/Figure_H3K36me3_Viterbi.pdf Graphic fi
 le (type pdf)
 
 <use ../../Supp/Figure_H3K36me3_Viterbi/Figure_H3K36me3_Viterbi.pdf>
 Package pdftex.def Info: ../../Supp/Figure_H3K36me3_Viterbi/Figure_H3K36me3_Vit
-erbi.pdf used on input line 419.
+erbi.pdf used on input line 429.
 (pdftex.def)             Requested size: 487.8213pt x 623.32722pt.
 
 
-LaTeX Warning: Float too large for page by 39.3972pt on input line 423.
+LaTeX Warning: Float too large for page by 39.3972pt on input line 433.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-<../../Supp/Figure_H3K27me3_Viterbi/Figure_H3K27me3_Viterbi.pdf, id=332, 650.43
+<../../Supp/Figure_H3K27me3_Viterbi/Figure_H3K27me3_Viterbi.pdf, id=346, 650.43
 pt x 831.105pt>
 File: ../../Supp/Figure_H3K27me3_Viterbi/Figure_H3K27me3_Viterbi.pdf Graphic fi
 le (type pdf)
 
 <use ../../Supp/Figure_H3K27me3_Viterbi/Figure_H3K27me3_Viterbi.pdf>
 Package pdftex.def Info: ../../Supp/Figure_H3K27me3_Viterbi/Figure_H3K27me3_Vit
-erbi.pdf used on input line 427.
+erbi.pdf used on input line 437.
 (pdftex.def)             Requested size: 487.8213pt x 623.32722pt.
 
 
-LaTeX Warning: Float too large for page by 39.3972pt on input line 431.
+LaTeX Warning: Float too large for page by 39.3972pt on input line 441.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[25
+[26
 
-] [26 <../../Supp/Figure_PR_Viterbi/Figure_PR_Viterbi.pdf>] [27 <../../Supp/Fig
-ure_H3K36me3_Viterbi/Figure_H3K36me3_Viterbi.pdf>] [28 <../../Supp/Figure_H3K27
-me3_Viterbi/Figure_H3K27me3_Viterbi.pdf>] [29
+] [27 <../../Supp/Figure_PR_Viterbi/Figure_PR_Viterbi.pdf>] [28 <../../Supp/Fig
+ure_H3K36me3_Viterbi/Figure_H3K36me3_Viterbi.pdf>] [29 <../../Supp/Figure_H3K27
+me3_Viterbi/Figure_H3K27me3_Viterbi.pdf>] [30
 
-] [30]
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 489.
-
+] [31]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 489.
+(hyperref)                removing `math shift' on input line 499.
 
 
-Overfull \hbox (17.50685pt too wide) in paragraph at lines 491--492
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 499.
+
+
+Overfull \hbox (17.50685pt too wide) in paragraph at lines 501--502
 \OT1/cmr/m/n/12 The $\OML/cmm/m/it/12 Q$\OT1/cmr/m/n/12 -function of the EM al-
 go-rithm is de-fined as $\OML/cmm/m/it/12 Q [] \OT1/cmr/m/n/12 = \OML/cmm/m/it/
 12 Q[] [] \OT1/cmr/m/n/12 + \OML/cmm/m/it/12 Q[] [] \OT1/cmr/m/n/12 +
  []
 
-[31]
-Overfull \hbox (92.54305pt too wide) in paragraph at lines 505--506
+[32]
+Overfull \hbox (92.54305pt too wide) in paragraph at lines 515--516
 \OML/cmm/m/it/12 f[] \OT1/cmr/m/n/12 = \OML/cmm/m/it/12 ^^Y[]f[]\OT1/cmr/m/n/12
  (\OT1/cmr/bx/n/12 y[]\OMS/cmsy/m/n/12 j[][]\OT1/cmr/m/n/12 )$, and, for $\OML/
 cmm/m/it/12 j \OT1/cmr/m/n/12 = 1\OML/cmm/m/it/12 ; [] ; M$\OT1/cmr/m/n/12 , $\
@@ -1156,9 +1167,9 @@ m/m/it/12 f[] \OT1/cmr/m/n/12 = [][] \OML/cmm/m/it/12 ^^M[]f[]f[]\OT1/cmr/m/n/1
 \OML/cmm/m/it/12 ; [][]\OT1/cmr/m/n/12 )$,
  []
 
-[32] [33]
+[33] [34]
 Supporting Information C.
-[34
+[35
 
 ]
 (../../Supp/Table_Simulation_ReadCounts/Table_Simulation_ReadCounts_H3K27me3_1e
@@ -1166,59 +1177,59 @@ Supporting Information C.
 (../../Supp/Table_Simulation_ReadCounts/Table_Simulation_ReadCounts_H3K36me3_1e
 +06.tex)
 
-LaTeX Warning: Reference `fig:sim1.fig3' on page 35 undefined on input line 535
+LaTeX Warning: Reference `fig:sim1.fig3' on page 36 undefined on input line 545
 .
 
 
-LaTeX Warning: Reference `fig:sim1.fig3' on page 35 undefined on input line 537
+LaTeX Warning: Reference `fig:sim1.fig3' on page 36 undefined on input line 547
 .
 
-[35] [36] [37]
+[36] [37] [38]
 <../../Supp/Figure_ROC_ReadCounts/Figure_ROC_ReadCounts_H3K27me3_1e+06.pdf, id=
-438, 650.43pt x 831.105pt>
+452, 650.43pt x 831.105pt>
 File: ../../Supp/Figure_ROC_ReadCounts/Figure_ROC_ReadCounts_H3K27me3_1e+06.pdf
  Graphic file (type pdf)
 
 <use ../../Supp/Figure_ROC_ReadCounts/Figure_ROC_ReadCounts_H3K27me3_1e+06.pdf>
 Package pdftex.def Info: ../../Supp/Figure_ROC_ReadCounts/Figure_ROC_ReadCounts
-_H3K27me3_1e+06.pdf used on input line 541.
+_H3K27me3_1e+06.pdf used on input line 551.
 (pdftex.def)             Requested size: 455.2979pt x 581.76953pt.
 
-LaTeX Warning: Float too large for page by 55.83951pt on input line 545.
+LaTeX Warning: Float too large for page by 55.83951pt on input line 555.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 <../../Supp/Figure_ROC_ReadCounts/Figure_ROC_ReadCounts_H3K36me3_1e+06.pdf, id=
-439, 650.43pt x 831.105pt>
+453, 650.43pt x 831.105pt>
 File: ../../Supp/Figure_ROC_ReadCounts/Figure_ROC_ReadCounts_H3K36me3_1e+06.pdf
  Graphic file (type pdf)
 
 <use ../../Supp/Figure_ROC_ReadCounts/Figure_ROC_ReadCounts_H3K36me3_1e+06.pdf>
 Package pdftex.def Info: ../../Supp/Figure_ROC_ReadCounts/Figure_ROC_ReadCounts
-_H3K36me3_1e+06.pdf used on input line 549.
+_H3K36me3_1e+06.pdf used on input line 559.
 (pdftex.def)             Requested size: 455.2979pt x 581.76953pt.
 
-LaTeX Warning: Float too large for page by 55.83951pt on input line 553.
+LaTeX Warning: Float too large for page by 55.83951pt on input line 563.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[38] [39 <../../Supp/Figure_ROC_ReadCounts/Figure_ROC_ReadCounts_H3K27me3_1e+06
-.pdf>] [40 <../../Supp/Figure_ROC_ReadCounts/Figure_ROC_ReadCounts_H3K36me3_1e+
-06.pdf>] [41
+[39] [40 <../../Supp/Figure_ROC_ReadCounts/Figure_ROC_ReadCounts_H3K27me3_1e+06
+.pdf>] [41 <../../Supp/Figure_ROC_ReadCounts/Figure_ROC_ReadCounts_H3K36me3_1e+
+06.pdf>] [42
 
 ]
 <../../Supp/Figure_Overview_SequencingReads/Figure_Simulation_SequencingReads_1
-.pdf, id=477, 578.16pt x 578.16pt>
+.pdf, id=492, 578.16pt x 578.16pt>
 File: ../../Supp/Figure_Overview_SequencingReads/Figure_Simulation_SequencingRe
 ads_1.pdf Graphic file (type pdf)
 
 <use ../../Supp/Figure_Overview_SequencingReads/Figure_Simulation_SequencingRea
 ds_1.pdf>
 Package pdftex.def Info: ../../Supp/Figure_Overview_SequencingReads/Figure_Simu
-lation_SequencingReads_1.pdf used on input line 568.
+lation_SequencingReads_1.pdf used on input line 578.
 (pdftex.def)             Requested size: 404.70924pt x 404.70924pt.
 
 
@@ -1226,14 +1237,14 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 <../../Supp/Figure_Overview_SequencingReads/Figure_Simulation_SequencingReads_1
-0.pdf, id=478, 578.16pt x 578.16pt>
+0.pdf, id=493, 578.16pt x 578.16pt>
 File: ../../Supp/Figure_Overview_SequencingReads/Figure_Simulation_SequencingRe
 ads_10.pdf Graphic file (type pdf)
 
 <use ../../Supp/Figure_Overview_SequencingReads/Figure_Simulation_SequencingRea
 ds_10.pdf>
 Package pdftex.def Info: ../../Supp/Figure_Overview_SequencingReads/Figure_Simu
-lation_SequencingReads_10.pdf used on input line 576.
+lation_SequencingReads_10.pdf used on input line 586.
 (pdftex.def)             Requested size: 404.70924pt x 404.70924pt.
 
 
@@ -1241,14 +1252,14 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 <../../Supp/Figure_Overview_SequencingReads/Figure_Simulation_SequencingReads_1
-5.pdf, id=479, 578.16pt x 578.16pt>
+5.pdf, id=494, 578.16pt x 578.16pt>
 File: ../../Supp/Figure_Overview_SequencingReads/Figure_Simulation_SequencingRe
 ads_15.pdf Graphic file (type pdf)
 
 <use ../../Supp/Figure_Overview_SequencingReads/Figure_Simulation_SequencingRea
 ds_15.pdf>
 Package pdftex.def Info: ../../Supp/Figure_Overview_SequencingReads/Figure_Simu
-lation_SequencingReads_15.pdf used on input line 584.
+lation_SequencingReads_15.pdf used on input line 594.
 (pdftex.def)             Requested size: 404.70924pt x 404.70924pt.
 
 
@@ -1256,14 +1267,14 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 <../../Supp/Figure_Overview_SequencingReads/Figure_Simulation_SequencingReads_2
-0.pdf, id=480, 578.16pt x 578.16pt>
+0.pdf, id=495, 578.16pt x 578.16pt>
 File: ../../Supp/Figure_Overview_SequencingReads/Figure_Simulation_SequencingRe
 ads_20.pdf Graphic file (type pdf)
 
 <use ../../Supp/Figure_Overview_SequencingReads/Figure_Simulation_SequencingRea
 ds_20.pdf>
 Package pdftex.def Info: ../../Supp/Figure_Overview_SequencingReads/Figure_Simu
-lation_SequencingReads_20.pdf used on input line 592.
+lation_SequencingReads_20.pdf used on input line 602.
 (pdftex.def)             Requested size: 404.70924pt x 404.70924pt.
 
 
@@ -1271,143 +1282,143 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 <../../Supp/Figure_Overview_SequencingReads/Figure_SequencingReads_Example.pdf,
- id=481, 650.43pt x 831.105pt>
+ id=496, 650.43pt x 831.105pt>
 File: ../../Supp/Figure_Overview_SequencingReads/Figure_SequencingReads_Example
 .pdf Graphic file (type pdf)
 
 <use ../../Supp/Figure_Overview_SequencingReads/Figure_SequencingReads_Example.
 pdf>
 Package pdftex.def Info: ../../Supp/Figure_Overview_SequencingReads/Figure_Sequ
-encingReads_Example.pdf used on input line 600.
+encingReads_Example.pdf used on input line 610.
 (pdftex.def)             Requested size: 487.8213pt x 623.32722pt.
 
 
-LaTeX Warning: Float too large for page by 39.3972pt on input line 604.
+LaTeX Warning: Float too large for page by 39.3972pt on input line 614.
 
-[42] [43 <../../Supp/Figure_Overview_SequencingReads/Figure_Simulation_Sequenci
-ngReads_1.pdf>] [44 <../../Supp/Figure_Overview_SequencingReads/Figure_Simulati
-on_SequencingReads_10.pdf>] [45 <../../Supp/Figure_Overview_SequencingReads/Fig
-ure_Simulation_SequencingReads_15.pdf>] [46 <../../Supp/Figure_Overview_Sequenc
-ingReads/Figure_Simulation_SequencingReads_20.pdf>] [47 <../../Supp/Figure_Over
+[43] [44 <../../Supp/Figure_Overview_SequencingReads/Figure_Simulation_Sequenci
+ngReads_1.pdf>] [45 <../../Supp/Figure_Overview_SequencingReads/Figure_Simulati
+on_SequencingReads_10.pdf>] [46 <../../Supp/Figure_Overview_SequencingReads/Fig
+ure_Simulation_SequencingReads_15.pdf>] [47 <../../Supp/Figure_Overview_Sequenc
+ingReads/Figure_Simulation_SequencingReads_20.pdf>] [48 <../../Supp/Figure_Over
 view_SequencingReads/Figure_SequencingReads_Example.pdf>]
 Supporting Information D.
-[48
+[49
 
 ]
-<../../Supp/Figure_PR_LFC/Figure_PR_LFC.pdf, id=578, 650.43pt x 831.105pt>
+<../../Supp/Figure_PR_LFC/Figure_PR_LFC.pdf, id=592, 650.43pt x 831.105pt>
 File: ../../Supp/Figure_PR_LFC/Figure_PR_LFC.pdf Graphic file (type pdf)
 
 <use ../../Supp/Figure_PR_LFC/Figure_PR_LFC.pdf>
 Package pdftex.def Info: ../../Supp/Figure_PR_LFC/Figure_PR_LFC.pdf used on inp
-ut line 626.
+ut line 636.
 (pdftex.def)             Requested size: 487.8213pt x 623.32722pt.
 
 
-LaTeX Warning: Float too large for page by 53.8972pt on input line 630.
+LaTeX Warning: Float too large for page by 53.8972pt on input line 640.
 
-[49] [50 <../../Supp/Figure_PR_LFC/Figure_PR_LFC.pdf>]
-<../../Supp/Figure_Broad_250bp/Figure_Broad.pdf, id=598, 650.43pt x 831.105pt>
+[50] [51 <../../Supp/Figure_PR_LFC/Figure_PR_LFC.pdf>]
+<../../Supp/Figure_Broad_250bp/Figure_Broad.pdf, id=612, 650.43pt x 831.105pt>
 File: ../../Supp/Figure_Broad_250bp/Figure_Broad.pdf Graphic file (type pdf)
 
 <use ../../Supp/Figure_Broad_250bp/Figure_Broad.pdf>
 Package pdftex.def Info: ../../Supp/Figure_Broad_250bp/Figure_Broad.pdf used on
- input line 640.
+ input line 650.
 (pdftex.def)             Requested size: 422.77449pt x 540.21185pt.
 
 
-LaTeX Warning: Float too large for page by 14.28183pt on input line 644.
+LaTeX Warning: Float too large for page by 14.28183pt on input line 654.
 
 
-<../../Supp/Figure_Broad_750bp/Figure_Broad.pdf, id=599, 650.43pt x 831.105pt>
+<../../Supp/Figure_Broad_750bp/Figure_Broad.pdf, id=613, 650.43pt x 831.105pt>
 File: ../../Supp/Figure_Broad_750bp/Figure_Broad.pdf Graphic file (type pdf)
 
 <use ../../Supp/Figure_Broad_750bp/Figure_Broad.pdf>
 Package pdftex.def Info: ../../Supp/Figure_Broad_750bp/Figure_Broad.pdf used on
- input line 648.
+ input line 658.
 (pdftex.def)             Requested size: 422.77449pt x 540.21185pt.
 
 
-LaTeX Warning: Float too large for page by 14.28183pt on input line 652.
+LaTeX Warning: Float too large for page by 14.28183pt on input line 662.
 
 
-<../../Supp/Figure_Broad_1000bp/Figure_Broad.pdf, id=600, 650.43pt x 831.105pt>
+<../../Supp/Figure_Broad_1000bp/Figure_Broad.pdf, id=614, 650.43pt x 831.105pt>
 File: ../../Supp/Figure_Broad_1000bp/Figure_Broad.pdf Graphic file (type pdf)
 <use ../../Supp/Figure_Broad_1000bp/Figure_Broad.pdf>
 Package pdftex.def Info: ../../Supp/Figure_Broad_1000bp/Figure_Broad.pdf used o
-n input line 656.
+n input line 666.
 (pdftex.def)             Requested size: 422.77449pt x 540.21185pt.
 
 
-LaTeX Warning: Float too large for page by 14.28183pt on input line 660.
+LaTeX Warning: Float too large for page by 14.28183pt on input line 670.
 
 
-<../../Supp/Figure_Narrow_500bp/Figure_Narrow.pdf, id=601, 650.43pt x 831.105pt
+<../../Supp/Figure_Narrow_500bp/Figure_Narrow.pdf, id=615, 650.43pt x 831.105pt
 >
 File: ../../Supp/Figure_Narrow_500bp/Figure_Narrow.pdf Graphic file (type pdf)
  <use ../../Supp/Figure_Narrow_500bp/Figure_Narrow.pdf>
 Package pdftex.def Info: ../../Supp/Figure_Narrow_500bp/Figure_Narrow.pdf used 
-on input line 663.
+on input line 673.
 (pdftex.def)             Requested size: 422.77449pt x 540.21185pt.
 
-<../../Supp/Figure_Narrow_750bp/Figure_Narrow.pdf, id=602, 650.43pt x 831.105pt
+<../../Supp/Figure_Narrow_750bp/Figure_Narrow.pdf, id=616, 650.43pt x 831.105pt
 >
 File: ../../Supp/Figure_Narrow_750bp/Figure_Narrow.pdf Graphic file (type pdf)
  <use ../../Supp/Figure_Narrow_750bp/Figure_Narrow.pdf>
 Package pdftex.def Info: ../../Supp/Figure_Narrow_750bp/Figure_Narrow.pdf used 
-on input line 669.
+on input line 679.
 (pdftex.def)             Requested size: 422.77449pt x 540.21185pt.
 
-<../../Supp/Figure_Narrow_1000bp/Figure_Narrow.pdf, id=603, 650.43pt x 831.105p
+<../../Supp/Figure_Narrow_1000bp/Figure_Narrow.pdf, id=617, 650.43pt x 831.105p
 t>
 File: ../../Supp/Figure_Narrow_1000bp/Figure_Narrow.pdf Graphic file (type pdf)
 
  <use ../../Supp/Figure_Narrow_1000bp/Figure_Narrow.pdf>
 Package pdftex.def Info: ../../Supp/Figure_Narrow_1000bp/Figure_Narrow.pdf used
- on input line 675.
+ on input line 685.
 (pdftex.def)             Requested size: 422.77449pt x 540.21185pt.
- [51] [52 <../../Supp/Figure_Broad_250bp/Figure_Broad.pdf>] [53 <../../Supp/Fig
-ure_Broad_750bp/Figure_Broad.pdf>] [54 <../../Supp/Figure_Broad_1000bp/Figure_B
-road.pdf>] [55 <../../Supp/Figure_Narrow_500bp/Figure_Narrow.pdf>] [56 <../../S
-upp/Figure_Narrow_750bp/Figure_Narrow.pdf>] [57 <../../Supp/Figure_Narrow_1000b
+ [52] [53 <../../Supp/Figure_Broad_250bp/Figure_Broad.pdf>] [54 <../../Supp/Fig
+ure_Broad_750bp/Figure_Broad.pdf>] [55 <../../Supp/Figure_Broad_1000bp/Figure_B
+road.pdf>] [56 <../../Supp/Figure_Narrow_500bp/Figure_Narrow.pdf>] [57 <../../S
+upp/Figure_Narrow_750bp/Figure_Narrow.pdf>] [58 <../../Supp/Figure_Narrow_1000b
 p/Figure_Narrow.pdf>]
-Overfull \hbox (3.19878pt too wide) in paragraph at lines 680--680
+Overfull \hbox (3.19878pt too wide) in paragraph at lines 690--690
 []\OT1/cmr/bx/n/17.28 Classification of Com-bi-na-to-rial Pat-terns of Protein-
 
  []
 
 
-Overfull \hbox (7.29669pt too wide) in paragraph at lines 680--680
+Overfull \hbox (7.29669pt too wide) in paragraph at lines 690--690
 \OT1/cmr/bx/n/17.28 DNA Bind-ing Ac-tiv-ity and Their As-so-ci-a-tions With
  []
 
-[58]
-<../../Supp/Figure_Ternary/Figure_Ternary.pdf, id=706, 650.43pt x 831.105pt>
+[59]
+<../../Supp/Figure_Ternary/Figure_Ternary.pdf, id=720, 650.43pt x 831.105pt>
 File: ../../Supp/Figure_Ternary/Figure_Ternary.pdf Graphic file (type pdf)
 
 <use ../../Supp/Figure_Ternary/Figure_Ternary.pdf>
 Package pdftex.def Info: ../../Supp/Figure_Ternary/Figure_Ternary.pdf used on i
-nput line 688.
+nput line 698.
 (pdftex.def)             Requested size: 422.77449pt x 540.21185pt.
- [59] [60 <../../Supp/Figure_Ternary/Figure_Ternary.pdf>]
-<../../Supp/Figure_MultiMarks/Figure_MultiMarks.pdf, id=762, 325.215pt x 415.55
+ [60] [61 <../../Supp/Figure_Ternary/Figure_Ternary.pdf>]
+<../../Supp/Figure_MultiMarks/Figure_MultiMarks.pdf, id=776, 325.215pt x 415.55
 25pt>
 File: ../../Supp/Figure_MultiMarks/Figure_MultiMarks.pdf Graphic file (type pdf
 )
  <use ../../Supp/Figure_MultiMarks/Figure_MultiMarks.pdf>
 Package pdftex.def Info: ../../Supp/Figure_MultiMarks/Figure_MultiMarks.pdf use
-d on input line 697.
+d on input line 707.
 (pdftex.def)             Requested size: 325.2142pt x 415.55148pt.
 
-(./webappendix.bbl [61] [62 <../../Supp/Figure_MultiMarks/Figure_MultiMarks.pdf
->] [63
+(./webappendix.bbl [62] [63 <../../Supp/Figure_MultiMarks/Figure_MultiMarks.pdf
+>] [64
 
-] [64])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 705.
- [65]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 705.
+] [65])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 715.
+ [66]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 715.
  (./webappendix.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 705.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 705.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 715.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 715.
 Package rerunfilecheck Info: File `webappendix.out' has not changed.
 (rerunfilecheck)             Checksum: 37AF3EE24351C41523F4A7EE65F6C87A;1746.
 
@@ -1419,10 +1430,10 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 18409 strings out of 494820
- 323692 string characters out of 3178049
- 488110 words of memory out of 3000000
- 21007 multiletter control sequences out of 15000+200000
+ 18418 strings out of 494820
+ 323997 string characters out of 3178049
+ 488227 words of memory out of 3000000
+ 21012 multiletter control sequences out of 15000+200000
  19017 words of font info for 72 fonts, out of 3000000 for 9000
  198 hyphenation exceptions out of 8191
  56i,14n,55p,2261b,506s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1443,10 +1454,10 @@ e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texli
 ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/tex
 mf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/share/texlive/texmf-dis
 t/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on webappendix.pdf (66 pages, 6732395 bytes).
+Output written on webappendix.pdf (67 pages, 7035386 bytes).
 PDF statistics:
- 885 PDF objects out of 1000 (max. 8388607)
- 733 compressed objects within 8 object streams
- 156 named destinations out of 1000 (max. 500000)
- 342 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 901 PDF objects out of 1000 (max. 8388607)
+ 746 compressed objects within 8 object streams
+ 158 named destinations out of 1000 (max. 500000)
+ 347 words of extra memory for PDF output out of 10000 (max. 10000000)
 

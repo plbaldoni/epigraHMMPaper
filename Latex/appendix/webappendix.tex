@@ -332,6 +332,16 @@ To better visualize the results on a per data set basis, Figure \ref{fig:sim_gc_
 \label{fig:sim_gc_roc}}
 \end{figure}
 
+In Figure \ref{fig:encode_gc_counts} below, we present smoothed scatter plots of log-transformed ChIP-seq counts (y-axis) and the respective GC content (x-axis) for the ENCODE EZH2 data that we analyzed. While using a 500bp window size to compute read counts, we did not observe enough evidence to justify account for such an effect in our analyses. Note that, when using such read count resolution, the effect of GC content can be hardly seen. In addition, there is no evident separation of differential GC-content effect for peak and background regions, as reported in \cite{teng2017accounting}.
+
+\begin{figure}[h]
+\begin{center}
+\centerline{\includegraphics[scale = 0.75]{../../Supp/Figure_GC_Counts/Figure_GC_Counts.pdf}}
+\end{center}
+\caption{Smoothed scatter plots of log-transformed EZH2 ENCODE ChIP-seq counts and GC content.
+\label{fig:encode_gc_counts}}
+\end{figure}
+
 \pagebreak
 \clearpage
 
