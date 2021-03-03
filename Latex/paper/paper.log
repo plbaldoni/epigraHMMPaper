@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2020.9.14)  27 FEB 2021 04:27
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2020.9.14)  4 MAR 2021 10:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -476,17 +476,28 @@ Overfull \hbox (4.62497pt too wide) has occurred while \output is active
  []
 
 [4]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
 Overfull \hbox (4.62497pt too wide) has occurred while \output is active
 \OT1/cmr/m/n/9 5
  []
 
 [5]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
 Overfull \hbox (4.62497pt too wide) has occurred while \output is active
 \OT1/cmr/m/n/9 6
  []
 
 [6]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Overfull \hbox (0.70374pt too wide) in paragraph at lines 127--128
+\OT1/cmr/m/n/12 Here, con-sider a set of la-tent vari-ables $\OT1/cmr/bx/n/12 W
+ \OT1/cmr/m/n/12 = (\OT1/cmr/bx/n/12 W[]\OML/cmm/m/it/12 ; [] ; \OT1/cmr/bx/n/1
+2 W[]\OT1/cmr/m/n/12 )[]$, such that $\OT1/cmr/bx/n/12 W[] \OT1/cmr/m/n/12 = (\
+OML/cmm/m/it/12 W[]; [] ; W[]\OT1/cmr/m/n/12 )[]$
+ []
 
 
 Overfull \hbox (4.62497pt too wide) has occurred while \output is active
@@ -494,7 +505,7 @@ Overfull \hbox (4.62497pt too wide) has occurred while \output is active
  []
 
 [7]
-Underfull \vbox (badness 1629) has occurred while \output is active []
+Underfull \vbox (badness 1189) has occurred while \output is active []
 
 
 Overfull \hbox (4.62497pt too wide) has occurred while \output is active
@@ -510,36 +521,20 @@ Overfull \hbox (4.62497pt too wide) has occurred while \output is active
  []
 
 [9]
-Overfull \hbox (33.01195pt too wide) in paragraph at lines 143--144
-\OT1/cmr/m/n/12 be es-ti-mated as $[] = [][] \OML/cmm/m/it/12 Pr\OT1/cmr/m/n/12
- (\OML/cmm/m/it/12 Z[] \OT1/cmr/m/n/12 = 2\OMS/cmsy/m/n/12 j\OT1/cmr/bx/n/12 y\
-OML/cmm/m/it/12 ; \OT1/cmr/bx/n/12 x\OT1/cmr/m/n/12 ; [][])\OML/cmm/m/it/12 Pr\
-OT1/cmr/m/n/12 (\OML/cmm/m/it/12 W[] \OT1/cmr/m/n/12 = 1\OMS/cmsy/m/n/12 j\OML/
-cmm/m/it/12 Z[] \OT1/cmr/m/n/12 = 2\OML/cmm/m/it/12 ; \OT1/cmr/bx/n/12 y[]\OML/
-cmm/m/it/12 ; \OT1/cmr/bx/n/12 x\OT1/cmr/m/n/12 ; [][])\OML/cmm/m/it/12 = [][] 
-Pr\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 Z[] \OT1/cmr/m/n/12 =
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
 Overfull \hbox (9.24994pt too wide) has occurred while \output is active
 \OT1/cmr/m/n/9 10
  []
 
-[10]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+[10] (../../Main/Table_Simulation_ReadCounts/Table_Simulation_ReadCounts.tex
+\openout4 = `paper.ttt'.
 
 
+(paper.ttt))
 Overfull \hbox (9.24994pt too wide) has occurred while \output is active
 \OT1/cmr/m/n/9 11
  []
 
 [11]
-Underfull \vbox (badness 1097) has occurred while \output is active []
-
-
 Overfull \hbox (9.24994pt too wide) has occurred while \output is active
 \OT1/cmr/m/n/9 12
  []
@@ -549,25 +544,18 @@ Overfull \hbox (9.24994pt too wide) has occurred while \output is active
 \OT1/cmr/m/n/9 13
  []
 
-[13] (../../Main/Table_Simulation_ReadCounts/Table_Simulation_ReadCounts.tex
-\openout4 = `paper.ttt'.
-
-
-(paper.ttt))
+[13]
 Overfull \hbox (9.24994pt too wide) has occurred while \output is active
 \OT1/cmr/m/n/9 14
  []
 
 [14]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
 Overfull \hbox (9.24994pt too wide) has occurred while \output is active
 \OT1/cmr/m/n/9 15
  []
 
 [15]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 3118) has occurred while \output is active []
 
 
 Overfull \hbox (9.24994pt too wide) has occurred while \output is active
@@ -575,15 +563,12 @@ Overfull \hbox (9.24994pt too wide) has occurred while \output is active
  []
 
 [16]
-Underfull \vbox (badness 7344) has occurred while \output is active []
-
-
 Overfull \hbox (9.24994pt too wide) has occurred while \output is active
 \OT1/cmr/m/n/9 17
  []
 
-[17]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+[17] (./paper.bbl
+Underfull \vbox (badness 1226) has occurred while \output is active []
 
 
 Overfull \hbox (9.24994pt too wide) has occurred while \output is active
@@ -591,62 +576,22 @@ Overfull \hbox (9.24994pt too wide) has occurred while \output is active
  []
 
 [18]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
 Overfull \hbox (9.24994pt too wide) has occurred while \output is active
 \OT1/cmr/m/n/9 19
  []
 
-[19]
+[19]) AED endfloat: Processing end Figures and Tables
 Overfull \hbox (9.24994pt too wide) has occurred while \output is active
 \OT1/cmr/m/n/9 20
  []
 
-[20]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Overfull \hbox (9.24994pt too wide) has occurred while \output is active
-\OT1/cmr/m/n/9 21
- []
-
-[21] (./paper.bbl
-Overfull \hbox (9.24994pt too wide) has occurred while \output is active
-\OT1/cmr/m/n/9 22
- []
-
-[22]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Overfull \hbox (9.24994pt too wide) has occurred while \output is active
-\OT1/cmr/m/n/9 23
- []
-
-[23]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Overfull \hbox (9.24994pt too wide) has occurred while \output is active
-\OT1/cmr/m/n/9 24
- []
-
-[24]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Overfull \hbox (9.24994pt too wide) has occurred while \output is active
-\OT1/cmr/m/n/9 25
- []
-
-[25]) AED endfloat: Processing end Figures and Tables
-Overfull \hbox (9.24994pt too wide) has occurred while \output is active
-\OT1/cmr/m/n/9 26
- []
-
-[26] (./paper.fff
-<../../Main/Figure_epigraHMM/Figure_epigraHMM.pdf, id=111, 650.43pt x 831.105pt
->
+[20] (./paper.fff
+<../../Main/Figure_epigraHMM/Figure_epigraHMM.pdf, id=91, 650.43pt x 831.105pt>
 File: ../../Main/Figure_epigraHMM/Figure_epigraHMM.pdf Graphic file (type pdf)
- <use ../../Main/Figure_epigraHMM/Figure_epigraHMM.pdf>
+<use ../../Main/Figure_epigraHMM/Figure_epigraHMM.pdf>
 Package pdftex.def Info: ../../Main/Figure_epigraHMM/Figure_epigraHMM.pdf used 
 on input line 3.
 (pdftex.def)             Requested size: 487.8213pt x 623.32722pt.
@@ -660,12 +605,12 @@ LaTeX Warning: Float too large for page by 96.32721pt on input line 7.
 
 
 Overfull \hbox (9.24994pt too wide) has occurred while \output is active
-\OT1/cmr/m/n/9 27
+\OT1/cmr/m/n/9 21
  []
 
-[27 <../../Main/Figure_epigraHMM/Figure_epigraHMM.pdf>]
+[21 <../../Main/Figure_epigraHMM/Figure_epigraHMM.pdf>]
 <../../Main/Figure_Simulation_SequencingReads/Figure_Simulation_SequencingReads
-.pdf, id=208, 578.16pt x 578.16pt>
+.pdf, id=187, 578.16pt x 578.16pt>
 File: ../../Main/Figure_Simulation_SequencingReads/Figure_Simulation_Sequencing
 Reads.pdf Graphic file (type pdf)
 
@@ -676,12 +621,12 @@ mulation_SequencingReads.pdf used on input line 12.
 (pdftex.def)             Requested size: 375.79955pt x 375.79955pt.
 
 Overfull \hbox (9.24994pt too wide) has occurred while \output is active
-\OT1/cmr/m/n/9 28
+\OT1/cmr/m/n/9 22
  []
 
-[28 <../../Main/Figure_Simulation_SequencingReads/Figure_Simulation_SequencingR
+[22 <../../Main/Figure_Simulation_SequencingReads/Figure_Simulation_SequencingR
 eads.pdf>]
-<../../Main/Figure_Broad/Figure_Broad.pdf, id=224, 650.43pt x 831.105pt>
+<../../Main/Figure_Broad/Figure_Broad.pdf, id=204, 650.43pt x 831.105pt>
 File: ../../Main/Figure_Broad/Figure_Broad.pdf Graphic file (type pdf)
 
 <use ../../Main/Figure_Broad/Figure_Broad.pdf>
@@ -694,11 +639,11 @@ LaTeX Warning: Float too large for page by 12.21184pt on input line 25.
 
 
 Overfull \hbox (9.24994pt too wide) has occurred while \output is active
-\OT1/cmr/m/n/9 29
+\OT1/cmr/m/n/9 23
  []
 
-[29 <../../Main/Figure_Broad/Figure_Broad.pdf>]
-<../../Main/Figure_Narrow/Figure_Narrow.pdf, id=237, 650.43pt x 831.105pt>
+[23 <../../Main/Figure_Broad/Figure_Broad.pdf>]
+<../../Main/Figure_Narrow/Figure_Narrow.pdf, id=217, 650.43pt x 831.105pt>
 File: ../../Main/Figure_Narrow/Figure_Narrow.pdf Graphic file (type pdf)
 
 <use ../../Main/Figure_Narrow/Figure_Narrow.pdf>
@@ -707,11 +652,11 @@ ut line 30.
 (pdftex.def)             Requested size: 422.77449pt x 540.21185pt.
 
 Overfull \hbox (9.24994pt too wide) has occurred while \output is active
-\OT1/cmr/m/n/9 30
+\OT1/cmr/m/n/9 24
  []
 
-[30 <../../Main/Figure_Narrow/Figure_Narrow.pdf>]
-<../../Main/Figure_MultiMarks/Figure_MultiMarks.pdf, id=252, 650.43pt x 831.105
+[24 <../../Main/Figure_Narrow/Figure_Narrow.pdf>]
+<../../Main/Figure_MultiMarks/Figure_MultiMarks.pdf, id=232, 650.43pt x 831.105
 pt>
 File: ../../Main/Figure_MultiMarks/Figure_MultiMarks.pdf Graphic file (type pdf
 )
@@ -725,23 +670,23 @@ LaTeX Warning: Float too large for page by 82.76952pt on input line 43.
 
 )
 Overfull \hbox (9.24994pt too wide) has occurred while \output is active
-\OT1/cmr/m/n/9 31
+\OT1/cmr/m/n/9 25
  []
 
-[31 <../../Main/Figure_MultiMarks/Figure_MultiMarks.pdf>] (./paper.ttt)
+[25 <../../Main/Figure_MultiMarks/Figure_MultiMarks.pdf>] (./paper.ttt)
 Overfull \hbox (9.24994pt too wide) has occurred while \output is active
-\OT1/cmr/m/n/9 32
+\OT1/cmr/m/n/9 26
  []
 
-[32] (./paper.aux) ) 
+[26] (./paper.aux) ) 
 Here is how much of TeX's memory you used:
- 5401 strings out of 494820
- 76838 string characters out of 3178049
- 149132 words of memory out of 3000000
- 8452 multiletter control sequences out of 15000+200000
- 20980 words of font info for 77 fonts, out of 3000000 for 9000
+ 5381 strings out of 494820
+ 76328 string characters out of 3178049
+ 148618 words of memory out of 3000000
+ 8433 multiletter control sequences out of 15000+200000
+ 20811 words of font info for 76 fonts, out of 3000000 for 9000
  198 hyphenation exceptions out of 8191
- 44i,15n,42p,2510b,374s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 44i,15n,42p,1948b,374s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
 cmextra/cmbsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
 m/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx
@@ -762,12 +707,11 @@ are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/tex
 live/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/t
 exmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-d
 ist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/share/texlive/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmtt12.pfb></usr/share/texlive/texmf-dist/fonts/typ
-e1/public/amsfonts/symbols/msam10.pfb>
-Output written on paper.pdf (33 pages, 922477 bytes).
+ts/type1/public/amsfonts/symbols/msam10.pfb>
+Output written on paper.pdf (27 pages, 902909 bytes).
 PDF statistics:
- 344 PDF objects out of 1000 (max. 8388607)
- 233 compressed objects within 3 object streams
+ 321 PDF objects out of 1000 (max. 8388607)
+ 217 compressed objects within 3 object streams
  0 named destinations out of 1000 (max. 500000)
  26 words of extra memory for PDF output out of 10000 (max. 10000000)
 

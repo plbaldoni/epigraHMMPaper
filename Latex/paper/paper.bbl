@@ -7,12 +7,6 @@ Allhoff, M., Ser{\'e}, K., F.~Pires, J., Zenke, M., and G.~Costa, I. (2016).
   thor.
 \newblock {\em Nucleic acids research} {\bf 44,} e153--e153.
 
-\bibitem[\protect\citeauthoryear{Bannister and Kouzarides}{Bannister and
-  Kouzarides}{2011}]{bannister2011regulation}
-Bannister, A.~J. and Kouzarides, T. (2011).
-\newblock Regulation of chromatin by histone modifications.
-\newblock {\em Cell research} {\bf 21,} 381.
-
 \bibitem[\protect\citeauthoryear{Chen, Wang, Qin, and Wu}{Chen
   et~al.}{2015}]{chen2015novel}
 Chen, L., Wang, C., Qin, Z.~S., and Wu, H. (2015).
@@ -51,10 +45,13 @@ Ernst, J. and Kellis, M. (2012).
 \newblock Chromhmm: automating chromatin-state discovery and characterization.
 \newblock {\em Nature methods} {\bf 9,} 215--216.
 
-\bibitem[\protect\citeauthoryear{Fletcher}{Fletcher}{2013}]{fletcher2013practical}
-Fletcher, R. (2013).
-\newblock {\em {Practical methods of optimization}}.
-\newblock John Wiley \& Sons.
+\bibitem[\protect\citeauthoryear{Heinz, Benner, Spann, Bertolino, Lin, Laslo,
+  Cheng, Murre, Singh, and Glass}{Heinz et~al.}{2010}]{heinz2010simple}
+Heinz, S., Benner, C., Spann, N., Bertolino, E., Lin, Y.~C., Laslo, P., Cheng,
+  J.~X., Murre, C., Singh, H., and Glass, C.~K. (2010).
+\newblock Simple combinations of lineage-determining transcription factors
+  prime cis-regulatory elements required for macrophage and b cell identities.
+\newblock {\em Molecular cell} {\bf 38,} 576--589.
 
 \bibitem[\protect\citeauthoryear{Hocking, Goerner-Potvin, Morin, Shao,
   Pastinen, and Bourque}{Hocking et~al.}{2016}]{hocking2016optimizing}
@@ -64,6 +61,13 @@ Hocking, T.~D., Goerner-Potvin, P., Morin, A., Shao, X., Pastinen, T., and
   machine learning.
 \newblock {\em Bioinformatics} {\bf 33,} 491--499.
 
+\bibitem[\protect\citeauthoryear{Ji, Li, Wang, and Ning}{Ji
+  et~al.}{2013}]{ji2013differential}
+Ji, H., Li, X., Wang, Q.-f., and Ning, Y. (2013).
+\newblock Differential principal component analysis of chip-seq.
+\newblock {\em Proceedings of the National Academy of Sciences} {\bf 110,}
+  6789--6794.
+
 \bibitem[\protect\citeauthoryear{Kim, Lee, Lu, Song, Fong, Cao, Licht, Zhao,
   and Yu}{Kim et~al.}{2018}]{kim2018polycomb}
 Kim, J., Lee, Y., Lu, X., Song, B., Fong, K.-W., Cao, Q., Licht, J.~D., Zhao,
@@ -71,14 +75,6 @@ Kim, J., Lee, Y., Lu, X., Song, B., Fong, K.-W., Cao, Q., Licht, J.~D., Zhao,
 \newblock Polycomb-and methylation-independent roles of ezh2 as a transcription
   activator.
 \newblock {\em Cell reports} {\bf 25,} 2808--2820.
-
-\bibitem[\protect\citeauthoryear{Kundaje, Meuleman, Ernst, Bilenky, Yen,
-  Heravi-Moussavi, Kheradpour, Zhang, Wang, Ziller, et~al\mbox{.}}{Kundaje
-  et~al.}{2015}]{kundaje2015integrative}
-Kundaje, A., Meuleman, W., Ernst, J., Bilenky, M., Yen, A., Heravi-Moussavi,
-  A., Kheradpour, P., Zhang, Z., Wang, J., Ziller, M.~J., et~al. (2015).
-\newblock Integrative analysis of 111 reference human epigenomes.
-\newblock {\em Nature} {\bf 518,} 317.
 
 \bibitem[\protect\citeauthoryear{Landt, Marinov, Kundaje, Kheradpour, Pauli,
   Batzoglou, Bernstein, Bickel, Brown, Cayting, et~al\mbox{.}}{Landt
@@ -89,14 +85,6 @@ Landt, S.~G., Marinov, G.~K., Kundaje, A., Kheradpour, P., Pauli, F.,
 \newblock Chip-seq guidelines and practices of the encode and modencode
   consortia.
 \newblock {\em Genome research} {\bf 22,} 1813--1831.
-
-\bibitem[\protect\citeauthoryear{Lauberth, Nakayama, Wu, Ferris, Tang, Hughes,
-  and Roeder}{Lauberth et~al.}{2013}]{lauberth2013h3k4me3}
-Lauberth, S.~M., Nakayama, T., Wu, X., Ferris, A.~L., Tang, Z., Hughes, S.~H.,
-  and Roeder, R.~G. (2013).
-\newblock H3k4me3 interactions with taf3 regulate preinitiation complex
-  assembly and selective gene activation.
-\newblock {\em Cell} {\bf 152,} 1021--1036.
 
 \bibitem[\protect\citeauthoryear{Liu, Wang, Liu, Li, Li, Kou, Chen, Zhao, Gao,
   Wang, et~al\mbox{.}}{Liu et~al.}{2016}]{liu2016distinct}
@@ -174,31 +162,6 @@ Teng, M. and Irizarry, R.~A. (2017).
   effects in chip-seq data.
 \newblock {\em Genome research} {\bf 27,} 1930--1938.
 
-\bibitem[\protect\citeauthoryear{Varambally, Dhanasekaran, Zhou, Barrette,
-  Kumar-Sinha, Sanda, Ghosh, Pienta, Sewalt, Otte, et~al\mbox{.}}{Varambally
-  et~al.}{2002}]{varambally2002polycomb}
-Varambally, S., Dhanasekaran, S.~M., Zhou, M., Barrette, T.~R., Kumar-Sinha,
-  C., Sanda, M.~G., Ghosh, D., Pienta, K.~J., Sewalt, R.~G., Otte, A.~P.,
-  et~al. (2002).
-\newblock The polycomb group protein ezh2 is involved in progression of
-  prostate cancer.
-\newblock {\em Nature} {\bf 419,} 624.
-
-\bibitem[\protect\citeauthoryear{Viterbi}{Viterbi}{1967}]{viterbi1967error}
-Viterbi, A. (1967).
-\newblock {Error bounds for convolutional codes and an asymptotically optimum
-  decoding algorithm}.
-\newblock {\em IEEE transactions on Information Theory} {\bf 13,} 260--269.
-
-\bibitem[\protect\citeauthoryear{Wei, Xia, Zhang, Liu, Wang, Adsay, Albarracin,
-  Yu, Abbruzzese, Mills, et~al\mbox{.}}{Wei et~al.}{2008}]{wei2008loss}
-Wei, Y., Xia, W., Zhang, Z., Liu, J., Wang, H., Adsay, N.~V., Albarracin, C.,
-  Yu, D., Abbruzzese, J.~L., Mills, G.~B., et~al. (2008).
-\newblock Loss of trimethylation at lysine 27 of histone h3 is a predictor of
-  poor outcome in breast, ovarian, and pancreatic cancers.
-\newblock {\em Molecular Carcinogenesis: Published in cooperation with the
-  University of Texas MD Anderson Cancer Center} {\bf 47,} 701--706.
-
 \bibitem[\protect\citeauthoryear{Whitfield, Sherlock, Saldanha, Murray, Ball,
   Alexander, Matese, Perou, Hurt, Brown, et~al\mbox{.}}{Whitfield
   et~al.}{2002}]{whitfield2002identification}
@@ -208,13 +171,6 @@ Whitfield, M.~L., Sherlock, G., Saldanha, A.~J., Murray, J.~I., Ball, C.~A.,
 \newblock Identification of genes periodically expressed in the human cell
   cycle and their expression in tumors.
 \newblock {\em Molecular Biology of the Cell} {\bf 13,} 1977--2000.
-
-\bibitem[\protect\citeauthoryear{Xing, Mo, Liao, and Zhang}{Xing
-  et~al.}{2012}]{xing2012genome}
-Xing, H., Mo, Y., Liao, W., and Zhang, M.~Q. (2012).
-\newblock {Genome-wide localization of protein-DNA binding and histone
-  modification by a Bayesian change-point method with ChIP-seq data}.
-\newblock {\em PLoS computational biology} {\bf 8,} e1002613.
 
 \bibitem[\protect\citeauthoryear{Zhang, Liu, Meyer, Eeckhoute, Johnson,
   Bernstein, Nusbaum, Myers, Brown, Li, et~al\mbox{.}}{Zhang
