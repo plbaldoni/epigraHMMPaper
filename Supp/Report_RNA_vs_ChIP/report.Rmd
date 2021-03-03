@@ -1,0 +1,406 @@
+---
+title: 'RNA- and ChIP-seq study: to which degree differential H3K36me3 associate with DGE?'
+output:
+  pdf_document:
+    toc: true
+    number_sections: yes
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+author: Pedro L. Baldoni
+urlcolor: blue
+header-includes:
+  - \usepackage{setspace}\doublespacing
+editor_options: 
+  chunk_output_type: inline
+---
+
+```{r include=FALSE}
+knitr::opts_chunk$set(comment = NA)
+knitr::opts_chunk$set(size = "small")
+```
+
+Here, I will assess to which degree differential enrichment for H3K36me3 associate with differential gene expression (DGE) levels. The main question I want to answer is: can we use differential H3K36me3 enrichment to infer DGE, and vice-versa? 
+
+To answer this question, I will use RNA-seq and ChIP-seq data from cell lines Helas3 and Hepg2 (two of the cell lines reported in our manuscripts). There are two isogenic replicates from each assay. RNA-seq data were previously quantified with Salmon. PCR duplicates and low-quality reads were removed from ChIP-seq data.
+
+# RNA-seq data preprocessing
+
+The analysis of RNA-seq data will follow the steps from the DESeq2 [vignette](http://www.bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.html).
+
+## Preparing the data
+
+```{r libraries,warning=FALSE,message=FALSE}
+# Loading some libraries
+library(EnsDb.Hsapiens.v75)
+library(tximport)
+library(pheatmap)
+library(DESeq2)
+library(vsn)
+library(data.table)
+library(ggplot2)
+library(apeglm)
+```
+
+```{r salmon}
+# Reading in Salmon's qf files
+
+files <- list.files('../../Public/Salmon','^quant.sf$',recursive = T,full.names = T)
+
+for(i in files){
+  cellname = strsplit(i,'/')[[1]][length(strsplit(i,'/')[[1]])-2]
+  repname = strsplit(i,'/')[[1]][length(strsplit(i,'/')[[1]])-1]
+  repname = substr(repname,nchar(repname),nchar(repname))
+  names(files)[which(files==i)] = paste0(cellname,'.Rep',repname)
+}
+
+files
+```
+
+```{r tximport}
+# Creating annotation table & calling tximport
+Tx <- transcripts(EnsDb.Hsapiens.v75,return.type='data.frame')
+tx2gene = subset(Tx,select=c('tx_id','gene_id'))
+
+txi.salmon <- tximport(files, type = "salmon", tx2gene = tx2gene)
+head(txi.salmon$counts)
+```
+
+```{r deseq2_object}
+# Creating DESeq2 object
+sampleTable <-
+  data.frame(condition = factor(unlist(lapply(
+    strsplit(colnames(txi.salmon$counts), "\\."),
+    FUN = function(x) {
+      x[1]
+    }
+  ))))
+rownames(sampleTable) <- colnames(txi.salmon$counts)
+sampleTable
+
+dds <-
+  DESeqDataSetFromTximport(txi.salmon, sampleTable, design =  ~ condition)
+rowRanges(dds) <- genes(EnsDb.Hsapiens.v75)[rownames(dds)]
+seqlevelsStyle(dds) <- 'UCSC'
+head(assay(dds))
+```
+
+## Pre-filtering
+
+```{r filter_cells}
+# Selecting only the relevant cell lines
+dds <- dds[, colData(dds)$condition %in% c('Helas3','Hepg2')]
+dds$condition <- droplevels(dds$condition)
+dds$condition <- relevel(dds$condition, ref = "Helas3")
+head(assay(dds))
+```
+
+```{r filter_counts}
+# Filtering lowly expressed genes
+keep.cts <- rowSums(counts(dds)) >= 25
+dds <- dds[keep.cts,]
+head(assay(dds))
+```
+
+```{r filter_protein}
+# Keeping only protein coding genes
+keep.coding <- rowRanges(dds)$gene_biotype == 'protein_coding'
+dds <- dds[keep.coding,]
+dim(dds)
+```
+
+```{r filter_chr}
+# Selecting only relevant chromosomes (chrY is not present here)
+keep.chr <- seqnames(dds) %in% paste0('chr',c(1:22,'X'))
+dds <- dds[keep.chr,]
+dim(dds)
+```
+
+## Visualization
+
+```{r heatmap1}
+# Sample-to-sample distances
+vsd <- vst(dds, blind=FALSE)
+sampleDists <- dist(t(assay(vsd)))
+sampleDistMatrix <- as.matrix(sampleDists)
+rownames(sampleDistMatrix) <- paste(vsd$condition, sep="-")
+colnames(sampleDistMatrix) <- NULL
+colors <- colorRampPalette( rev(RColorBrewer::brewer.pal(9, "Blues")) )(255)
+pheatmap(sampleDistMatrix,
+         clustering_distance_rows=sampleDists,
+         clustering_distance_cols=sampleDists,
+         col=colors)
+```
+
+## DGE
+
+Now, I will run DESeq2 to find DEG between the two cell lines. I expect to see lots of DGE genes since we are comparing two very distinct cell lines.
+
+```{r deseq2}
+# Calling DESeq2
+dds <- DESeq(dds)
+res <- results(dds)
+res
+
+# How many DGE are there? Let's set a p-value cutoff of 0.01
+cutoff <- 0.01
+sum(res$padj<cutoff)
+```
+
+Let's take a look at a heatmap of some of these genes.
+
+```{r heatmap2}
+# Normalizing cts
+ntd <- normTransform(dds)
+
+# Selecting some genes with largest absolute LFC differences for visualization
+sig.res <- res[res$padj<cutoff,]
+sig.res <- sig.res[order(sig.res$log2FoldChange),]
+select <- c(rownames(head(sig.res,100)),rownames(tail(sig.res,100)))
+  
+# Set up annotation
+df <- as.data.frame(colData(dds)[,c("condition")])
+colnames(df) <- 'condition'
+rownames(df) <- colnames(dds)
+
+# Plotting
+pheatmap(assay(ntd)[select,],cluster_rows=FALSE, show_rownames=FALSE,
+         cluster_cols=FALSE, annotation_col=df)
+```
+
+# ChIP-seq data preprocessing
+
+I will follow the same analysis steps for RNA-seq data here. H3K36me3 is expected to be enriched only on (expressed?) gene bodies, so it is reasonable to use gene bodies as an annotation reference. To this end, I will compute ChIP-seq read counts mapping onto the gene bodies as suggested in the DESeq2 vignette [here](http://www.bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#why-un-normalized-counts)
+
+## Preparing the data
+
+```{r bam}
+# Reading in ChIP-seq bam files
+
+files <- list.files('../../Data/','^wgEncode*.*.bam$',recursive = T,full.names = T)
+files <- files[grep('H3K36me3',files)]
+files <- files[grep('helas3|hepg2',files)]
+
+names(files) <- c(paste0('Helas3.Rep',1:2),paste0('Hepg2.Rep',1:2))
+
+files
+```
+
+```{r bamsignals}
+# Counting reads with bamsignals
+chip.cts <- list()
+for (i in seq_len(length(files))) {
+  chip.cts[[i]] <- bamsignals::bamCount(files[i],rowRanges(dds))
+}
+chip.cts <- do.call(cbind,chip.cts)
+colnames(chip.cts) <- names(files)
+rownames(chip.cts) <- rownames(dds)
+
+head(chip.cts)
+```
+
+```{r deseq2_object2}
+# Creating DESeq2 object
+sampleTable <-
+  data.frame(condition = factor(unlist(lapply(
+    strsplit(colnames(chip.cts), "\\."),
+    FUN = function(x) {
+      x[1]
+    }
+  ))))
+rownames(sampleTable) <- colnames(chip.cts)
+sampleTable
+
+chip.dds <-
+  DESeqDataSetFromMatrix(chip.cts, sampleTable, design =  ~ condition)
+head(assay(chip.dds))
+```
+
+At this point, `chip.dds` already has all necessary information we need. Now, note that there are a few genes without any mapped ChIP-seq counts.
+
+
+```{r nocts}
+# Genes without H3K36me3 counts
+nocts <- (rowSums(assay(chip.dds)) == 0)
+
+# How many are there?
+nrow(chip.dds[nocts,])
+```
+
+See below that the expression levels of these genes can be, sometimes, non negligible. 
+
+```{r heatmap_nocts}
+# Plotting
+pheatmap(assay(ntd[row.names(chip.dds[nocts,]),]),cluster_rows=FALSE, show_rownames=FALSE,
+         cluster_cols=FALSE, annotation_col=df)
+```
+
+In any case, I will keep these genes in for now. When computing fold changes, they will not be considered, though.
+
+## Visualization
+
+```{r heatmap1.1}
+# Sample-to-sample distances
+vsd <- vst(chip.dds, blind=FALSE)
+sampleDists <- dist(t(assay(vsd)))
+sampleDistMatrix <- as.matrix(sampleDists)
+rownames(sampleDistMatrix) <- paste(vsd$condition, sep="-")
+colnames(sampleDistMatrix) <- NULL
+colors <- colorRampPalette( rev(RColorBrewer::brewer.pal(9, "Blues")) )(255)
+pheatmap(sampleDistMatrix,
+         clustering_distance_rows=sampleDists,
+         clustering_distance_cols=sampleDists,
+         col=colors)
+```
+
+At this point, we already start seeing some problems. Samples from Helas3 tend to be more similar between each other than with samples from Hepg2. However, note that one of the Hepg2 samples is as similar to its isogenic replicate as to replicates from Helas3. Maybe it is a poor quality ChIP-seq sample?
+
+There is definitely a big difference in depth between cell lines, but I don't think it can justify alone the problematic case. The sample Hepg2.Rep2 also has very low depth but it is quite different from the Helas3 replicates from the distance heatmap above.
+
+```{r lowdepth}
+# Quick check of sequencing depth
+colSums(assay(chip.dds))/1e6
+```
+
+## Differential enrichment
+
+I am looking for a simple metric to compare DEG and differential enrichment for H3K36me3. I will use LFC to this end. If differential enrichment for H3K36me3 is necessary and sufficient to observe DGE, then the LFC of RNA-seq and ChIP-seq should be in agreement.
+
+Now, I will run DESeq2 to get the LFC estimates from ChIP-seq data.
+
+```{r deseq2.1}
+# Calling DESeq2
+chip.dds <- DESeq(chip.dds)
+chip.res <- results(chip.dds)
+chip.res
+
+# How many differentially enriched genes are there? Using a p-value cutoff of 0.01
+## I am removing the 56 genes where there was no enrichment signal for H3K36me3
+sum(chip.res$padj<cutoff,na.rm = TRUE)
+```
+
+The analysis above is telling us that there are about 1500 genes with differential enrichment for H3K36me3. This number is about 5 times smaller than the number of DEG genes.
+
+# Results
+
+## Do log fold changes between ChIP-seq and RNA-seq agree?
+
+I will compute shrunken LFC for better visualization and ranking of genes as detailed [here](http://www.bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#log-fold-change-shrinkage-for-visualization-and-ranking).
+
+```{r results1}
+shk.chip.res <- lfcShrink(chip.dds,type="apeglm",coef = 'condition_Hepg2_vs_Helas3')
+shk.res <- lfcShrink(dds,type="apeglm",coef = 'condition_Hepg2_vs_Helas3')
+
+# First, make sure we are comparing the same genes
+all.equal(rownames(shk.chip.res),rownames(shk.res))
+
+dt.lfc <- data.table(Gene = rownames(shk.res),
+                     LFC.RNAseq = shk.res$log2FoldChange,
+                     LFC.ChIPseq = shk.chip.res$log2FoldChange,
+                     AdjP.RNAseq = shk.res$padj,
+                     AdjP.ChIPseq = shk.chip.res$padj)
+
+ggplot(dt.lfc) +
+  geom_point(aes(x = LFC.RNAseq,y = LFC.ChIPseq),alpha = 0.1) +
+  theme_bw()
+
+ggplot(dt.lfc) +
+  geom_point(aes(x = LFC.RNAseq,y = LFC.ChIPseq,color = (AdjP.RNAseq<cutoff)),alpha = 0.25) +
+  scale_color_brewer(palette = 'Set1',direction = -1)+
+  theme_bw()
+
+ggplot(dt.lfc) +
+  geom_point(aes(x = LFC.RNAseq,y = LFC.ChIPseq,color = (AdjP.ChIPseq<cutoff)),alpha = 0.25) +
+  scale_color_brewer(palette = 'Set1',direction = -1)+
+  theme_bw()
+
+```
+
+We can see that there is a positive association between LFC of RNA- and ChIP-seq counts. However, several genes exhibit no association between RNA-seq and ChIP-seq counts.
+
+```{r results2}
+# Selecting problematic genes
+dt.lfc.issues <- dt.lfc[((AdjP.RNAseq<cutoff) & (AdjP.ChIPseq>cutoff)) |
+                          ((AdjP.RNAseq>cutoff) & (AdjP.ChIPseq<cutoff)),]
+
+ggplot(dt.lfc.issues) +
+  geom_point(aes(x = LFC.RNAseq,y = LFC.ChIPseq),alpha = 0.1) +
+  theme_bw()
+
+ggplot(dt.lfc.issues) +
+  geom_point(aes(x = LFC.RNAseq,y = LFC.ChIPseq,color = (AdjP.ChIPseq<cutoff)),alpha = 0.25) +
+  scale_color_brewer(palette = 'Set1',direction = -1)+
+  theme_bw()
+```
+
+## UCSC Genome Browser view os problematic cases
+
+Below, I present a few snap shots from the UCSC Genome Browser of problematic cases from the `dt.lfc.issues` table above.
+
+### Example 1: Gene ENSG00000113389
+
+Here we have an example of a DE gene without differential enrichment of H3K36me3. Note that, in Helas3, enrichment on the gene body is no different from enrichment on the intergenic (background) region. Therefore, observed differences in ChIP-seq are simply a sequencing depth artifact and would have to be accounted by the peak caller with proper normalization methods. If used as a benchmarking mark, differential peaks covering this genes would be incorrectly considered as a true positive calls.
+
+![Example 1 (Gene ENSG00000113389)](ENSG00000113389.pdf)
+
+\newpage
+
+### Example 2 (Gene ENSG00000137285)
+
+Another problematic example here. We have a gene that is expressed in both cell lines but the gene expression level is different. 
+
+There are two problems with the example. First, DEG level does not lead to differential ChIP-seq enrichment. The enrichment for H3K36me3 is similar in both cell lines. Second, it appears that the enrichment of H3K36me3 reads on the gene body is no different than intergenic (background) region.
+
+If considered as a benchmarking mark, this gene would be considered as a true positive. One would expect differential peak callers to not call differential peaks on this region. If so, this gene would lead to an increased false negative rate in methods that correctly call this region as consensus background.
+
+![Example 2 (Gene ENSG00000137285)](ENSG00000137285.pdf)
+
+\newpage
+
+### Example 3 (Gene ENSG00000139998)
+
+This is another similar example of DEG not leading to differential H3K36me3.
+
+However, there is one additional point to make here. If the gene below is DEG, and one assumes that there is a local ChIP-seq signal difference in between cell lines on the exonic regions, how do we justify the similar ChIP-seq coverage on the remaining regions on the gene body (right most part of the figure) between the two cell lines. Should differential peaks covering those regions be true positive calls (because they cover a DE gene)? Or should they be false positive calls (because there is no difference in ChIP-seq signal)? I believe the latter is a more reasonable choice in this example. 
+
+![Example 3 (Gene ENSG00000139998)](ENSG00000139998.pdf)
+
+\newpage
+
+### Example 4 (Gene ENSG00000144852)
+
+Another example of DE gene not implying differential enrichment of H3K36me3.
+
+![Example 4 (Gene ENSG00000144852)](ENSG00000144852.pdf)
+
+\newpage
+
+### Example 5 (Gene ENSG00000160202)
+
+Another example of DE gene not implying differential enrichment of H3K36me3.
+
+![Example 5 (Gene ENSG00000160202)](ENSG00000160202.pdf)
+
+\newpage
+
+### Example 6 (Gene ENSG00000178498)
+
+Another example of DE gene not implying differential enrichment of H3K36me3.
+
+![Example 6 (Gene ENSG00000178498)](ENSG00000178498.pdf)
+
+\newpage
+
+### Example 7 (Gene ENSG00000198610)
+
+Another example of DE gene not implying differential enrichment of H3K36me3.
+
+![Example 7 (Gene ENSG00000198610)](ENSG00000198610.pdf)
+
+\newpage
+
+# Summary
+
+Based on the results above, there seems to be a positive association between DGE and differential enrichment for H3K36me3 when comparing Helas3 and Hepg2 cell lines. However, it is straightforward to find examples where DGE does not lead to differential ChIP-seq enrichment. When comparing methods regarding sensitivity/specificity, including these problematic genes in the set of gold-standard marks would lead to an invalid benchmarking study. Therefore, utilizing DE genes as a metric to compare methods regarding the genome-wide sensitivity/specificity of differential peak calls is not ideal. To pursue with this approach, one would need to manually curate the gene list while utilizing ChIP-seq data to determine the gold-standard set of true positive and true negative genes. 
+
+As detailed in our paper, we defined true and positive genes as those with differential enrichment for H3K36me3 ChIP-seq read counts. While this approach is not ideal either, it does not introduce problematic examples as those shown above. If one is concerned about the cutoff choice to define the gold-standard set of genes based on ChIP-seq counts, we show in our Supplementary Materials that our method, epigraHMM, outperforms all current differential peak callers in terms of sensitivity/specificity regardless the chosen LFC cutoff.
+
+Lastly, it is important to note here that, as H3K36me3 is a broad epigenomic mark, the calculation of sensitivity/specificity of differential peak callers should not be based on 'hits on genes'. In other words, a differential peak hitting a DE gene does not imply that the differential peak is properly covering the entire differential region of ChIP-seq read enrichment. While the 'hits on genes' could be a valid approach to compute sensitivity/specificity from *short* marks (which is, by the way, the strategy used by many other papers; see csaw's paper from Lun & Smyth (2015) for an example), it is not ideal for *broad* marks for which the enrichment of counts can be quite complex and expand through large genomic domains. Therefore, the calculation of sensitivity/specificity for marks such as H3K36me3 should be based on either the average proportion of DE gene coverage by differential peaks or on the standard window-based calculation of sensitivity/specificity. In our paper, we utilize the latter strategy.
