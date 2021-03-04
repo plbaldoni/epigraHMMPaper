@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2020.9.14)  4 MAR 2021 09:47
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2020.9.14)  5 MAR 2021 02:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1177,16 +1177,12 @@ Supporting Information C.
 (../../Supp/Table_Simulation_ReadCounts/Table_Simulation_ReadCounts_H3K36me3_1e
 +06.tex)
 
-LaTeX Warning: Reference `fig:sim1.fig3' on page 36 undefined on input line 545
-.
-
-
 LaTeX Warning: Reference `fig:sim1.fig3' on page 36 undefined on input line 547
 .
 
 [36] [37] [38]
 <../../Supp/Figure_ROC_ReadCounts/Figure_ROC_ReadCounts_H3K27me3_1e+06.pdf, id=
-452, 650.43pt x 831.105pt>
+454, 650.43pt x 831.105pt>
 File: ../../Supp/Figure_ROC_ReadCounts/Figure_ROC_ReadCounts_H3K27me3_1e+06.pdf
  Graphic file (type pdf)
 
@@ -1202,7 +1198,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 <../../Supp/Figure_ROC_ReadCounts/Figure_ROC_ReadCounts_H3K36me3_1e+06.pdf, id=
-453, 650.43pt x 831.105pt>
+455, 650.43pt x 831.105pt>
 File: ../../Supp/Figure_ROC_ReadCounts/Figure_ROC_ReadCounts_H3K36me3_1e+06.pdf
  Graphic file (type pdf)
 
@@ -1222,7 +1218,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 ]
 <../../Supp/Figure_Overview_SequencingReads/Figure_Simulation_SequencingReads_1
-.pdf, id=492, 578.16pt x 578.16pt>
+.pdf, id=493, 578.16pt x 578.16pt>
 File: ../../Supp/Figure_Overview_SequencingReads/Figure_Simulation_SequencingRe
 ads_1.pdf Graphic file (type pdf)
 
@@ -1237,7 +1233,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 <../../Supp/Figure_Overview_SequencingReads/Figure_Simulation_SequencingReads_1
-0.pdf, id=493, 578.16pt x 578.16pt>
+0.pdf, id=494, 578.16pt x 578.16pt>
 File: ../../Supp/Figure_Overview_SequencingReads/Figure_Simulation_SequencingRe
 ads_10.pdf Graphic file (type pdf)
 
@@ -1252,7 +1248,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 <../../Supp/Figure_Overview_SequencingReads/Figure_Simulation_SequencingReads_1
-5.pdf, id=494, 578.16pt x 578.16pt>
+5.pdf, id=495, 578.16pt x 578.16pt>
 File: ../../Supp/Figure_Overview_SequencingReads/Figure_Simulation_SequencingRe
 ads_15.pdf Graphic file (type pdf)
 
@@ -1267,7 +1263,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 <../../Supp/Figure_Overview_SequencingReads/Figure_Simulation_SequencingReads_2
-0.pdf, id=495, 578.16pt x 578.16pt>
+0.pdf, id=496, 578.16pt x 578.16pt>
 File: ../../Supp/Figure_Overview_SequencingReads/Figure_Simulation_SequencingRe
 ads_20.pdf Graphic file (type pdf)
 
@@ -1282,7 +1278,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 <../../Supp/Figure_Overview_SequencingReads/Figure_SequencingReads_Example.pdf,
- id=496, 650.43pt x 831.105pt>
+ id=497, 650.43pt x 831.105pt>
 File: ../../Supp/Figure_Overview_SequencingReads/Figure_SequencingReads_Example
 .pdf Graphic file (type pdf)
 
@@ -1305,7 +1301,7 @@ Supporting Information D.
 [49
 
 ]
-<../../Supp/Figure_PR_LFC/Figure_PR_LFC.pdf, id=592, 650.43pt x 831.105pt>
+<../../Supp/Figure_PR_LFC/Figure_PR_LFC.pdf, id=593, 650.43pt x 831.105pt>
 File: ../../Supp/Figure_PR_LFC/Figure_PR_LFC.pdf Graphic file (type pdf)
 
 <use ../../Supp/Figure_PR_LFC/Figure_PR_LFC.pdf>
@@ -1317,7 +1313,7 @@ ut line 636.
 LaTeX Warning: Float too large for page by 53.8972pt on input line 640.
 
 [50] [51 <../../Supp/Figure_PR_LFC/Figure_PR_LFC.pdf>]
-<../../Supp/Figure_Broad_250bp/Figure_Broad.pdf, id=612, 650.43pt x 831.105pt>
+<../../Supp/Figure_Broad_250bp/Figure_Broad.pdf, id=613, 650.43pt x 831.105pt>
 File: ../../Supp/Figure_Broad_250bp/Figure_Broad.pdf Graphic file (type pdf)
 
 <use ../../Supp/Figure_Broad_250bp/Figure_Broad.pdf>
@@ -1329,7 +1325,7 @@ Package pdftex.def Info: ../../Supp/Figure_Broad_250bp/Figure_Broad.pdf used on
 LaTeX Warning: Float too large for page by 14.28183pt on input line 654.
 
 
-<../../Supp/Figure_Broad_750bp/Figure_Broad.pdf, id=613, 650.43pt x 831.105pt>
+<../../Supp/Figure_Broad_750bp/Figure_Broad.pdf, id=614, 650.43pt x 831.105pt>
 File: ../../Supp/Figure_Broad_750bp/Figure_Broad.pdf Graphic file (type pdf)
 
 <use ../../Supp/Figure_Broad_750bp/Figure_Broad.pdf>
@@ -1341,7 +1337,7 @@ Package pdftex.def Info: ../../Supp/Figure_Broad_750bp/Figure_Broad.pdf used on
 LaTeX Warning: Float too large for page by 14.28183pt on input line 662.
 
 
-<../../Supp/Figure_Broad_1000bp/Figure_Broad.pdf, id=614, 650.43pt x 831.105pt>
+<../../Supp/Figure_Broad_1000bp/Figure_Broad.pdf, id=615, 650.43pt x 831.105pt>
 File: ../../Supp/Figure_Broad_1000bp/Figure_Broad.pdf Graphic file (type pdf)
 <use ../../Supp/Figure_Broad_1000bp/Figure_Broad.pdf>
 Package pdftex.def Info: ../../Supp/Figure_Broad_1000bp/Figure_Broad.pdf used o
@@ -1352,7 +1348,7 @@ n input line 666.
 LaTeX Warning: Float too large for page by 14.28183pt on input line 670.
 
 
-<../../Supp/Figure_Narrow_500bp/Figure_Narrow.pdf, id=615, 650.43pt x 831.105pt
+<../../Supp/Figure_Narrow_500bp/Figure_Narrow.pdf, id=616, 650.43pt x 831.105pt
 >
 File: ../../Supp/Figure_Narrow_500bp/Figure_Narrow.pdf Graphic file (type pdf)
  <use ../../Supp/Figure_Narrow_500bp/Figure_Narrow.pdf>
@@ -1360,7 +1356,7 @@ Package pdftex.def Info: ../../Supp/Figure_Narrow_500bp/Figure_Narrow.pdf used
 on input line 673.
 (pdftex.def)             Requested size: 422.77449pt x 540.21185pt.
 
-<../../Supp/Figure_Narrow_750bp/Figure_Narrow.pdf, id=616, 650.43pt x 831.105pt
+<../../Supp/Figure_Narrow_750bp/Figure_Narrow.pdf, id=617, 650.43pt x 831.105pt
 >
 File: ../../Supp/Figure_Narrow_750bp/Figure_Narrow.pdf Graphic file (type pdf)
  <use ../../Supp/Figure_Narrow_750bp/Figure_Narrow.pdf>
@@ -1368,7 +1364,7 @@ Package pdftex.def Info: ../../Supp/Figure_Narrow_750bp/Figure_Narrow.pdf used
 on input line 679.
 (pdftex.def)             Requested size: 422.77449pt x 540.21185pt.
 
-<../../Supp/Figure_Narrow_1000bp/Figure_Narrow.pdf, id=617, 650.43pt x 831.105p
+<../../Supp/Figure_Narrow_1000bp/Figure_Narrow.pdf, id=618, 650.43pt x 831.105p
 t>
 File: ../../Supp/Figure_Narrow_1000bp/Figure_Narrow.pdf Graphic file (type pdf)
 
@@ -1392,7 +1388,7 @@ Overfull \hbox (7.29669pt too wide) in paragraph at lines 690--690
  []
 
 [59]
-<../../Supp/Figure_Ternary/Figure_Ternary.pdf, id=720, 650.43pt x 831.105pt>
+<../../Supp/Figure_Ternary/Figure_Ternary.pdf, id=721, 650.43pt x 831.105pt>
 File: ../../Supp/Figure_Ternary/Figure_Ternary.pdf Graphic file (type pdf)
 
 <use ../../Supp/Figure_Ternary/Figure_Ternary.pdf>
@@ -1400,7 +1396,7 @@ Package pdftex.def Info: ../../Supp/Figure_Ternary/Figure_Ternary.pdf used on i
 nput line 698.
 (pdftex.def)             Requested size: 422.77449pt x 540.21185pt.
  [60] [61 <../../Supp/Figure_Ternary/Figure_Ternary.pdf>]
-<../../Supp/Figure_MultiMarks/Figure_MultiMarks.pdf, id=776, 325.215pt x 415.55
+<../../Supp/Figure_MultiMarks/Figure_MultiMarks.pdf, id=777, 325.215pt x 415.55
 25pt>
 File: ../../Supp/Figure_MultiMarks/Figure_MultiMarks.pdf Graphic file (type pdf
 )
@@ -1432,7 +1428,7 @@ LaTeX Warning: There were multiply-defined labels.
 Here is how much of TeX's memory you used:
  18418 strings out of 494820
  323997 string characters out of 3178049
- 488227 words of memory out of 3000000
+ 488226 words of memory out of 3000000
  21012 multiletter control sequences out of 15000+200000
  19017 words of font info for 72 fonts, out of 3000000 for 9000
  198 hyphenation exceptions out of 8191
@@ -1454,10 +1450,10 @@ e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texli
 ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/tex
 mf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/share/texlive/texmf-dis
 t/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on webappendix.pdf (67 pages, 7035386 bytes).
+Output written on webappendix.pdf (67 pages, 7035398 bytes).
 PDF statistics:
- 901 PDF objects out of 1000 (max. 8388607)
- 746 compressed objects within 8 object streams
+ 902 PDF objects out of 1000 (max. 8388607)
+ 747 compressed objects within 8 object streams
  158 named destinations out of 1000 (max. 500000)
  347 words of extra memory for PDF output out of 10000 (max. 10000000)
 
