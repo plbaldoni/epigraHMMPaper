@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2020.9.14)  4 MAR 2021 10:44
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2020.9.14)  6 MAR 2021 00:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -562,13 +562,16 @@ Overfull \hbox (9.24994pt too wide) has occurred while \output is active
 \OT1/cmr/m/n/9 16
  []
 
-[16]
+[16] (./paper.bbl
+Underfull \vbox (badness 1097) has occurred while \output is active []
+
+
 Overfull \hbox (9.24994pt too wide) has occurred while \output is active
 \OT1/cmr/m/n/9 17
  []
 
-[17] (./paper.bbl
-Underfull \vbox (badness 1226) has occurred while \output is active []
+[17]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Overfull \hbox (9.24994pt too wide) has occurred while \output is active
@@ -583,7 +586,13 @@ Overfull \hbox (9.24994pt too wide) has occurred while \output is active
 \OT1/cmr/m/n/9 19
  []
 
-[19]) AED endfloat: Processing end Figures and Tables
+[19])
+Overfull \hbox (45.62448pt too wide) in paragraph at lines 252--253
+\OT1/cmr/m/n/12 mented as an R pack-age and it is avail-able for down-load at h
+ttps://github.com/plbaldoni/epigraHMM. 
+ []
+
+AED endfloat: Processing end Figures and Tables
 Overfull \hbox (9.24994pt too wide) has occurred while \output is active
 \OT1/cmr/m/n/9 20
  []
@@ -680,13 +689,13 @@ Overfull \hbox (9.24994pt too wide) has occurred while \output is active
 
 [26] (./paper.aux) ) 
 Here is how much of TeX's memory you used:
- 5381 strings out of 494820
- 76328 string characters out of 3178049
- 148618 words of memory out of 3000000
- 8433 multiletter control sequences out of 15000+200000
+ 5384 strings out of 494820
+ 76382 string characters out of 3178049
+ 148681 words of memory out of 3000000
+ 8436 multiletter control sequences out of 15000+200000
  20811 words of font info for 76 fonts, out of 3000000 for 9000
  198 hyphenation exceptions out of 8191
- 44i,15n,42p,1948b,374s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 44i,15n,42p,1950b,374s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
 cmextra/cmbsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
 m/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx
@@ -708,7 +717,7 @@ live/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/t
 exmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-d
 ist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/share/texlive/texmf-dist/fon
 ts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on paper.pdf (27 pages, 902909 bytes).
+Output written on paper.pdf (27 pages, 903493 bytes).
 PDF statistics:
  321 PDF objects out of 1000 (max. 8388607)
  217 compressed objects within 3 object streams

@@ -5,7 +5,7 @@
 Allhoff, M., Ser{\'e}, K., F.~Pires, J., Zenke, M., and G.~Costa, I. (2016).
 \newblock Differential peak calling of chip-seq signals with replicates with
   thor.
-\newblock {\em Nucleic acids research} {\bf 44,} e153--e153.
+\newblock {\em Nucleic Acids Research} {\bf 44,} e153--e153.
 
 \bibitem[\protect\citeauthoryear{Chen, Wang, Qin, and Wu}{Chen
   et~al.}{2015}]{chen2015novel}
@@ -19,7 +19,7 @@ Chen, L., Wang, C., Qin, Z.~S., and Wu, H. (2015).
 Clouaire, T., Webb, S., and Bird, A. (2014).
 \newblock Cfp1 is required for gene expression-dependent h3k4 trimethylation
   and h3k9 acetylation in embryonic stem cells.
-\newblock {\em Genome biology} {\bf 15,} 451.
+\newblock {\em Genome Biology} {\bf 15,} 451.
 
 \bibitem[\protect\citeauthoryear{Creyghton, Cheng, Welstead, Kooistra, Carey,
   Steine, Hanna, Lodato, Frampton, Sharp, et~al\mbox{.}}{Creyghton
@@ -36,14 +36,14 @@ Creyghton, M.~P., Cheng, A.~W., Welstead, G.~G., Kooistra, T., Carey, B.~W.,
   et~al.}{2001}]{efron2001empirical}
 Efron, B., Tibshirani, R., Storey, J.~D., and Tusher, V. (2001).
 \newblock Empirical bayes analysis of a microarray experiment.
-\newblock {\em Journal of the American statistical association} {\bf 96,}
+\newblock {\em Journal of the American Statistical Association} {\bf 96,}
   1151--1160.
 
 \bibitem[\protect\citeauthoryear{Ernst and Kellis}{Ernst and
   Kellis}{2012}]{ernst2012chromhmm}
 Ernst, J. and Kellis, M. (2012).
 \newblock Chromhmm: automating chromatin-state discovery and characterization.
-\newblock {\em Nature methods} {\bf 9,} 215--216.
+\newblock {\em Nature Methods} {\bf 9,} 215--216.
 
 \bibitem[\protect\citeauthoryear{Heinz, Benner, Spann, Bertolino, Lin, Laslo,
   Cheng, Murre, Singh, and Glass}{Heinz et~al.}{2010}]{heinz2010simple}
@@ -51,7 +51,7 @@ Heinz, S., Benner, C., Spann, N., Bertolino, E., Lin, Y.~C., Laslo, P., Cheng,
   J.~X., Murre, C., Singh, H., and Glass, C.~K. (2010).
 \newblock Simple combinations of lineage-determining transcription factors
   prime cis-regulatory elements required for macrophage and b cell identities.
-\newblock {\em Molecular cell} {\bf 38,} 576--589.
+\newblock {\em Molecular Cell} {\bf 38,} 576--589.
 
 \bibitem[\protect\citeauthoryear{Hocking, Goerner-Potvin, Morin, Shao,
   Pastinen, and Bourque}{Hocking et~al.}{2016}]{hocking2016optimizing}
@@ -74,7 +74,7 @@ Kim, J., Lee, Y., Lu, X., Song, B., Fong, K.-W., Cao, Q., Licht, J.~D., Zhao,
   J.~C., and Yu, J. (2018).
 \newblock Polycomb-and methylation-independent roles of ezh2 as a transcription
   activator.
-\newblock {\em Cell reports} {\bf 25,} 2808--2820.
+\newblock {\em Cell Reports} {\bf 25,} 2808--2820.
 
 \bibitem[\protect\citeauthoryear{Landt, Marinov, Kundaje, Kheradpour, Pauli,
   Batzoglou, Bernstein, Bickel, Brown, Cayting, et~al\mbox{.}}{Landt
@@ -84,7 +84,7 @@ Landt, S.~G., Marinov, G.~K., Kundaje, A., Kheradpour, P., Pauli, F.,
   et~al. (2012).
 \newblock Chip-seq guidelines and practices of the encode and modencode
   consortia.
-\newblock {\em Genome research} {\bf 22,} 1813--1831.
+\newblock {\em Genome Research} {\bf 22,} 1813--1831.
 
 \bibitem[\protect\citeauthoryear{Liu, Wang, Liu, Li, Li, Kou, Chen, Zhao, Gao,
   Wang, et~al\mbox{.}}{Liu et~al.}{2016}]{liu2016distinct}
@@ -99,26 +99,32 @@ Liu, X., Wang, C., Liu, W., Li, J., Li, C., Kou, X., Chen, J., Zhao, Y., Gao,
 Lun, A.~T. and Smyth, G.~K. (2015).
 \newblock csaw: a bioconductor package for differential binding analysis of
   chip-seq data using sliding windows.
-\newblock {\em Nucleic acids research} {\bf 44,} e45--e45.
+\newblock {\em Nucleic Acids Research} {\bf 44,} e45--e45.
+
+\bibitem[\protect\citeauthoryear{Ma, Castillo-Davis, Zhong, and Liu}{Ma
+  et~al.}{2006}]{ma2006data}
+Ma, P., Castillo-Davis, C.~I., Zhong, W., and Liu, J.~S. (2006).
+\newblock A data-driven clustering method for time course gene expression data.
+\newblock {\em Nucleic Acids Research} {\bf 34,} 1261--1269.
 
 \bibitem[\protect\citeauthoryear{Margueron and Reinberg}{Margueron and
   Reinberg}{2011}]{margueron2011polycomb}
 Margueron, R. and Reinberg, D. (2011).
 \newblock The polycomb complex prc2 and its mark in life.
-\newblock {\em Nature} {\bf 469,} 343.
+\newblock {\em Nature} {\bf 469,} 343--349.
 
 \bibitem[\protect\citeauthoryear{Portela and Esteller}{Portela and
   Esteller}{2010}]{portela2010epigenetic}
 Portela, A. and Esteller, M. (2010).
 \newblock Epigenetic modifications and human disease.
-\newblock {\em Nature biotechnology} {\bf 28,} 1057.
+\newblock {\em Nature Biotechnology} {\bf 28,} 1057.
 
 \bibitem[\protect\citeauthoryear{Shen, Shao, Liu, Maze, Feng, and Nestler}{Shen
   et~al.}{2013}]{shen2013diffreps}
 Shen, L., Shao, N.-Y., Liu, X., Maze, I., Feng, J., and Nestler, E.~J. (2013).
 \newblock diffreps: detecting differential chromatin modification sites from
   chip-seq data with biological replicates.
-\newblock {\em PloS one} {\bf 8,} e65598.
+\newblock {\em PLOS ONE} {\bf 8,} e65598.
 
 \bibitem[\protect\citeauthoryear{Shukla, Kavak, Gregory, Imashimizu,
   Shutinoski, Kashlev, Oberdoerffer, Sandberg, and Oberdoerffer}{Shukla
@@ -139,28 +145,28 @@ Song, Q. and Smith, A.~D. (2011).
   Brown}{2011}]{stark2011diffbind}
 Stark, R. and Brown, G. (2011).
 \newblock Diffbind: differential binding analysis of chip-seq peak data.
-\newblock {\em R package version} {\bf 100,} 4--3.
+\newblock {\em R Package Version} {\bf 100,} 4--3.
 
 \bibitem[\protect\citeauthoryear{Starmer and Magnuson}{Starmer and
   Magnuson}{2016}]{starmer2016detecting}
 Starmer, J. and Magnuson, T. (2016).
 \newblock Detecting broad domains and narrow peaks in chip-seq data with
   hiddendomains.
-\newblock {\em BMC bioinformatics} {\bf 17,} 144.
+\newblock {\em BMC Bioinformatics} {\bf 17,} 144.
 
 \bibitem[\protect\citeauthoryear{Steinhauser, Kurzawa, Eils, and
   Herrmann}{Steinhauser et~al.}{2016}]{steinhauser2016comprehensive}
 Steinhauser, S., Kurzawa, N., Eils, R., and Herrmann, C. (2016).
 \newblock A comprehensive comparison of tools for differential chip-seq
   analysis.
-\newblock {\em Briefings in bioinformatics} {\bf 17,} 953--966.
+\newblock {\em Briefings in Bioinformatics} {\bf 17,} 953--966.
 
 \bibitem[\protect\citeauthoryear{Teng and Irizarry}{Teng and
   Irizarry}{2017}]{teng2017accounting}
 Teng, M. and Irizarry, R.~A. (2017).
 \newblock Accounting for gc-content bias reduces systematic errors and batch
   effects in chip-seq data.
-\newblock {\em Genome research} {\bf 27,} 1930--1938.
+\newblock {\em Genome Research} {\bf 27,} 1930--1938.
 
 \bibitem[\protect\citeauthoryear{Whitfield, Sherlock, Saldanha, Murray, Ball,
   Alexander, Matese, Perou, Hurt, Brown, et~al\mbox{.}}{Whitfield
@@ -178,6 +184,6 @@ Whitfield, M.~L., Sherlock, G., Saldanha, A.~J., Murray, J.~I., Ball, C.~A.,
 Zhang, Y., Liu, T., Meyer, C.~A., Eeckhoute, J., Johnson, D.~S., Bernstein,
   B.~E., Nusbaum, C., Myers, R.~M., Brown, M., Li, W., et~al. (2008).
 \newblock {Model-based analysis of ChIP-Seq (MACS)}.
-\newblock {\em Genome biology} {\bf 9,} R137.
+\newblock {\em Genome Biology} {\bf 9,} R137.
 
 \end{thebibliography}

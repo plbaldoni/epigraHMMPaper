@@ -136,17 +136,17 @@ In this appendix, we present a summary of data accession codes, data pre-process
 \section{Data accession codes}
 
 \begin{table}[h!]
-\footnotesize
+\tiny
 \centering
 \caption{GEO sample accession codes of the analyzed data from the ENCODE Consortium}
-\begin{tabular}{lccccccc}
+\begin{tabular}{lcccccccc}
 \hline
-Cell Line & H3K27me3 & H3K36me3 & EZH2 & H3K4me3 & H3K27ac & CTCF & RNA-seq\\
+Cell Line & Control & H3K27me3 & H3K36me3 & EZH2 & H3K4me3 & H3K27ac & CTCF & RNA-seq\\
 \hline
-H1hesc & GSM733748 & GSM733725 & GSM1003524 & GSM733657 & GSM733718 & GSM733672 & GSM758566\\
-HelaS3 & GSM733696 & GSM733711 & GSM1003520 & GSM733682 & GSM733684 & GSM733785 & GSM765402\\
-Hepg2 & GSM733754 & GSM733685 & GSM1003487 & GSM733737 & GSM733743 & GSM733645 & GSM758575\\
-Huvec & GSM733688 & GSM733757 & GSM1003518 & GSM733673 & GSM733691 & GSM733716 & GSM758563\\
+H1hesc & GSM733770 & GSM733748 & GSM733725 & GSM1003524 & GSM733657 & GSM733718 & GSM733672 & GSM758566\\
+HelaS3 & GSM733659 & GSM733696 & GSM733711 & GSM1003520 & GSM733682 & GSM733684 & GSM733785 & GSM765402\\
+Hepg2 & GSM733732 & GSM733754 & GSM733685 & GSM1003487 & GSM733737 & GSM733743 & GSM733645 & GSM758575\\
+Huvec & GSM733715 & GSM733688 & GSM733757 & GSM1003518 & GSM733673 & GSM733691 & GSM733716 & GSM758563\\
 \hline
 \end{tabular}
 \end{table}
@@ -239,6 +239,8 @@ For ChIPComp and DiffBind, candidate peaks were called in advance using MACS2 wi
 \item MACS2: \textit{macs2 callpeak -f BAM -g 2.80e+09 -B 'options' -t 'sample' -c 'control' --outdir 'output' -n 'filename'}
 \end{itemize}
 such that $options = \{\text{--broad --broad-cutoff 0.1}\}$ if H3K27me3, H3K36me3, or EZH2, or $options = \{\text{-q 0.01}\}$ otherwise.
+
+All ENCODE data analysis presented in the main text, and in this Web Appendix, were adjusted for input control samples in methods that are designed to do so. Specifically, differential peaks from ChIPComp, DiffBind, diffReps, and THOR were obtained on ChIP-seq samples while passing input control samples in their software call as an optional input argument argument. In contrast, input control samples were not considered in epigraHMM, csaw, and RSEG analyses.
 
 \section{Software}
 epigraHMM was implemented in a R package that is available on the GitHub repository \if1\blind{https://github.com/plbaldoni/epigraHMM}\fi \if0\blind{(BLINDED FOR REVIEW)}\fi.
