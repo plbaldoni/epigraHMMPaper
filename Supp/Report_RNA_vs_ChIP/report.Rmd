@@ -331,69 +331,61 @@ ggplot(dt.lfc.issues) +
   theme_bw()
 ```
 
-## UCSC Genome Browser view os problematic cases
+## UCSC Genome Browser view of problematic cases
 
 Below, I present a few snap shots from the UCSC Genome Browser of problematic cases from the `dt.lfc.issues` table above.
 
-### Example 1: Gene ENSG00000113389
+### Example 1 (Gene ENSG00000137285)
 
-Here we have an example of a DE gene without differential enrichment of H3K36me3. Note that, in Helas3, enrichment on the gene body is no different from enrichment on the intergenic (background) region. Therefore, observed differences in ChIP-seq are simply a sequencing depth artifact and would have to be accounted by the peak caller with proper normalization methods. If used as a benchmarking mark, differential peaks covering this genes would be incorrectly considered as a true positive calls.
+Here we have an example of a gene that is expressed in both Helas3 and Hepg2 but the gene expression level is different between cell lines.
 
-![Example 1 (Gene ENSG00000113389)](ENSG00000113389.pdf)
+There are two problems with the example. First, DEG level does not lead to differential ChIP-seq enrichment. The enrichment for H3K36me3 is similar in both cell lines. Second, it appears that the enrichment of H3K36me3 reads on the gene body is no different than intergenic (background) region. In other words, RNA-seq abundance has no association with ChIP-seq H3K36me3 enrichment of read counts.
 
-\newpage
+If considered as a benchmarking mark, this gene would be considered as a true positive (DE gene). One would expect differential peak callers to not call differential peaks on this region. If so, this gene would lead to an increased false negative rate in methods that correctly call this region as consensus background (all methods but RSEG). As we can see, RSEG would have an artificial gain in sensitivity by calling this entire region as differential when, in fact, there is no difference in H3K36me3 enrichment.
 
-### Example 2 (Gene ENSG00000137285)
-
-Another problematic example here. We have a gene that is expressed in both cell lines but the gene expression level is different. 
-
-There are two problems with the example. First, DEG level does not lead to differential ChIP-seq enrichment. The enrichment for H3K36me3 is similar in both cell lines. Second, it appears that the enrichment of H3K36me3 reads on the gene body is no different than intergenic (background) region.
-
-If considered as a benchmarking mark, this gene would be considered as a true positive. One would expect differential peak callers to not call differential peaks on this region. If so, this gene would lead to an increased false negative rate in methods that correctly call this region as consensus background.
-
-![Example 2 (Gene ENSG00000137285)](ENSG00000137285.pdf)
+![Example 1 (Gene ENSG00000137285)](ENSG00000137285.pdf)
 
 \newpage
 
-### Example 3 (Gene ENSG00000139998)
+### Example 2 (Gene ENSG00000139998)
 
 This is another similar example of DEG not leading to differential H3K36me3.
 
-However, there is one additional point to make here. If the gene below is DEG, and one assumes that there is a local ChIP-seq signal difference in between cell lines on the exonic regions, how do we justify the similar ChIP-seq coverage on the remaining regions on the gene body (right most part of the figure) between the two cell lines. Should differential peaks covering those regions be true positive calls (because they cover a DE gene)? Or should they be false positive calls (because there is no difference in ChIP-seq signal)? I believe the latter is a more reasonable choice in this example. 
+However, there is one additional point to be made here. If the gene below is DEG, and one assumes that there is a local ChIP-seq signal difference in between cell lines on the exonic regions, how do we justify the similar ChIP-seq coverage on the remaining regions on the gene body (right most part of the figure) between the two cell lines. Should differential peaks covering those regions be true positive calls (because they cover a DE gene)? Or should they be false positive calls (because there is no difference in ChIP-seq signal)? I believe the latter is a more reasonable choice in this example. 
 
-![Example 3 (Gene ENSG00000139998)](ENSG00000139998.pdf)
-
-\newpage
-
-### Example 4 (Gene ENSG00000144852)
-
-Another example of DE gene not implying differential enrichment of H3K36me3.
-
-![Example 4 (Gene ENSG00000144852)](ENSG00000144852.pdf)
+![Example 2 (Gene ENSG00000139998)](ENSG00000139998.pdf)
 
 \newpage
 
-### Example 5 (Gene ENSG00000160202)
+### Example 3 (Gene ENSG00000144852)
 
 Another example of DE gene not implying differential enrichment of H3K36me3.
 
-![Example 5 (Gene ENSG00000160202)](ENSG00000160202.pdf)
+![Example 3 (Gene ENSG00000144852)](ENSG00000144852.pdf)
 
 \newpage
 
-### Example 6 (Gene ENSG00000178498)
+### Example 4 (Gene ENSG00000160202)
 
 Another example of DE gene not implying differential enrichment of H3K36me3.
 
-![Example 6 (Gene ENSG00000178498)](ENSG00000178498.pdf)
+![Example 4 (Gene ENSG00000160202)](ENSG00000160202.pdf)
 
 \newpage
 
-### Example 7 (Gene ENSG00000198610)
+### Example 5 (Gene ENSG00000178498)
 
 Another example of DE gene not implying differential enrichment of H3K36me3.
 
-![Example 7 (Gene ENSG00000198610)](ENSG00000198610.pdf)
+![Example 5 (Gene ENSG00000178498)](ENSG00000178498.pdf)
+
+\newpage
+
+### Example 6 (Gene ENSG00000198610)
+
+Another example of DE gene not implying differential enrichment of H3K36me3.
+
+![Example 6 (Gene ENSG00000198610)](ENSG00000198610.pdf)
 
 \newpage
 
