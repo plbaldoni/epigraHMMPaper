@@ -30,6 +30,8 @@ Sim/Control/Analysis/
 !Latex/paper/paper.pdf 
 !Supp/Report_RNA_vs_ChIP/report.pdf
 
+Latex/letter/letter.Rmd
+
 Latex/appendix/cache
 
 Sim/ReadCounts/Code_*
