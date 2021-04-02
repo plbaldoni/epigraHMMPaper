@@ -2,7 +2,7 @@
 \begin{center}
 \includegraphics[scale = 0.75]{../../Main/Figure_epigraHMM/Figure_epigraHMM.pdf}
 \end{center}
-\caption{At the top, differential peak calls from current methods (under false discovery rate control of 0.05) for the histone modification H3K27me3 among cell lines Helas3, Hepg2, and Huvec. Shaded regions indicate  observed differential enrichment, and each vertical line type bordering each region represents a different combinatorial pattern of enrichment across cell lines. Optimal methods would call broad peaks inside shaded regions and no peaks outside them. At the bottom, general overview of the presented method for simultaneous detection and classification of broad and short differential regions of enrichment. This figure appears in color in the electronic version of this article.
+\caption{At the top, differential peak calls from current methods (under false discovery rate control of 0.05) for the histone modification H3K27me3 among cell lines Helas3, Hepg2, and Huvec. Shaded regions indicate  observed differential enrichment, and each vertical line type bordering each region represents a different combinatorial pattern of enrichment across cell lines. Optimal methods would call broad peaks inside shaded regions and no peaks outside them. At the bottom, general overview of the presented method for simultaneous detection and classification of broad and short differential regions of enrichment. This figure appears in color in the electronic version of this article, and any mention of color refers to that version.
 \label{fig:fig_motivation}}
 \end{figure}
 \efloatseparator
@@ -11,7 +11,7 @@
 \begin{center}
 \includegraphics[scale = 0.65]{../../Main/Figure_Simulation_SequencingReads/Figure_Simulation_SequencingReads.pdf}
 \end{center}
-\caption{Sequencing read-based simulation from the csaw pipeline. (A): average observed sensitivity and FDR for various methods. (B): scatter plot of average ratio of called and simulated peaks (y-axis) and number of called peaks intersecting true differential regions (x-axis). (C): box plot of computing time (in minutes) for various algorithms. (D): an example of differential peak calls under a nominal FDR control of 0.05. Shaded areas indicate true differential peaks. This figure appears in color in the electronic version of this article.
+\caption{Sequencing read-based simulation from the csaw pipeline. (A): average observed sensitivity and FDR for various methods. (B): scatter plot of average ratio of called and simulated peaks (y-axis) and number of called peaks intersecting true differential regions (x-axis). (C): box plot of computing time (in minutes) for various algorithms. (D): an example of differential peak calls under a nominal FDR control of 0.05. Shaded areas indicate true differential peaks. This figure appears in color in the electronic version of this article, and any mention of color refers to that version.
 \label{fig:fig_simulation_csaw}}
 \end{figure}
 \efloatseparator
@@ -20,7 +20,7 @@
 \begin{center}
 \includegraphics[scale = 0.65]{../../Main/Figure_Broad/Figure_Broad.pdf}
 \end{center}
-\caption{Analysis of broad ENCODE data. (A): ROC curves of DPCs covering differentially enriched genes ($|\text{LFC}|>2$ of ChIP-seq counts) for H3K36me3. (C): sensitivity (y-axis) and average H3K36me3 differential peak size (kbp; x-axis) of various methods under different nominal FDR thresholds (observed FDR annotated next to data points). (B), (D), and (F): example of peak calls from H3K36me3, H3K27me3, and EZH2, respectively, under a nominal FDR control of 0.05. Posterior probabilities of the HMM differential state are shown at the bottom of each panel. (E): computing time and peak memory usage of genome-wide analysis from various methods. This figure appears in color in the electronic version of this article.
+\caption{Analysis of broad ENCODE data. (A): ROC curves of DPCs covering differentially enriched genes ($|\text{LFC}|>2$ of ChIP-seq counts) for H3K36me3. (C): sensitivity (y-axis) and average H3K36me3 differential peak size (kbp; x-axis) of various methods under different nominal FDR thresholds (observed FDR annotated next to data points). (B), (D), and (F): example of peak calls from H3K36me3, H3K27me3, and EZH2, respectively, under a nominal FDR control of 0.05. Posterior probabilities of the HMM differential state are shown at the bottom of each panel. Shaded areas highlight differential peak regions. (E): computing time and peak memory usage of genome-wide analysis from various methods. This figure appears in color in the electronic version of this article, and any mention of color refers to that version.
 \label{fig:fig_broad}}
 \end{figure}
 \efloatseparator
@@ -29,7 +29,7 @@
 \begin{center}
 \includegraphics[scale = 0.65]{../../Main/Figure_Narrow/Figure_Narrow.pdf}
 \end{center}
-\caption{Analysis of short ENCODE data. (A) and (C): median LFC and correlation between cell lines of ChIP-seq counts from differential peaks for CTCF and H3K4me3, respectively. (B), (D), and (F): example of peak calls from CTCF, H3K4me3, and H3K27ac, respectively. Posterior probabilities of the HMM differential state are shown at the bottom of each panel. (E): computing time and peak memory usage of genome-wide analysis from various methods. Results are shown under a nominal FDR control of 0.05. This figure appears in color in the electronic version of this article.
+\caption{Analysis of short ENCODE data. (A) and (C): median LFC and correlation between cell lines of ChIP-seq counts from differential peaks for CTCF and H3K4me3, respectively. (B), (D), and (F): example of peak calls from CTCF, H3K4me3, and H3K27ac, respectively. Posterior probabilities of the HMM differential state are shown at the bottom of each panel. Shaded areas highlight differential peak regions. (E): computing time and peak memory usage of genome-wide analysis from various methods. Results are shown under a nominal FDR control of 0.05. This figure appears in color in the electronic version of this article, and any mention of color refers to that version.
 \label{fig:fig_sharp}}
 \end{figure}
 \efloatseparator
@@ -38,6 +38,6 @@
 \begin{center}
 \includegraphics[scale = 0.7]{../../Main/Figure_MultiMarks/Figure_MultiMarks.pdf}
 \end{center}
-\caption{Genomic chromatin state segmentation and classification. (A): distribution of base pairs (y-axis) and the Viterbi sequence of states (x-axis). (B): estimated mixture probabilities and the associated differential combinatorial patterns. (C): choice of best model with two mixture components via BIC. (D): density estimate from expression of genes intersecting differential peaks associated with the enrichment of H3K36me3 alone or the enrichment of H3K27me3 and EZH2 in consensus. (E): cycle-regulated genes and their associated average mixture posterior probabilities associated with differential H3K36me3 enrichment pattern of overlapping differential peaks. (F): example of a genomic region with differential peaks and genes, colored according to their classification and expression levels, respectively. This figure appears in color in the electronic version of this article.
+\caption{Genomic chromatin state segmentation and classification. (A): distribution of base pairs (y-axis) and the Viterbi sequence of states (x-axis). (B): estimated mixture probabilities and the associated differential combinatorial patterns. (C): choice of best model with two mixture components via BIC. (D): density estimate from expression of genes intersecting differential peaks associated with the enrichment of H3K36me3 alone or the enrichment of H3K27me3 and EZH2 in consensus. (E): cell cycle-regulated genes and their associated average mixture posterior probabilities associated with differential H3K36me3 enrichment pattern of overlapping differential peaks. (F): example of a genomic region with differential peaks and genes, colored according to their classification and expression levels, respectively. This figure appears in color in the electronic version of this article, and any mention of color refers to that version.
 \label{fig:fig_multimarks}}
 \end{figure}

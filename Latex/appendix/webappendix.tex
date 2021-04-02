@@ -105,14 +105,14 @@ urlcolor=blue}
 \if1\blind{
 \date{%
 $^*$Department of Biostatistics, University of North Carolina at Chapel Hill, Chapel Hill, North Carolina, USA\\%
-\today
+%\today
 }
 \title{{Supporting Information for 'Efficient Detection and Classification of Epigenomic Changes Under Multiple Conditions' by Pedro L. Baldoni$^*$, Naim U. Rashid$^*$, and Joseph G. Ibrahim$^*$}}
 } \fi
 
 \if0\blind{
 \date{%
-\today
+%\today
 }
 \title{{Supporting Information for 'Efficient Detection and Classification of Epigenomic Changes Under Multiple Conditions'}}
 } \fi
@@ -239,6 +239,14 @@ For ChIPComp and DiffBind, candidate peaks were called in advance using MACS2 wi
 \item MACS2: \textit{macs2 callpeak -f BAM -g 2.80e+09 -B 'options' -t 'sample' -c 'control' --outdir 'output' -n 'filename'}
 \end{itemize}
 such that $options = \{\text{--broad --broad-cutoff 0.1}\}$ if H3K27me3, H3K36me3, or EZH2, or $options = \{\text{-q 0.01}\}$ otherwise.
+
+In the chromatin segmentation analysis, ChromHMM was run with the commands:
+\begin{itemize}
+\item ChromHMM-BinarizeBed: \textit{java -jar $\sim$/ChromHMM/ChromHMM.jar BinarizeBam -b 500 -c 'controldir' ~/ChromHMM/CHROMSIZES/hg19.txt 'inputbamdir' 'input.txt' 'outputbinarydir'} and
+\item ChromHMM-LearnModel: \textit{unset DISPLAY \&\& java -jar $\sim$/ChromHMM/ChromHMM.jar LearnModel -p 0 -b 500 'outputbinarydir' 'outputdir' 'numstates' hg19},
+\end{itemize}
+
+such that 'controldir' is the directory with control experiments, 'inputbamdir' is the directory with input bam files, 'input.txt' is an experimental table, 'outputbinarydir' is the output directory with binarized files, 'outputdir' is the model output, and 'numstates' is the number of states in the model. 
 
 All ENCODE data analysis presented in the main text, and in this Web Appendix, were adjusted for input control samples in methods that are designed to do so. Specifically, differential peaks from ChIPComp, DiffBind, diffReps, and THOR were obtained on ChIP-seq samples while passing input control samples in their software call as an optional input argument argument. In contrast, input control samples were not considered in epigraHMM, csaw, and RSEG analyses.
 

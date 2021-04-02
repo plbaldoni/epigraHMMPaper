@@ -1,0 +1,39 @@
+---
+title: "Response Letter for Manuscript ID BIOM2020344P.R1 - 'Efficient Detection and Classification of Epigenomic Changes Under Multiple Conditions'"
+author: "Pedro L. Baldoni, Naim U. Rashid, Joseph G. Ibrahim"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: pdf_document
+urlcolor: blue
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Dear reviewers,
+
+We appreciate the constructive comments on our paper "Efficient Detection and Classification of Epigenomic Changes Under Multiple Conditions" and the positive review. Detailed point-by-point responses to the outstanding comments/questions are provided below.
+
+# Reviewer 1
+
+1.	In Figure 4B, D, F, there is missing color legend for the gray which represents the differential peak regions.
+
+> We have added the statement 'Shaded areas highlight differential peak regions' in the caption of Figures 3 and 4.
+
+2.	In the new Figure 5E, the cycle is better to be changed to cell cycle, also for the “cell life cycle” and “cycle” in the main text.
+
+> We have replaced 'cycle' to 'cell cycle' in the referenced parts of our paper (y-axis of Figure 5E, caption of Figure 5, and in the second to last paragraph os Section 5.3)
+
+3.	Though the chromHMM running command is provided in https://github.com/plbaldoni/epigraHMMPaper, there is lacking description of the chromHMM running commands in the web appendices A. 
+
+> We have added the utilized ChromHMM commands in the referenced Web Appendix A.
+
+> For a fair comparison between our method epigraHMM and ChromHMM, Figure 6F of our paper now reports results from ChromHMM with 4 chromatin states. Previously, we were reporting ChromHMM with only 3 states. As we detail in our paper, one should expect to observe 4 chromatin states in the joint analysis of H3K36me3, H3K37me3 and EZH2. That is:  (1) consensus background across all three marks, (2) consensus enrichment across all three marks, (3) enrichment of H3K36me3 alone, and (4) co-enrichment of H3K27me3 and EZH2. epigraHMM models states 3 and 4 into a single HMM state through its mixture model. Conversely, ChromHMM models each of the four states separately. The overall interpretation of Figure 6F remains unchanged.
+
+4.	https://github.com/plbaldoni/epigraHMM might include software installation and tutorials in the readme, and author can consider upload onto Bioconductor for better distribution of the package. The GitHub link https://github.com/plbaldoni/epigraHMMPaper can be added in the Supporting Information in the main text as well. 
+
+> Thank you for the suggestion. Our R package is currently in the submisison process of the Bioconductor project (https://github.com/Bioconductor/Contributions/issues/1993). We hope to have our package included in the next Bioconductor for better distribution of our work. As suggested, we added a brief README file in our GitHub repository with installation instructions and a link to our vignette document that present the functionalities of our package. We have added the following sentence to the Supporting Information section of our paper "All of the scripts used in the analyses presented in this paper can be downloaded at https://github.com/plbaldoni/epigraHMMPaper."
+
+5.	The DESeq link in the https://github.com/plbaldoni/epigraHMMPaper/blob/main/Supp/Report_RNA_vs_ChIP/report.pdf can be corrected to http://www.bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.html. 
+
+> The DESeq2 links utilized in our report now point to the suggested location if the file is open on a pdf viewer such as Adobe Reader or Preview (MacOS only).
