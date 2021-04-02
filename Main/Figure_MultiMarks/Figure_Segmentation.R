@@ -224,7 +224,7 @@ fig_segmentation <- lapply(3:8,function(x){
     geom_text(data = dt.anno2,aes(x = x, y = y, label = Label),size = size.text) +
     geom_text_repel(data=refseq.out,aes(x = Lbl.x,y = Counts,label = gene_name),direction = 'y',size = size.text,nudge_y = -10,segment.color = 'grey') +
     theme_bw() +
-    scale_fill_manual(values = cbPalette[c(7,1,4)],name = 'ChromHMM\nSegmentation')+
+    scale_fill_manual(values = cbPalette[c(7,1,4,8)],name = 'ChromHMM\nSegmentation')+
     scale_color_viridis_c(option = 'B',name = 'Gene Expression\nlog2(TPM+1)')+
     labs(x = paste0('Genomic Window (',chromosome,')'),y = 'Normalized ChIP-seq counts') +
     scale_x_continuous(labels = scales::comma,limits = c(161580000,max(ChIP[ChIP$Window%in%idx,]$start))) +

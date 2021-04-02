@@ -101,6 +101,6 @@ fig_genesymbols <-
   theme_light() +
   coord_flip() +
   theme(panel.grid.major.y = element_blank()) +
-  labs(x = 'Known Cycle-Regulated Helas3 Genes', y = 'Differential H3K36me3 Enrichment (Mixture Prob.)')
+  labs(x = 'Known Cell Cycle-Regulated Helas3 Genes', y = 'Differential H3K36me3 Enrichment (Mixture Prob.)')
 
 save(fig_genesymbols, file = './Figure_GeneSymbols.RData')
